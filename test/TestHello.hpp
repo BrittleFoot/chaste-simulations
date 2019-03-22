@@ -42,6 +42,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "PetscSetupAndFinalize.hpp"
 #include "Hello.hpp"
+#include <iostream>
 
 /**
  * @file
@@ -68,6 +69,8 @@ public:
         // Create an object called 'world' of class 'Hello',
         // (Hello.hpp is #included from the 'src' folder.)
         Hello world("Hello world!");
+
+        std::cout << world.GetMessage() << std::endl;
 
         // The TS_ASSERT macros are used to test that the object performs as expected
         TS_ASSERT_EQUALS(world.GetMessage(), "Hello world!");
