@@ -31,15 +31,12 @@ public:
         else{
             return new CellLuoRudy1991FromCellMLBackwardEuler(mpSolver, mpZeroStimulus); 
         }
-        
-        
     }
-
 };
 
 
 
-class Stick5cm : public CxxTest::TestSuite
+class MyTest : public CxxTest::TestSuite
 {
 public:
     void TestStick5cm()
@@ -52,8 +49,6 @@ public:
         HeartConfig::Instance()->SetOutputDirectory("measurement_of_speed_output_luo_rudy2");
         HeartConfig::Instance()->SetOutputFilenamePrefix("results");
         HeartConfig::Instance()->SetVisualizeWithVtk(true);
-        //HeartConfig::Instance()->SetIntracellularConductivities(Create_c_vector(2.81, 2.81,2.81));//mS/cm
-        //HeartConfig::Instance()->SetExtracellularConductivities(Create_c_vector(0.61, 0.61, 0.61));//mS/cm
         
         HeartConfig::Instance()->SetIntracellularConductivities(Create_c_vector(0.5, 0.5, 0.5));//mS/cm
         HeartConfig::Instance()->SetExtracellularConductivities(Create_c_vector(0.4, 0.4, 0.4));//mS/cm
