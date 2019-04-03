@@ -1,9 +1,10 @@
 #ifndef HEARTTISSUE1D_HPP
 #define HEARTTISSUE1D_HPP
 
-
 #include <iostream>
 #include <cxxtest/TestSuite.h>
+#include <string>
+#include <cstdlib>
 
 #include "LuoRudy1991BackwardEuler.hpp"
 #include "SimpleStimulus.hpp"
@@ -11,12 +12,28 @@
 #include "PetscSetupAndFinalize.hpp"
 #include "BidomainProblem.hpp"
 
-#include "ten_tusscher_model_2006_IK1Ko_epi_units.hpp"
-#include "ten_tusscher_model_2006_IK1Ko_endo_units.hpp"
-#include "ten_tusscher_model_2006_IK1Ko_M_units.hpp"
+#include "ten_tusscher_model_2006_endoBackwardEuler.hpp"
+#include "ten_tusscher_model_2006_epiBackwardEuler.hpp"
+#include "ten_tusscher_model_2006_MBackwardEuler.hpp"
+
+typedef Cellten_tusscher_model_2006_endoFromCellMLBackwardEuler TenTusser2006Endo_BckwardEuler;
+typedef Cellten_tusscher_model_2006_epiFromCellMLBackwardEuler  TenTusser2006Epi_BckwardEuler;
+typedef Cellten_tusscher_model_2006_MFromCellMLBackwardEuler    TenTusser2006Mid_BckwardEuler;
 
 
-const double LENGTH = 1.63;
+double GetEnvDouble(std::string const & key, const double defaultValue) {
+    // todo: Не работает :(
+
+    const char* variable = std::getenv(key.c_str());
+    std::cout << "Looking for `" << key << "`..." << std::endl;
+
+    if (variable != NULL) {
+        double d = std::stod(std::string(variable));
+        std::cout << "Using " << key << " = " << d << std::endl;
+        return d;
+    };
+    return defaultValue;
+}
 
 
 class CellFactory_HeartTissue1d : public AbstractCardiacCellFactory<1>
@@ -24,26 +41,35 @@ class CellFactory_HeartTissue1d : public AbstractCardiacCellFactory<1>
 private:
     boost::shared_ptr<SimpleStimulus> mpStimulus;
 
+    double length;
+    double stepSize; 
+
 public:
-    CellFactory_HeartTissue1d()
-    : AbstractCardiacCellFactory<1>(),
-      mpStimulus(new SimpleStimulus(-19000, 2, 0 )) //nA/cm3, ms, ms 
+    CellFactory_HeartTissue1d(const double length, const double stepSize, const double stimulus)
+        : AbstractCardiacCellFactory<1>(),
+          mpStimulus(new SimpleStimulus(stimulus, 2, 0)), //nA/cm3, ms, ms
+          length(length), // cm
+          stepSize(stepSize) // cm (stepSize * N = length)
     {
     }
     
     AbstractCardiacCell* CreateCardiacCellForTissueNode(Node<1>* pNode)
     {
         double x = pNode->rGetLocation()[0];
-        if (x < 1){
-            /* Cellten_tusscher_model_2006_IK1Ko_endo_unitsFromCellML */  
-            return new CellLuoRudy1991FromCellMLBackwardEuler(mpSolver, mpStimulus);            
-        }
-        else{
-            return new CellLuoRudy1991FromCellMLBackwardEuler(mpSolver, mpZeroStimulus); 
-        }
+
+        // 20% endocardial cells, 30% midwall cells, and 50% epicardial and first cell with stimulus
+
+        if (x <= stepSize)
+            return new TenTusser2006Endo_BckwardEuler(mpSolver, mpStimulus);
+        
+        if (x < length * 0.2)
+            return new TenTusser2006Endo_BckwardEuler(mpSolver, mpZeroStimulus); 
+        else if (x < length * 0.5)
+            return new TenTusser2006Mid_BckwardEuler(mpSolver, mpZeroStimulus); 
+        else
+            return new TenTusser2006Epi_BckwardEuler(mpSolver, mpZeroStimulus);
     }
 };
-
 
 
 class HeartTissue1dTest : public CxxTest::TestSuite
@@ -51,29 +77,47 @@ class HeartTissue1dTest : public CxxTest::TestSuite
 public:
     void TestHeartTissue1d()
     {
-        DistributedTetrahedralMesh<1, 1> mesh;
-        double h = 0.01; //размерноcть шага по сетке в см
-        double length = LENGTH; // length должна делиться на h
+        double stepSize = GetEnvDouble("step_size", 0.01); //размерноcть шага по сетке в см
+        double length = GetEnvDouble("length", 1.63); // length должна делиться на stepSize
+        double stimulus = GetEnvDouble("stimulus", -50000);
 
-        mesh.ConstructRegularSlabMesh(h, length, 0.0, 0.0);
+        DistributedTetrahedralMesh<1, 1> mesh;
+
+        mesh.ConstructRegularSlabMesh(stepSize, length, 0.0, 0.0);
         HeartConfig::Instance()->SetOutputUsingOriginalNodeOrdering(true);
         HeartConfig::Instance()->SetSimulationDuration(600);//ms
-        HeartConfig::Instance()->SetOutputDirectory("HeartTissue1d.v2");
+        HeartConfig::Instance()->SetOutputDirectory("HeartTissue1d");
         HeartConfig::Instance()->SetOutputFilenamePrefix("results");
         HeartConfig::Instance()->SetVisualizeWithVtk(true);
         
-        HeartConfig::Instance()->SetIntracellularConductivities(Create_c_vector(0.5, 0.5, 0.5));//mS/cm
-        HeartConfig::Instance()->SetExtracellularConductivities(Create_c_vector(0.4, 0.4, 0.4));//mS/cm
+        HeartConfig::Instance()->SetIntracellularConductivities(Create_c_vector(12, 1.3333, 1.3333));
+        HeartConfig::Instance()->SetExtracellularConductivities(Create_c_vector(45, 5, 5));
         HeartConfig::Instance()->SetOdePdeAndPrintingTimeSteps(0.01, 0.05, 1.0);//ms
-        HeartConfig::Instance()->SetCapacitance(0.7); // uF/cm^2
+        HeartConfig::Instance()->SetSurfaceAreaToVolumeRatio(1400);
+        HeartConfig::Instance()->SetCapacitance(2.0);
         
 
-        CellFactory_HeartTissue1d cell_factory;
+        CellFactory_HeartTissue1d cell_factory(length, stepSize, stimulus);
+
         BidomainProblem<1> bidomain_problem( &cell_factory );
+        std::cout << "bidomain_problem(.)" << std::endl;
+
         bidomain_problem.SetMesh(&mesh);
+        std::cout << "SetMesh" << std::endl;
+
         bidomain_problem.SetWriteInfo();
+        std::cout << "SetWriteInfo" << std::endl;
+
         bidomain_problem.Initialise();
-        bidomain_problem.Solve();
+        std::cout << "Initialise" << std::endl;
+
+        try {
+            bidomain_problem.Solve();
+            std::cout << "Solve" << std::endl;
+        }
+        catch (const std::exception& e) {
+            std::cout << "Exception: " << e.what() << std::endl;
+        }
     }
 };
 

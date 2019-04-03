@@ -1,67 +1,15 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!--
-This CellML file was generated on 21/05/2008 at 15:15:33 using:
+This CellML file was generated on 13/07/2010 at 17:01:12 using:
 
-COR (0.9.31.955)
-Copyright 2002-2008 Dr Alan Garny
-http://COR.physiol.ox.ac.uk/ - COR@physiol.ox.ac.uk
+COR (0.9.31.1379)
+Copyright 2002-2010 Dr Alan Garny
+http://cor.physiol.ox.ac.uk/ - cor@physiol.ox.ac.uk
 
 CellML 1.0 was used to generate this model
-http://www.CellML.org/
+http://www.cellml.org/
 -->
-<model xmlns="http://www.cellml.org/cellml/1.0#" xmlns:cmeta="http://www.cellml.org/metadata/1.0#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqs="http://www.cellml.org/bqs/1.0#" xmlns:cellml="http://www.cellml.org/cellml/1.0#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:ns7="http://www.cellml.org/metadata/simulation/1.0#" name="tentusscher_panfilov_2006_endo_cell" cmeta:id="tentusscher_panfilov_2006_endo_cell">
-
-<documentation xmlns="http://cellml.org/tmp-documentation">
-<article>
-  <articleinfo>
-  <title>Alternans and spiral breakup in a human ventricular tissue model</title>
-  <author>
-    <firstname>Noble</firstname>
-          <surname>Penny</surname>
-    <affiliation>
-      <shortaffil>Oxford University Cardiac Electrophysiology Group</shortaffil>
-    </affiliation>
-  </author>
-</articleinfo>
-  <section id="sec_status">
-    <title>Model Status</title>
-    <para>
-            This is the ENDOCARDIAL CELL VARIANT of the model. This model was created by Penny Noble of Oxford University and is known to read in COR and PCEnv. A stimulus protocol has been added that allows the model to simulate multiple action potentials at 1Hz.
-          </para>
-  </section>
-  <sect1 id="sec_structure">
-<title>Model Structure</title>
-
-<para>
-ABSTRACT: Ventricular fibrillation (VF) is one of the main causes of death in the Western world. According to one hypothesis, the chaotic excitation dynamics during VF are the result of dynamical instabilities in action potential duration (APD) the occurrence of which requires that the slope of the APD restitution curve exceeds 1. Other factors such as electrotonic coupling and cardiac memory also determine whether these instabilities can develop. In this paper we study the conditions for alternans and spiral breakup in human cardiac tissue. Therefore, we develop a new version of our human ventricular cell model, which is based on recent experimental measurements of human APD restitution and includes a more extensive description of intracellular calcium dynamics. We apply this model to study the conditions for electrical instability in single cells, for reentrant waves in a ring of cells, and for reentry in two-dimensional sheets of ventricular tissue. We show that an important determinant for the onset of instability is the recovery dynamics of the fast sodium current. Slower sodium current recovery leads to longer periods of spiral wave rotation and more gradual conduction velocity restitution, both of which suppress restitution-mediated instability. As a result, maximum restitution slopes considerably exceeding 1 (up to 1.5) may be necessary for electrical instability to occur. Although slopes necessary for the onset of instabilities found in our study exceed 1, they are within the range of experimentally measured slopes. Therefore, we conclude that steep APD restitution-mediated instability is a potential mechanism for VF in the human heart.
-</para>
-
-<para>
-The original paper reference is cited below:
-</para>
-
-<para>
-Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten Tusscher, A.V. Panfilov, Sep 2006,
-            <emphasis>American Journal of Physiology, Heart and Circulatory Physiology</emphasis>, 291 3, H1088-1100. <ulink url="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=16565318&amp;dopt=Abstract">PubMed ID: 16565318</ulink>
-</para>
-
-<informalfigure float="0" id="fig_cell_diagram">
-<mediaobject>
-  <imageobject>
-    <objectinfo>
-      <title>cell diagram</title>
-    </objectinfo>
-    <imagedata fileref="tentusscher_2006.png"/>
-  </imageobject>
-</mediaobject>
-<caption>A schematic diagram describing the ion movement across the cell surface membrane and the sarcoplasmic reticulum, which are described by the Ten Tusscher <emphasis>et al.</emphasis> 2006 mathematical model of the human ventricular myocyte.</caption>
-</informalfigure>
-
-</sect1>
-</article>
-</documentation>
-
-
+<model name="tentusscher_model_2006_epi" cmeta:id="tentusscher_model_2006_epi" xmlns="http://www.cellml.org/cellml/1.0#" xmlns:cellml="http://www.cellml.org/cellml/1.0#" xmlns:cmeta="http://www.cellml.org/metadata/1.0#">
    <units name="micrometre">
       <unit units="metre" prefix="micro"/>
    </units>
@@ -113,6 +61,10 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
       <unit units="mole" prefix="milli"/>
       <unit units="litre" exponent="-1"/>
    </units>
+   <units xmlns="http://www.cellml.org/cellml/1.0#" name="millivolt_millimoles">
+      <unit units="millivolt"/>
+      <unit units="millimolar"/>
+   </units>
    <units name="millimolar_per_millisecond">
       <unit units="millimolar"/>
       <unit units="second" prefix="milli" exponent="-1"/>
@@ -147,14 +99,32 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
       <unit units="second" exponent="-1"/>
    </units>
    <component name="environment">
-      <variable name="time" units="millisecond" public_interface="out"/>
+      <variable name="time" public_interface="out" units="millisecond" cmeta:id="time">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#time">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#time"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>
    </component>
    <component name="membrane">
-      <variable name="V" units="millivolt" initial_value="-86.709" public_interface="out"/>
+	  <variable name="V" units="millivolt" initial_value="-85.23" public_interface="out" cmeta:id="membrane_voltage">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_voltage">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_voltage"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>
       <variable name="R" units="joule_per_mole_kelvin" initial_value="8314.472" public_interface="out"/>
       <variable name="T" units="kelvin" initial_value="310" public_interface="out"/>
       <variable name="F" units="coulomb_per_millimole" initial_value="96485.3415" public_interface="out"/>
-      <variable name="Cm" units="microF" initial_value="0.185" public_interface="out"/>
+      <variable name="Cm" units="microF" initial_value="0.185" public_interface="out" cmeta:id="membrane_capacitance">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_capacitance">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_capacitance"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>
       <variable name="V_c" units="micrometre3" initial_value="0.016404" public_interface="out"/>
       <variable name="time" units="millisecond" public_interface="in"/>
       <variable name="i_K1" units="picoA_per_picoF" public_interface="in"/>
@@ -169,21 +139,48 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
       <variable name="i_b_Ca" units="picoA_per_picoF" public_interface="in"/>
       <variable name="i_p_K" units="picoA_per_picoF" public_interface="in"/>
       <variable name="i_p_Ca" units="picoA_per_picoF" public_interface="in"/>
-      <variable name="i_Stim" units="picoA_per_picoF" public_interface="out"/>
-      <variable name="stim_start" units="millisecond" initial_value="10"/>
-      <variable name="stim_period" units="millisecond" initial_value="1000"/>
-      <variable name="stim_duration" units="millisecond" initial_value="1"/>
-      <variable name="stim_amplitude" units="picoA_per_picoF" initial_value="52"/>
+      <variable name="i_Stim" units="picoA_per_picoF" public_interface="out" cmeta:id="membrane_stimulus_current">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_stimulus_current">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_stimulus_current"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>
+	  <variable name="stim_start" units="millisecond" initial_value="100" cmeta:id="membrane_stimulus_current_offset">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_stimulus_current_offset">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_stimulus_current_offset"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>
+	  <variable name="stim_period" units="millisecond" initial_value="1000" cmeta:id="membrane_stimulus_current_period">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_stimulus_current_period">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_stimulus_current_period"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>
+	  <variable name="stim_duration" units="millisecond" initial_value="1" cmeta:id="membrane_stimulus_current_duration">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_stimulus_current_duration">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_stimulus_current_duration"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>
+	  <variable name="stim_amplitude" units="picoA_per_picoF" initial_value="-52" cmeta:id="membrane_stimulus_current_amplitude">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_stimulus_current_amplitude">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_stimulus_current_amplitude"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
          <apply>
             <eq/>
             <ci>i_Stim</ci>
             <piecewise>
                <piece>
-                  <apply>
-                     <minus/>
-                     <ci>stim_amplitude</ci>
-                  </apply>
+                  <ci>stim_amplitude</ci>
                   <apply>
                      <and/>
                      <apply>
@@ -409,8 +406,20 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
       </math>
    </component>
    <component name="inward_rectifier_potassium_current">
-      <variable name="i_K1" units="picoA_per_picoF" public_interface="out"/>
-      <variable name="g_K1" units="nanoS_per_picoF" initial_value="5.405"/>
+	  <variable name="i_K1" units="picoA_per_picoF" public_interface="out" cmeta:id="membrane_inward_rectifier_potassium_current">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_inward_rectifier_potassium_current">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_inward_rectifier_potassium_current"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>	
+      <variable name="g_K1" units="nanoS_per_picoF" initial_value="5.405" cmeta:id="membrane_inward_rectifier_potassium_current_conductance">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_inward_rectifier_potassium_current_conductance">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_inward_rectifier_potassium_current_conductance"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>	
       <variable name="V" units="millivolt" public_interface="in"/>
       <variable name="K_o" units="millimolar" public_interface="in"/>
       <variable name="E_K" units="millivolt" public_interface="in"/>
@@ -550,8 +559,20 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
       </math>
    </component>
    <component name="rapid_time_dependent_potassium_current">
-      <variable name="i_Kr" units="picoA_per_picoF" public_interface="out"/>
-      <variable name="g_Kr" units="nanoS_per_picoF" initial_value="0.153"/>
+	  <variable name="i_Kr" units="picoA_per_picoF" public_interface="out" cmeta:id="membrane_rapid_delayed_rectifier_potassium_current">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_rapid_delayed_rectifier_potassium_current">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_rapid_delayed_rectifier_potassium_current"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>
+      <variable name="g_Kr" units="nanoS_per_picoF" initial_value="0.153" cmeta:id="membrane_rapid_delayed_rectifier_potassium_current_conductance">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_rapid_delayed_rectifier_potassium_current_conductance">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_rapid_delayed_rectifier_potassium_current_conductance"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>
       <variable name="E_K" units="millivolt" public_interface="in"/>
       <variable name="K_o" units="millimolar" public_interface="in"/>
       <variable name="time" units="millisecond" public_interface="in" private_interface="out"/>
@@ -585,7 +606,7 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
       </math>
    </component>
    <component name="rapid_time_dependent_potassium_current_Xr1_gate">
-      <variable name="Xr1" units="dimensionless" initial_value="0.00448" public_interface="out"/>
+      <variable name="Xr1" units="dimensionless" initial_value="0.00621" public_interface="out"/>
       <variable name="V" units="millivolt" public_interface="in"/>
       <variable name="time" units="millisecond" public_interface="in"/>
       <variable name="xr1_inf" units="dimensionless"/>
@@ -703,7 +724,7 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
       </math>
    </component>
    <component name="rapid_time_dependent_potassium_current_Xr2_gate">
-      <variable name="Xr2" units="dimensionless" initial_value="0.476" public_interface="out"/>
+      <variable name="Xr2" units="dimensionless" initial_value="0.4712" public_interface="out"/>
       <variable name="V" units="millivolt" public_interface="in"/>
       <variable name="time" units="millisecond" public_interface="in"/>
       <variable name="xr2_inf" units="dimensionless"/>
@@ -818,8 +839,20 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
       </math>
    </component>
    <component name="slow_time_dependent_potassium_current">
-      <variable name="i_Ks" units="picoA_per_picoF" public_interface="out"/>
-      <variable name="g_Ks" units="nanoS_per_picoF" initial_value="0.392"/>
+	  <variable name="i_Ks" units="picoA_per_picoF" public_interface="out" cmeta:id="membrane_slow_delayed_rectifier_potassium_current">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_slow_delayed_rectifier_potassium_current">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_slow_delayed_rectifier_potassium_current"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>		  
+      <variable name="g_Ks" units="nanoS_per_picoF" initial_value="0.392" cmeta:id="membrane_slow_delayed_rectifier_potassium_current_conductance">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_slow_delayed_rectifier_potassium_current_conductance">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_slow_delayed_rectifier_potassium_current_conductance"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>	  
       <variable name="E_Ks" units="millivolt" public_interface="in"/>
       <variable name="time" units="millisecond" public_interface="in" private_interface="out"/>
       <variable name="V" units="millivolt" public_interface="in" private_interface="out"/>
@@ -846,7 +879,7 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
       </math>
    </component>
    <component name="slow_time_dependent_potassium_current_Xs_gate">
-      <variable name="Xs" units="dimensionless" initial_value="0.0087" public_interface="out"/>
+      <variable name="Xs" units="dimensionless" initial_value="0.0095" public_interface="out"/>
       <variable name="V" units="millivolt" public_interface="in"/>
       <variable name="time" units="millisecond" public_interface="in"/>
       <variable name="xs_inf" units="dimensionless"/>
@@ -968,8 +1001,34 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
       </math>
    </component>
    <component name="fast_sodium_current">
-      <variable name="i_Na" units="picoA_per_picoF" public_interface="out"/>
-      <variable name="g_Na" units="nanoS_per_picoF" initial_value="14.838"/>
+	  <variable name="i_Na" units="picoA_per_picoF" public_interface="out" cmeta:id="membrane_fast_sodium_current">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_fast_sodium_current">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_fast_sodium_current"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>
+      <variable name="g_Na" units="nanoS_per_picoF" initial_value="14.838" cmeta:id="membrane_fast_sodium_current_conductance">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_fast_sodium_current_conductance">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_fast_sodium_current_conductance"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>
+      <variable name="shift_INa_inact" units="millivolt" initial_value="0" private_interface="out" cmeta:id="membrane_fast_sodium_current_shift_inactivation">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_fast_sodium_current_shift_inactivation">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_fast_sodium_current_shift_inactivation"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>
+	  <variable name="perc_reduced_inact_for_IpNa" units="dimensionless" initial_value="0" private_interface="out" cmeta:id="membrane_fast_sodium_current_reduced_inactivation">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_fast_sodium_current_reduced_inactivation">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_fast_sodium_current_reduced_inactivation"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>
       <variable name="E_Na" units="millivolt" public_interface="in"/>
       <variable name="time" units="millisecond" public_interface="in" private_interface="out"/>
       <variable name="V" units="millivolt" public_interface="in" private_interface="out"/>
@@ -1000,7 +1059,15 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
       </math>
    </component>
    <component name="fast_sodium_current_m_gate">
-      <variable name="m" units="dimensionless" initial_value="0.00155" public_interface="out"/>
+	  <variable name="m" units="dimensionless" initial_value="0.00172" public_interface="out" cmeta:id="membrane_fast_sodium_current_m_gate">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_fast_sodium_current_m_gate">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_fast_sodium_current_m_gate"/>
+               <range-low xmlns="https://chaste.comlab.ox.ac.uk/cellml/ns/pycml#">0</range-low>
+               <range-high xmlns="https://chaste.comlab.ox.ac.uk/cellml/ns/pycml#">1</range-high>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>
       <variable name="V" units="millivolt" public_interface="in"/>
       <variable name="time" units="millisecond" public_interface="in"/>
       <variable name="m_inf" units="dimensionless"/>
@@ -1145,39 +1212,79 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
       </math>
    </component>
    <component name="fast_sodium_current_h_gate">
-      <variable name="h" units="dimensionless" initial_value="0.7573" public_interface="out"/>
+	  <variable name="h" units="dimensionless" initial_value="0.7444" public_interface="out" cmeta:id="membrane_fast_sodium_current_h_gate">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_fast_sodium_current_h_gate">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_fast_sodium_current_h_gate"/>
+               <range-low xmlns="https://chaste.comlab.ox.ac.uk/cellml/ns/pycml#">0</range-low>
+               <range-high xmlns="https://chaste.comlab.ox.ac.uk/cellml/ns/pycml#">1</range-high>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>
       <variable name="V" units="millivolt" public_interface="in"/>
       <variable name="time" units="millisecond" public_interface="in"/>
       <variable name="h_inf" units="dimensionless"/>
       <variable name="alpha_h" units="per_millisecond"/>
       <variable name="beta_h" units="per_millisecond"/>
-      <variable name="tau_h" units="millisecond"/>
+      <variable name="shift_INa_inact" units="millivolt" public_interface="in"/>
+	  <variable name="perc_reduced_inact_for_IpNa" units="dimensionless" public_interface="in"/>
+	  <variable name="tau_h" units="millisecond" cmeta:id="membrane_fast_sodium_current_h_gate_tau">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_fast_sodium_current_h_gate_tau">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_fast_sodium_current_h_gate_tau"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>	
       <math xmlns="http://www.w3.org/1998/Math/MathML">
          <apply>
             <eq/>
             <ci>h_inf</ci>
             <apply>
-               <divide/>
-               <cn cellml:units="dimensionless">1</cn>
+               <plus/>
                <apply>
-                  <power/>
+                  <divide/>
                   <apply>
-                     <plus/>
+                     <times/>
                      <cn cellml:units="dimensionless">1</cn>
                      <apply>
-                        <exp/>
+                        <minus/>
+                        <cn cellml:units="dimensionless">1</cn>
                         <apply>
                            <divide/>
-                           <apply>
-                              <plus/>
-                              <ci>V</ci>
-                              <cn cellml:units="millivolt">71.55</cn>
-                           </apply>
-                           <cn cellml:units="millivolt">7.43</cn>
+                           <ci>perc_reduced_inact_for_IpNa</ci>
+                           <cn cellml:units="dimensionless">100</cn>
                         </apply>
                      </apply>
                   </apply>
-                  <cn cellml:units="dimensionless">2</cn>
+                  <apply>
+                     <power/>
+                     <apply>
+                        <plus/>
+                        <cn cellml:units="dimensionless">1</cn>
+                        <apply>
+                           <exp/>
+                           <apply>
+                              <divide/>
+                              <apply>
+                                 <minus/>
+                                 <apply>
+                                    <plus/>
+                                    <ci>V</ci>
+                                    <cn cellml:units="millivolt">71.55</cn>
+                                 </apply>
+                                 <ci>shift_INa_inact</ci>
+                              </apply>
+                              <cn cellml:units="millivolt">7.43</cn>
+                           </apply>
+                        </apply>
+                     </apply>
+                     <cn cellml:units="dimensionless">2</cn>
+                  </apply>
+               </apply>
+               <apply>
+                  <divide/>
+                  <ci>perc_reduced_inact_for_IpNa</ci>
+                  <cn cellml:units="dimensionless">100</cn>
                </apply>
             </apply>
          </apply>
@@ -1196,9 +1303,13 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
                            <apply>
                               <minus/>
                               <apply>
-                                 <plus/>
-                                 <ci>V</ci>
-                                 <cn cellml:units="millivolt">80</cn>
+                                 <minus/>
+                                 <apply>
+                                    <plus/>
+                                    <ci>V</ci>
+                                    <cn cellml:units="millivolt">80</cn>
+                                 </apply>
+                                 <ci>shift_INa_inact</ci>
                               </apply>
                            </apply>
                            <cn cellml:units="millivolt">6.8</cn>
@@ -1209,8 +1320,12 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
                      <lt/>
                      <ci>V</ci>
                      <apply>
-                        <minus/>
-                        <cn cellml:units="millivolt">40</cn>
+                        <plus/>
+                        <apply>
+                           <minus/>
+                           <cn cellml:units="millivolt">40</cn>
+                        </apply>
+                        <ci>shift_INa_inact</ci>
                      </apply>
                   </apply>
                </piece>
@@ -1234,7 +1349,11 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
                            <apply>
                               <times/>
                               <cn cellml:units="per_millivolt">0.079</cn>
-                              <ci>V</ci>
+                              <apply>
+                                 <minus/>
+                                 <ci>V</ci>
+                                 <ci>shift_INa_inact</ci>
+                              </apply>
                            </apply>
                         </apply>
                      </apply>
@@ -1246,7 +1365,11 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
                            <apply>
                               <times/>
                               <cn cellml:units="per_millivolt">0.3485</cn>
-                              <ci>V</ci>
+                              <apply>
+                                 <minus/>
+                                 <ci>V</ci>
+                                 <ci>shift_INa_inact</ci>
+                              </apply>
                            </apply>
                         </apply>
                      </apply>
@@ -1255,8 +1378,12 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
                      <lt/>
                      <ci>V</ci>
                      <apply>
-                        <minus/>
-                        <cn cellml:units="millivolt">40</cn>
+                        <plus/>
+                        <apply>
+                           <minus/>
+                           <cn cellml:units="millivolt">40</cn>
+                        </apply>
+                        <ci>shift_INa_inact</ci>
                      </apply>
                   </apply>
                </piece>
@@ -1275,9 +1402,13 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
                               <apply>
                                  <divide/>
                                  <apply>
-                                    <plus/>
-                                    <ci>V</ci>
-                                    <cn cellml:units="millivolt">10.66</cn>
+                                    <minus/>
+                                    <apply>
+                                       <plus/>
+                                       <ci>V</ci>
+                                       <cn cellml:units="millivolt">10.66</cn>
+                                    </apply>
+                                    <ci>shift_INa_inact</ci>
                                  </apply>
                                  <apply>
                                     <minus/>
@@ -1326,39 +1457,79 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
       </math>
    </component>
    <component name="fast_sodium_current_j_gate">
-      <variable name="j" units="dimensionless" initial_value="0.7225" public_interface="out"/>
+	  <variable name="j" units="dimensionless" initial_value="0.7045" public_interface="out" cmeta:id="membrane_fast_sodium_current_j_gate">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_fast_sodium_current_j_gate">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_fast_sodium_current_j_gate"/>
+               <range-low xmlns="https://chaste.comlab.ox.ac.uk/cellml/ns/pycml#">0</range-low>
+               <range-high xmlns="https://chaste.comlab.ox.ac.uk/cellml/ns/pycml#">1</range-high>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>
       <variable name="V" units="millivolt" public_interface="in"/>
       <variable name="time" units="millisecond" public_interface="in"/>
       <variable name="j_inf" units="dimensionless"/>
       <variable name="alpha_j" units="per_millisecond"/>
       <variable name="beta_j" units="per_millisecond"/>
-      <variable name="tau_j" units="millisecond"/>
+      <variable name="shift_INa_inact" units="millivolt" public_interface="in"/>
+      <variable name="perc_reduced_inact_for_IpNa" units="dimensionless" public_interface="in"/>
+	  <variable name="tau_j" units="millisecond" cmeta:id="membrane_fast_sodium_current_j_gate_tau">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_fast_sodium_current_j_gate_tau">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_fast_sodium_current_j_gate_tau"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>	
       <math xmlns="http://www.w3.org/1998/Math/MathML">
          <apply>
             <eq/>
             <ci>j_inf</ci>
             <apply>
-               <divide/>
-               <cn cellml:units="dimensionless">1</cn>
+               <plus/>
                <apply>
-                  <power/>
+                  <divide/>
                   <apply>
-                     <plus/>
+                     <times/>
                      <cn cellml:units="dimensionless">1</cn>
                      <apply>
-                        <exp/>
+                        <minus/>
+                        <cn cellml:units="dimensionless">1</cn>
                         <apply>
                            <divide/>
-                           <apply>
-                              <plus/>
-                              <ci>V</ci>
-                              <cn cellml:units="millivolt">71.55</cn>
-                           </apply>
-                           <cn cellml:units="millivolt">7.43</cn>
+                           <ci>perc_reduced_inact_for_IpNa</ci>
+                           <cn cellml:units="dimensionless">100</cn>
                         </apply>
                      </apply>
                   </apply>
-                  <cn cellml:units="dimensionless">2</cn>
+                  <apply>
+                     <power/>
+                     <apply>
+                        <plus/>
+                        <cn cellml:units="dimensionless">1</cn>
+                        <apply>
+                           <exp/>
+                           <apply>
+                              <divide/>
+                              <apply>
+                                 <minus/>
+                                 <apply>
+                                    <plus/>
+                                    <ci>V</ci>
+                                    <cn cellml:units="millivolt">71.55</cn>
+                                 </apply>
+                                 <ci>shift_INa_inact</ci>
+                              </apply>
+                              <cn cellml:units="millivolt">7.43</cn>
+                           </apply>
+                        </apply>
+                     </apply>
+                     <cn cellml:units="dimensionless">2</cn>
+                  </apply>
+               </apply>
+               <apply>
+                  <divide/>
+                  <ci>perc_reduced_inact_for_IpNa</ci>
+                  <cn cellml:units="dimensionless">100</cn>
                </apply>
             </apply>
          </apply>
@@ -1386,7 +1557,11 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
                                     <apply>
                                        <times/>
                                        <cn cellml:units="per_millivolt">0.2444</cn>
-                                       <ci>V</ci>
+                                       <apply>
+                                          <minus/>
+                                          <ci>V</ci>
+                                          <ci>shift_INa_inact</ci>
+                                       </apply>
                                     </apply>
                                  </apply>
                               </apply>
@@ -1402,7 +1577,11 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
                                           <minus/>
                                           <cn cellml:units="per_millivolt">0.04391</cn>
                                        </apply>
-                                       <ci>V</ci>
+                                       <apply>
+                                          <minus/>
+                                          <ci>V</ci>
+                                          <ci>shift_INa_inact</ci>
+                                       </apply>
                                     </apply>
                                  </apply>
                               </apply>
@@ -1424,9 +1603,13 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
                               <times/>
                               <cn cellml:units="per_millivolt">0.311</cn>
                               <apply>
-                                 <plus/>
-                                 <ci>V</ci>
-                                 <cn cellml:units="millivolt">79.23</cn>
+                                 <minus/>
+                                 <apply>
+                                    <plus/>
+                                    <ci>V</ci>
+                                    <cn cellml:units="millivolt">79.23</cn>
+                                 </apply>
+                                 <ci>shift_INa_inact</ci>
                               </apply>
                            </apply>
                         </apply>
@@ -1436,8 +1619,12 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
                      <lt/>
                      <ci>V</ci>
                      <apply>
-                        <minus/>
-                        <cn cellml:units="millivolt">40</cn>
+                        <plus/>
+                        <apply>
+                           <minus/>
+                           <cn cellml:units="millivolt">40</cn>
+                        </apply>
+                        <ci>shift_INa_inact</ci>
                      </apply>
                   </apply>
                </piece>
@@ -1464,7 +1651,11 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
                                  <minus/>
                                  <cn cellml:units="per_millivolt">0.01052</cn>
                               </apply>
-                              <ci>V</ci>
+                              <apply>
+                                 <minus/>
+                                 <ci>V</ci>
+                                 <ci>shift_INa_inact</ci>
+                              </apply>
                            </apply>
                         </apply>
                      </apply>
@@ -1480,9 +1671,13 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
                                  <cn cellml:units="per_millivolt">0.1378</cn>
                               </apply>
                               <apply>
-                                 <plus/>
-                                 <ci>V</ci>
-                                 <cn cellml:units="millivolt">40.14</cn>
+                                 <minus/>
+                                 <apply>
+                                    <plus/>
+                                    <ci>V</ci>
+                                    <cn cellml:units="millivolt">40.14</cn>
+                                 </apply>
+                                 <ci>shift_INa_inact</ci>
                               </apply>
                            </apply>
                         </apply>
@@ -1492,8 +1687,12 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
                      <lt/>
                      <ci>V</ci>
                      <apply>
-                        <minus/>
-                        <cn cellml:units="millivolt">40</cn>
+                        <plus/>
+                        <apply>
+                           <minus/>
+                           <cn cellml:units="millivolt">40</cn>
+                        </apply>
+                        <ci>shift_INa_inact</ci>
                      </apply>
                   </apply>
                </piece>
@@ -1508,7 +1707,11 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
                            <apply>
                               <times/>
                               <cn cellml:units="per_millivolt">0.057</cn>
-                              <ci>V</ci>
+                              <apply>
+                                 <minus/>
+                                 <ci>V</ci>
+                                 <ci>shift_INa_inact</ci>
+                              </apply>
                            </apply>
                         </apply>
                      </apply>
@@ -1524,9 +1727,13 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
                                  <cn cellml:units="per_millivolt">0.1</cn>
                               </apply>
                               <apply>
-                                 <plus/>
-                                 <ci>V</ci>
-                                 <cn cellml:units="millivolt">32</cn>
+                                 <minus/>
+                                 <apply>
+                                    <plus/>
+                                    <ci>V</ci>
+                                    <cn cellml:units="millivolt">32</cn>
+                                 </apply>
+                                 <ci>shift_INa_inact</ci>
                               </apply>
                            </apply>
                         </apply>
@@ -1570,8 +1777,20 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
       </math>
    </component>
    <component name="sodium_background_current">
-      <variable name="i_b_Na" units="picoA_per_picoF" public_interface="out"/>
-      <variable name="g_bna" units="nanoS_per_picoF" initial_value="0.00029"/>
+      <variable name="i_b_Na" units="picoA_per_picoF" public_interface="out" cmeta:id="membrane_background_sodium_current">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_background_sodium_current">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_background_sodium_current"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>
+      <variable name="g_bna" units="nanoS_per_picoF" initial_value="0.00029" cmeta:id="membrane_background_sodium_current_conductance">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_background_sodium_current_conductance">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_background_sodium_current_conductance"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>
       <variable name="E_Na" units="millivolt" public_interface="in"/>
       <variable name="time" units="millisecond" public_interface="in"/>
       <variable name="V" units="millivolt" public_interface="in"/>
@@ -1592,8 +1811,20 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
       </math>
    </component>
    <component name="L_type_Ca_current">
-      <variable name="i_CaL" units="picoA_per_picoF" public_interface="out"/>
-      <variable name="g_CaL" units="litre_per_farad_second" initial_value="0.0000398"/>
+	  <variable name="i_CaL" units="picoA_per_picoF" public_interface="out" cmeta:id="membrane_L_type_calcium_current">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_L_type_calcium_current">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>
+      <variable name="g_CaL" units="litre_per_farad_second" initial_value="0.0000398" cmeta:id="membrane_L_type_calcium_current_conductance">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_L_type_calcium_current_conductance">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_conductance"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>
       <variable name="Ca_o" units="millimolar" public_interface="in"/>
       <variable name="Ca_ss" units="millimolar" public_interface="in" private_interface="out"/>
       <variable name="R" units="joule_per_mole_kelvin" public_interface="in"/>
@@ -1605,6 +1836,9 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
       <variable name="f" units="dimensionless" private_interface="in"/>
       <variable name="f2" units="dimensionless" private_interface="in"/>
       <variable name="fCass" units="dimensionless" private_interface="in"/>
+      <variable name="V_low" units="millivolt" initial_value="14.999"/>
+      <variable name="V_high" units="millivolt" initial_value="15.001"/>
+      <variable name="temp" units="millivolt_millimoles"/>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
          <apply>
             <eq/>
@@ -1613,39 +1847,73 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
                <divide/>
                <apply>
                   <times/>
+                  <ci>temp</ci>
+                  <ci>g_CaL</ci>
+                  <ci>d</ci>
+                  <ci>f</ci>
+                  <ci>f2</ci>
+                  <ci>fCass</ci>
+                  <cn cellml:units="dimensionless">4</cn>
+                  <apply>
+                     <power/>
+                     <ci>F</ci>
+                     <cn cellml:units="dimensionless">2</cn>
+                  </apply>
+               </apply>
+               <apply>
+                  <times/>
+                  <ci>R</ci>
+                  <ci>T</ci>
+               </apply>
+            </apply>
+         </apply>
+         <apply>
+            <eq/>
+            <ci>temp</ci>
+            <piecewise>
+               <piece>
                   <apply>
                      <divide/>
                      <apply>
                         <times/>
-                        <ci>g_CaL</ci>
-                        <ci>d</ci>
-                        <ci>f</ci>
-                        <ci>f2</ci>
-                        <ci>fCass</ci>
-                        <cn cellml:units="dimensionless">4</cn>
                         <apply>
                            <minus/>
                            <ci>V</ci>
                            <cn cellml:units="millivolt">15</cn>
                         </apply>
                         <apply>
-                           <power/>
-                           <ci>F</ci>
-                           <cn cellml:units="dimensionless">2</cn>
+                           <minus/>
+                           <apply>
+                              <times/>
+                              <cn cellml:units="dimensionless">0.25</cn>
+                              <ci>Ca_ss</ci>
+                              <apply>
+                                 <exp/>
+                                 <apply>
+                                    <divide/>
+                                    <apply>
+                                       <times/>
+                                       <cn cellml:units="dimensionless">2</cn>
+                                       <apply>
+                                          <minus/>
+                                          <ci>V</ci>
+                                          <cn cellml:units="millivolt">15</cn>
+                                       </apply>
+                                       <ci>F</ci>
+                                    </apply>
+                                    <apply>
+                                       <times/>
+                                       <ci>R</ci>
+                                       <ci>T</ci>
+                                    </apply>
+                                 </apply>
+                              </apply>
+                           </apply>
+                           <ci>Ca_o</ci>
                         </apply>
                      </apply>
                      <apply>
-                        <times/>
-                        <ci>R</ci>
-                        <ci>T</ci>
-                     </apply>
-                  </apply>
-                  <apply>
-                     <minus/>
-                     <apply>
-                        <times/>
-                        <cn cellml:units="dimensionless">0.25</cn>
-                        <ci>Ca_ss</ci>
+                        <minus/>
                         <apply>
                            <exp/>
                            <apply>
@@ -1667,41 +1935,178 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
                               </apply>
                            </apply>
                         </apply>
+                        <cn cellml:units="dimensionless">1</cn>
                      </apply>
-                     <ci>Ca_o</ci>
                   </apply>
-               </apply>
-               <apply>
-                  <minus/>
                   <apply>
-                     <exp/>
+                     <or/>
                      <apply>
-                        <divide/>
+                        <lt/>
+                        <ci>V</ci>
+                        <ci>V_low</ci>
+                     </apply>
+                     <apply>
+                        <gt/>
+                        <ci>V</ci>
+                        <ci>V_high</ci>
+                     </apply>
+                  </apply>
+               </piece>
+               <otherwise>
+                  <apply>
+                     <divide/>
+                     <apply>
+                        <plus/>
                         <apply>
-                           <times/>
-                           <cn cellml:units="dimensionless">2</cn>
+                           <divide/>
+                           <apply>
+                              <times/>
+                              <apply>
+                                 <minus/>
+                                 <ci>V_low</ci>
+                                 <cn cellml:units="millivolt">15</cn>
+                              </apply>
+                              <apply>
+                                 <minus/>
+                                 <apply>
+                                    <times/>
+                                    <cn cellml:units="dimensionless">0.25</cn>
+                                    <ci>Ca_ss</ci>
+                                    <apply>
+                                       <exp/>
+                                       <apply>
+                                          <divide/>
+                                          <apply>
+                                             <times/>
+                                             <cn cellml:units="dimensionless">2</cn>
+                                             <apply>
+                                                <minus/>
+                                                <ci>V_low</ci>
+                                                <cn cellml:units="millivolt">15</cn>
+                                             </apply>
+                                             <ci>F</ci>
+                                          </apply>
+                                          <apply>
+                                             <times/>
+                                             <ci>R</ci>
+                                             <ci>T</ci>
+                                          </apply>
+                                       </apply>
+                                    </apply>
+                                 </apply>
+                                 <ci>Ca_o</ci>
+                              </apply>
+                           </apply>
                            <apply>
                               <minus/>
-                              <ci>V</ci>
-                              <cn cellml:units="millivolt">15</cn>
+                              <apply>
+                                 <exp/>
+                                 <apply>
+                                    <divide/>
+                                    <apply>
+                                       <times/>
+                                       <cn cellml:units="dimensionless">2</cn>
+                                       <apply>
+                                          <minus/>
+                                          <ci>V_low</ci>
+                                          <cn cellml:units="millivolt">15</cn>
+                                       </apply>
+                                       <ci>F</ci>
+                                    </apply>
+                                    <apply>
+                                       <times/>
+                                       <ci>R</ci>
+                                       <ci>T</ci>
+                                    </apply>
+                                 </apply>
+                              </apply>
+                              <cn cellml:units="dimensionless">1</cn>
                            </apply>
-                           <ci>F</ci>
                         </apply>
                         <apply>
-                           <times/>
-                           <ci>R</ci>
-                           <ci>T</ci>
+                           <divide/>
+                           <apply>
+                              <times/>
+                              <apply>
+                                 <minus/>
+                                 <ci>V_high</ci>
+                                 <cn cellml:units="millivolt">15</cn>
+                              </apply>
+                              <apply>
+                                 <minus/>
+                                 <apply>
+                                    <times/>
+                                    <cn cellml:units="dimensionless">0.25</cn>
+                                    <ci>Ca_ss</ci>
+                                    <apply>
+                                       <exp/>
+                                       <apply>
+                                          <divide/>
+                                          <apply>
+                                             <times/>
+                                             <cn cellml:units="dimensionless">2</cn>
+                                             <apply>
+                                                <minus/>
+                                                <ci>V_high</ci>
+                                                <cn cellml:units="millivolt">15</cn>
+                                             </apply>
+                                             <ci>F</ci>
+                                          </apply>
+                                          <apply>
+                                             <times/>
+                                             <ci>R</ci>
+                                             <ci>T</ci>
+                                          </apply>
+                                       </apply>
+                                    </apply>
+                                 </apply>
+                                 <ci>Ca_o</ci>
+                              </apply>
+                           </apply>
+                           <apply>
+                              <minus/>
+                              <apply>
+                                 <exp/>
+                                 <apply>
+                                    <divide/>
+                                    <apply>
+                                       <times/>
+                                       <cn cellml:units="dimensionless">2</cn>
+                                       <apply>
+                                          <minus/>
+                                          <ci>V_high</ci>
+                                          <cn cellml:units="millivolt">15</cn>
+                                       </apply>
+                                       <ci>F</ci>
+                                    </apply>
+                                    <apply>
+                                       <times/>
+                                       <ci>R</ci>
+                                       <ci>T</ci>
+                                    </apply>
+                                 </apply>
+                              </apply>
+                              <cn cellml:units="dimensionless">1</cn>
+                           </apply>
                         </apply>
                      </apply>
+                     <cn cellml:units="dimensionless">2</cn>
                   </apply>
-                  <cn cellml:units="dimensionless">1</cn>
-               </apply>
-            </apply>
+               </otherwise>
+            </piecewise>
          </apply>
       </math>
    </component>
    <component name="L_type_Ca_current_d_gate">
-      <variable name="d" units="dimensionless" initial_value="3.164e-5" public_interface="out"/>
+	  <variable name="d" units="dimensionless" initial_value="3.373e-5" public_interface="out" cmeta:id="membrane_L_type_calcium_current_d_gate">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_L_type_calcium_current_d_gate">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_d_gate"/>
+               <range-low xmlns="https://chaste.comlab.ox.ac.uk/cellml/ns/pycml#">0</range-low>
+               <range-high xmlns="https://chaste.comlab.ox.ac.uk/cellml/ns/pycml#">1</range-high>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>
       <variable name="V" units="millivolt" public_interface="in"/>
       <variable name="time" units="millisecond" public_interface="in"/>
       <variable name="d_inf" units="dimensionless"/>
@@ -1852,11 +2257,25 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
       </math>
    </component>
    <component name="L_type_Ca_current_f_gate">
-      <variable name="f" units="dimensionless" initial_value="0.8009" public_interface="out"/>
+	  <variable name="f" units="dimensionless" initial_value="0.7888" public_interface="out" cmeta:id="membrane_L_type_calcium_current_f_gate">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_L_type_calcium_current_f_gate">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_f_gate"/>
+               <range-low xmlns="https://chaste.comlab.ox.ac.uk/cellml/ns/pycml#">0</range-low>
+               <range-high xmlns="https://chaste.comlab.ox.ac.uk/cellml/ns/pycml#">1</range-high>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>
       <variable name="V" units="millivolt" public_interface="in"/>
       <variable name="time" units="millisecond" public_interface="in"/>
       <variable name="f_inf" units="dimensionless"/>
-      <variable name="tau_f" units="millisecond"/>
+	  <variable name="tau_f" units="millisecond" cmeta:id="membrane_L_type_calcium_current_f_gate_tau">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_L_type_calcium_current_f_gate_tau">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_f_gate_tau"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>	 
       <math xmlns="http://www.w3.org/1998/Math/MathML">
          <apply>
             <eq/>
@@ -1975,11 +2394,25 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
       </math>
    </component>
    <component name="L_type_Ca_current_f2_gate">
-      <variable name="f2" units="dimensionless" initial_value="0.9778" public_interface="out"/>
+	  <variable name="f2" units="dimensionless" initial_value="0.9755" public_interface="out" cmeta:id="membrane_L_type_calcium_current_f2_gate">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_L_type_calcium_current_f2_gate">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_f2_gate"/>
+               <range-low xmlns="https://chaste.comlab.ox.ac.uk/cellml/ns/pycml#">0</range-low>
+               <range-high xmlns="https://chaste.comlab.ox.ac.uk/cellml/ns/pycml#">1</range-high>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>
       <variable name="V" units="millivolt" public_interface="in"/>
       <variable name="time" units="millisecond" public_interface="in"/>
       <variable name="f2_inf" units="dimensionless"/>
-      <variable name="tau_f2" units="millisecond"/>
+	  <variable name="tau_f2" units="millisecond" cmeta:id="membrane_L_type_calcium_current_f2_gate_tau">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_L_type_calcium_current_f2_gate_tau">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_f2_gate_tau"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>	
       <math xmlns="http://www.w3.org/1998/Math/MathML">
          <apply>
             <eq/>
@@ -2101,12 +2534,26 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
       </math>
    </component>
    <component name="L_type_Ca_current_fCass_gate">
-      <variable name="fCass" units="dimensionless" initial_value="0.9953" public_interface="out"/>
+	  <variable name="fCass" units="dimensionless" initial_value="0.9953" public_interface="out" cmeta:id="membrane_L_type_calcium_current_fCa_gate">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_L_type_calcium_current_fCa_gate">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_fCa_gate"/>
+               <range-low xmlns="https://chaste.comlab.ox.ac.uk/cellml/ns/pycml#">0</range-low>
+               <range-high xmlns="https://chaste.comlab.ox.ac.uk/cellml/ns/pycml#">1</range-high>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>
       <variable name="Ca_ss" units="millimolar" public_interface="in"/>
       <variable name="V" units="millivolt" public_interface="in"/>
       <variable name="time" units="millisecond" public_interface="in"/>
       <variable name="fCass_inf" units="dimensionless"/>
-      <variable name="tau_fCass" units="millisecond"/>
+	  <variable name="tau_fCass" units="millisecond" cmeta:id="membrane_L_type_calcium_current_fCa_gate_tau">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_L_type_calcium_current_fCa_gate_tau">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_fCa_gate_tau"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>	
       <math xmlns="http://www.w3.org/1998/Math/MathML">
          <apply>
             <eq/>
@@ -2180,8 +2627,20 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
       </math>
    </component>
    <component name="calcium_background_current">
-      <variable name="i_b_Ca" units="picoA_per_picoF" public_interface="out"/>
-      <variable name="g_bca" units="nanoS_per_picoF" initial_value="0.000592"/>
+      <variable name="i_b_Ca" units="picoA_per_picoF" public_interface="out" cmeta:id="membrane_background_calcium_current">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_background_calcium_current">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_background_calcium_current"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>
+      <variable name="g_bca" units="nanoS_per_picoF" initial_value="0.000592" cmeta:id="membrane_background_calcium_current_conductance">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_background_calcium_current_conductance">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_background_calcium_current_conductance"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>
       <variable name="E_Ca" units="millivolt" public_interface="in"/>
       <variable name="time" units="millisecond" public_interface="in"/>
       <variable name="V" units="millivolt" public_interface="in"/>
@@ -2202,8 +2661,20 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
       </math>
    </component>
    <component name="transient_outward_current">
-      <variable name="i_to" units="picoA_per_picoF" public_interface="out"/>
-      <variable name="g_to" units="nanoS_per_picoF" initial_value="0.073"/>
+	  <variable name="i_to" units="picoA_per_picoF" public_interface="out" cmeta:id="membrane_transient_outward_current">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_transient_outward_current">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_transient_outward_current"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>	
+      <variable name="g_to" units="nanoS_per_picoF" initial_value="0.294" cmeta:id="membrane_transient_outward_current_conductance">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_transient_outward_current_conductance">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_transient_outward_current_conductance"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>	
       <variable name="E_K" units="millivolt" public_interface="in"/>
       <variable name="V" units="millivolt" public_interface="in" private_interface="out"/>
       <variable name="time" units="millisecond" public_interface="in" private_interface="out"/>
@@ -2228,7 +2699,7 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
       </math>
    </component>
    <component name="transient_outward_current_s_gate">
-      <variable name="s" units="dimensionless" initial_value="0.3212" public_interface="out"/>
+      <variable name="s" units="dimensionless" initial_value="0.999998" public_interface="out"/>
       <variable name="V" units="millivolt" public_interface="in"/>
       <variable name="time" units="millisecond" public_interface="in"/>
       <variable name="s_inf" units="dimensionless"/>
@@ -2250,7 +2721,7 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
                         <apply>
                            <plus/>
                            <ci>V</ci>
-                           <cn cellml:units="millivolt">28</cn>
+                           <cn cellml:units="millivolt">20</cn>
                         </apply>
                         <cn cellml:units="millivolt">5</cn>
                      </apply>
@@ -2265,7 +2736,7 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
                <plus/>
                <apply>
                   <times/>
-                  <cn cellml:units="millisecond">1000</cn>
+                  <cn cellml:units="millisecond">85</cn>
                   <apply>
                      <exp/>
                      <apply>
@@ -2277,16 +2748,36 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
                               <apply>
                                  <plus/>
                                  <ci>V</ci>
-                                 <cn cellml:units="millivolt">67</cn>
+                                 <cn cellml:units="millivolt">45</cn>
                               </apply>
                               <cn cellml:units="dimensionless">2</cn>
                            </apply>
                         </apply>
-                        <cn cellml:units="millivolt_square">1000</cn>
+                        <cn cellml:units="millivolt_square">320</cn>
                      </apply>
                   </apply>
                </apply>
-               <cn cellml:units="millisecond">8</cn>
+               <apply>
+                  <divide/>
+                  <cn cellml:units="millisecond">5</cn>
+                  <apply>
+                     <plus/>
+                     <cn cellml:units="dimensionless">1</cn>
+                     <apply>
+                        <exp/>
+                        <apply>
+                           <divide/>
+                           <apply>
+                              <minus/>
+                              <ci>V</ci>
+                              <cn cellml:units="millivolt">20</cn>
+                           </apply>
+                           <cn cellml:units="millivolt">5</cn>
+                        </apply>
+                     </apply>
+                  </apply>
+               </apply>
+               <cn cellml:units="millisecond">3</cn>
             </apply>
          </apply>
          <apply>
@@ -2311,7 +2802,7 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
       </math>
    </component>
    <component name="transient_outward_current_r_gate">
-      <variable name="r" units="dimensionless" initial_value="2.235e-8" public_interface="out"/>
+      <variable name="r" units="dimensionless" initial_value="2.42e-8" public_interface="out"/>
       <variable name="V" units="millivolt" public_interface="in"/>
       <variable name="time" units="millisecond" public_interface="in"/>
       <variable name="r_inf" units="dimensionless"/>
@@ -2394,8 +2885,20 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
       </math>
    </component>
    <component name="sodium_potassium_pump_current">
-      <variable name="i_NaK" units="picoA_per_picoF" public_interface="out"/>
-      <variable name="P_NaK" units="picoA_per_picoF" initial_value="2.724"/>
+      <variable name="i_NaK" units="picoA_per_picoF" public_interface="out" cmeta:id="membrane_sodium_potassium_pump_current">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_sodium_potassium_pump_current">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_sodium_potassium_pump_current"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>
+      <variable name="P_NaK" units="picoA_per_picoF" initial_value="2.724" cmeta:id="membrane_sodium_potassium_pump_current_permeability">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_sodium_potassium_pump_current_permeability">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_sodium_potassium_pump_current_permeability"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>
       <variable name="K_mk" units="millimolar" initial_value="1"/>
       <variable name="K_mNa" units="millimolar" initial_value="40"/>
       <variable name="K_o" units="millimolar" public_interface="in"/>
@@ -2492,8 +2995,20 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
       </math>
    </component>
    <component name="sodium_calcium_exchanger_current">
-      <variable name="i_NaCa" units="picoA_per_picoF" public_interface="out"/>
-      <variable name="K_NaCa" units="picoA_per_picoF" initial_value="1000"/>
+	  <variable name="i_NaCa" units="picoA_per_picoF" public_interface="out" cmeta:id="membrane_sodium_calcium_exchanger_current">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_sodium_calcium_exchanger_current">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_sodium_calcium_exchanger_current"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>
+      <variable name="K_NaCa" units="picoA_per_picoF" initial_value="1000" cmeta:id="membrane_sodium_calcium_exchanger_current_conductance">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_sodium_calcium_exchanger_current_conductance">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_sodium_calcium_exchanger_current_conductance"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>
       <variable name="K_sat" units="dimensionless" initial_value="0.1"/>
       <variable name="alpha" units="dimensionless" initial_value="2.5"/>
       <variable name="gamma" units="dimensionless" initial_value="0.35"/>
@@ -2633,8 +3148,20 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
       </math>
    </component>
    <component name="calcium_pump_current">
-      <variable name="i_p_Ca" units="picoA_per_picoF" public_interface="out"/>
-      <variable name="g_pCa" units="picoA_per_picoF" initial_value="0.1238"/>
+      <variable name="i_p_Ca" units="picoA_per_picoF" public_interface="out" cmeta:id="membrane_calcium_pump_current">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_calcium_pump_current">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_calcium_pump_current"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>
+      <variable name="g_pCa" units="picoA_per_picoF" initial_value="0.1238" cmeta:id="membrane_calcium_pump_current_conductance">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_calcium_pump_current_conductance">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_calcium_pump_current_conductance"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>
       <variable name="K_pCa" units="millimolar" initial_value="0.0005"/>
       <variable name="Ca_i" units="millimolar" public_interface="in"/>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -2658,8 +3185,20 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
       </math>
    </component>
    <component name="potassium_pump_current">
-      <variable name="i_p_K" units="picoA_per_picoF" public_interface="out"/>
-      <variable name="g_pK" units="nanoS_per_picoF" initial_value="0.0146"/>
+      <variable name="i_p_K" units="picoA_per_picoF" public_interface="out" cmeta:id="membrane_potassium_pump_current">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_potassium_pump_current">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_potassium_pump_current"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>
+      <variable name="g_pK" units="nanoS_per_picoF" initial_value="0.0146" cmeta:id="membrane_potassium_pump_current_conductance">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_potassium_pump_current_conductance">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_potassium_pump_current_conductance"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>
       <variable name="E_K" units="millivolt" public_interface="in"/>
       <variable name="V" units="millivolt" public_interface="in"/>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -2698,16 +3237,46 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
       </math>
    </component>
    <component name="calcium_dynamics">
-      <variable name="Ca_i" units="millimolar" initial_value="0.00013" public_interface="out"/>
-      <variable name="Ca_o" units="millimolar" initial_value="2" public_interface="out"/>
-      <variable name="Ca_SR" units="millimolar" initial_value="3.715"/>
-      <variable name="Ca_ss" units="millimolar" initial_value="0.00036" public_interface="out"/>
-      <variable name="i_rel" units="millimolar_per_millisecond"/>
+	  <variable name="Ca_i" units="millimolar" initial_value="0.000126" public_interface="out" cmeta:id="cytosolic_calcium_concentration">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#cytosolic_calcium_concentration">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#cytosolic_calcium_concentration"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>
+      <variable name="Ca_o" units="millimolar" initial_value="2" public_interface="out" cmeta:id="extracellular_calcium_concentration">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#extracellular_calcium_concentration">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_calcium_concentration"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>
+	  <variable name="Ca_SR" units="millimolar" initial_value="3.64" cmeta:id="JSR_calcium_concentration">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#JSR_calcium_concentration">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#JSR_calcium_concentration"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>		  	  
+	  <variable name="Ca_ss" units="millimolar" initial_value="0.00036" public_interface="out" cmeta:id="dyadic_space_calcium_concentration">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#dyadic_space_calcium_concentration">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#dyadic_space_calcium_concentration"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>
+	  <variable name="i_rel" units="millimolar_per_millisecond" cmeta:id="SR_release_current">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#SR_release_current">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#SR_release_current"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>	
       <variable name="i_up" units="millimolar_per_millisecond"/>
       <variable name="i_leak" units="millimolar_per_millisecond"/>
       <variable name="i_xfer" units="millimolar_per_millisecond"/>
       <variable name="O" units="dimensionless"/>
-      <variable name="R_prime" units="dimensionless" initial_value="0.9068"/>
+      <variable name="R_prime" units="dimensionless" initial_value="0.9073"/>
       <variable name="k1" units="per_millimolar2_per_millisecond"/>
       <variable name="k2" units="per_millimolar_per_millisecond"/>
       <variable name="k1_prime" units="per_millimolar2_per_millisecond" initial_value="0.15"/>
@@ -2718,11 +3287,29 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
       <variable name="max_sr" units="dimensionless" initial_value="2.5"/>
       <variable name="min_sr" units="dimensionless" initial_value="1"/>
       <variable name="kcasr" units="dimensionless"/>
-      <variable name="V_rel" units="per_millisecond" initial_value="0.102"/>
+	  <variable name="V_rel" units="per_millisecond" initial_value="0.102" cmeta:id="SR_release_current_max">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#SR_release_current_max">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#SR_release_current_max"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>
       <variable name="V_xfer" units="per_millisecond" initial_value="0.0038"/>
       <variable name="K_up" units="millimolar" initial_value="0.00025"/>
-      <variable name="V_leak" units="per_millisecond" initial_value="0.00036"/>
-      <variable name="Vmax_up" units="millimolar_per_millisecond" initial_value="0.006375"/>
+	  <variable name="V_leak" initial_value="0.00036" units="per_millisecond" cmeta:id="SR_leak_current_max">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#SR_leak_current_max">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#SR_leak_current_max"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>	
+	  <variable name="Vmax_up" units="millimolar_per_millisecond" initial_value="0.006375" cmeta:id="SR_uptake_current_max">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#SR_uptake_current_max">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#SR_uptake_current_max"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>	 
       <variable name="Ca_i_bufc" units="dimensionless"/>
       <variable name="Ca_sr_bufsr" units="dimensionless"/>
       <variable name="Ca_ss_bufss" units="dimensionless"/>
@@ -3150,8 +3737,27 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
       </math>
    </component>
    <component name="sodium_dynamics">
-      <variable name="Na_i" units="millimolar" initial_value="10.355" public_interface="out"/>
-      <variable name="Na_o" units="millimolar" initial_value="140" public_interface="out"/>
+	  <variable name="Na_i" units="millimolar" initial_value="8.604" public_interface="out" cmeta:id="cytosolic_sodium_concentration">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#cytosolic_sodium_concentration">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#cytosolic_sodium_concentration"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>
+	  <variable name="conc_clamp" units="dimensionless" initial_value="1" public_interface="out" cmeta:id="concentration_clamp_onoff">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#concentration_clamp_onoff">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#concentration_clamp_onoff"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>		  
+      <variable name="Na_o" units="millimolar" initial_value="140" public_interface="out" cmeta:id="extracellular_sodium_concentration">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#extracellular_sodium_concentration">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_sodium_concentration"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>
       <variable name="time" units="millisecond" public_interface="in"/>
       <variable name="F" units="coulomb_per_millimole" public_interface="in"/>
       <variable name="Cm" units="microF" public_interface="in"/>
@@ -3178,8 +3784,9 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
                      <times/>
                      <apply>
                         <minus/>
-                        <cn cellml:units="mA_pA">1</cn>
+                        <ci>conc_clamp</ci>
                      </apply>
+                     <cn cellml:units="mA_pA">1</cn>
                      <apply>
                         <plus/>
                         <ci>i_Na</ci>
@@ -3209,8 +3816,21 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
       </math>
    </component>
    <component name="potassium_dynamics">
-      <variable name="K_i" units="millimolar" initial_value="138.4" public_interface="out"/>
-      <variable name="K_o" units="millimolar" initial_value="5.4" public_interface="out"/>
+	  <variable name="K_i" units="millimolar" initial_value="136.89" public_interface="out" cmeta:id="cytosolic_potassium_concentration">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#cytosolic_potassium_concentration">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#cytosolic_potassium_concentration"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>
+	  <variable name="conc_clamp" units="dimensionless" public_interface="in"/>	  
+	  <variable name="K_o" units="millimolar" initial_value="5.4" public_interface="out" cmeta:id="extracellular_potassium_concentration">
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#extracellular_potassium_concentration">
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_potassium_concentration"/>
+            </rdf:Description>
+         </rdf:RDF>
+      </variable>	
       <variable name="time" units="millisecond" public_interface="in"/>
       <variable name="F" units="coulomb_per_millimole" public_interface="in"/>
       <variable name="Cm" units="microF" public_interface="in"/>
@@ -3240,8 +3860,9 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
                      <times/>
                      <apply>
                         <minus/>
-                        <cn cellml:units="mA_pA">1</cn>
+                        <ci>conc_clamp</ci>
                      </apply>
+                     <cn cellml:units="mA_pA">1</cn>
                      <apply>
                         <minus/>
                         <apply>
@@ -3625,12 +4246,16 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
       <map_variables variable_1="h" variable_2="h"/>
       <map_variables variable_1="time" variable_2="time"/>
       <map_variables variable_1="V" variable_2="V"/>
+	  <map_variables variable_1="shift_INa_inact" variable_2="shift_INa_inact"/>
+      <map_variables variable_1="perc_reduced_inact_for_IpNa" variable_2="perc_reduced_inact_for_IpNa"/>
    </connection>
    <connection>
       <map_components component_1="fast_sodium_current" component_2="fast_sodium_current_j_gate"/>
       <map_variables variable_1="j" variable_2="j"/>
       <map_variables variable_1="time" variable_2="time"/>
       <map_variables variable_1="V" variable_2="V"/>
+	  <map_variables variable_1="shift_INa_inact" variable_2="shift_INa_inact"/>
+      <map_variables variable_1="perc_reduced_inact_for_IpNa" variable_2="perc_reduced_inact_for_IpNa"/>
    </connection>
    <connection>
       <map_components component_1="L_type_Ca_current" component_2="L_type_Ca_current_d_gate"/>
@@ -3677,8 +4302,8 @@ Alternans and spiral breakup in a human ventricular tissue model, K.H.W.J. ten T
       <map_components component_1="potassium_pump_current" component_2="potassium_dynamics"/>
       <map_variables variable_1="i_p_K" variable_2="i_p_K"/>
    </connection>
-   
-   <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"><rdf:Description rdf:nodeID="n1"><subject xmlns="http://purl.org/dc/elements/1.1/"><rdf:Description rdf:nodeID="n2"/></subject></rdf:Description><rdf:Description rdf:about=""><creator xmlns="http://purl.org/dc/elements/1.1/"><rdf:Description rdf:about="rdf:#7ffca57a-62a1-4b9c-86c6-817bff9b4b76"/></creator><title xmlns="http://purl.org/dc/elements/1.1/" xml:lang="en">Alternans and spiral breakup in a human ventricular tissue model (Endocardial Model)</title><cmeta:comment><rdf:Description rdf:about="rdf:#4e3972ef-c7f0-4864-823e-a715bda244e9"/></cmeta:comment><publisher xmlns="http://purl.org/dc/elements/1.1/" xml:lang="en"></publisher><created xmlns="http://purl.org/dc/terms/"><rdf:Description rdf:about="rdf:#c5a7a530-af19-4b8e-b66f-f0e1f3d868c8"/></created><cmeta:modification><rdf:Description rdf:about="rdf:#1e929a9f-cfac-40a0-84ed-acf86763eb8c"/></cmeta:modification></rdf:Description><rdf:Description rdf:nodeID="n2"><rdf:value><rdf:Description rdf:nodeID="n3"/></rdf:value><subject_type xmlns="http://www.cellml.org/bqs/1.0#" xml:lang="en">keyword</subject_type></rdf:Description><rdf:Description rdf:about="rdf:#74d85cc7-8ec9-4a98-9ca5-efb11b0726a6"><Family xmlns="http://www.w3.org/2001/vcard-rdf/3.0#" xml:lang="en">ten Tusscher</Family><Given xmlns="http://www.w3.org/2001/vcard-rdf/3.0#" xml:lang="en">KH</Given></rdf:Description><rdf:Description rdf:about="rdf:#03c9d784-2464-4cc0-afce-9e320d85b899"><N xmlns="http://www.w3.org/2001/vcard-rdf/3.0#"><rdf:Description rdf:about="rdf:#6e43709f-d835-41ed-b1e5-fedb2b52558b"/></N></rdf:Description><rdf:Description rdf:about="rdf:#b2744ae0-0d1e-4feb-8f9d-fe8e3e0c5fd8"><FN xmlns="http://www.w3.org/2001/vcard-rdf/3.0#" xml:lang="en">Penny Noble</FN></rdf:Description><rdf:Description rdf:about="rdf:#bbfa0326-ada2-4ef0-8e9a-6f1269196fef"><Family xmlns="http://www.w3.org/2001/vcard-rdf/3.0#" xml:lang="en">Panfilov</Family><Given xmlns="http://www.w3.org/2001/vcard-rdf/3.0#" xml:lang="en">AV</Given></rdf:Description><rdf:Description rdf:about="rdf:#$+tsww3"><rdf:first><rdf:Description rdf:about="rdf:#$0usww3"/></rdf:first><rdf:rest><rdf:Description rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/></rdf:rest></rdf:Description><rdf:Description rdf:about="rdf:#1e929a9f-cfac-40a0-84ed-acf86763eb8c"><rdf:value xml:lang="en">Added simulation metadata to allow simulation for 5 seconds.
-Changed model cmeta:id to remove version number.</rdf:value><modified xmlns="http://purl.org/dc/terms/"><rdf:Description rdf:about="rdf:#a5630e52-98c2-4cd0-94da-bc4b34c2574a"/></modified><cmeta:modifier><rdf:Description rdf:about="rdf:#03c9d784-2464-4cc0-afce-9e320d85b899"/></cmeta:modifier></rdf:Description><rdf:Description rdf:about="rdf:#1a8c2080-33d3-4edf-a044-4122095fa684"><Family xmlns="http://www.w3.org/2001/vcard-rdf/3.0#" xml:lang="en">Noble</Family><Given xmlns="http://www.w3.org/2001/vcard-rdf/3.0#" xml:lang="en">Penny</Given><Other xmlns="http://www.w3.org/2001/vcard-rdf/3.0#" xml:lang="en"></Other></rdf:Description><rdf:Description rdf:about="rdf:#25fd4ccf-b6d9-4a69-af7c-5c8dfa652dd5"><rdf:type><rdf:Description rdf:about="http://www.cellml.org/bqs/1.0#Person"/></rdf:type><N xmlns="http://www.w3.org/2001/vcard-rdf/3.0#"><rdf:Description rdf:about="rdf:#bbfa0326-ada2-4ef0-8e9a-6f1269196fef"/></N></rdf:Description><rdf:Description rdf:about="rdf:#284f2f8e-b412-40b5-aede-4fa9ce58f991"><W3CDTF xmlns="http://purl.org/dc/terms/" xml:lang="en">2008-05-14T00:37:55+12:00</W3CDTF></rdf:Description><rdf:Description rdf:about="rdf:#7ffca57a-62a1-4b9c-86c6-817bff9b4b76"><N xmlns="http://www.w3.org/2001/vcard-rdf/3.0#"><rdf:Description rdf:about="rdf:#1d1afbbe-f465-407b-b6ae-133023c1e84a"/></N><ORG xmlns="http://www.w3.org/2001/vcard-rdf/3.0#"><rdf:Description rdf:about="rdf:#522efe32-0b15-4be9-bfcd-eb4aae679175"/></ORG><EMAIL xmlns="http://www.w3.org/2001/vcard-rdf/3.0#"><rdf:Description rdf:about="rdf:#cdba8753-0aad-43e3-b203-2d8a4702b4cc"/></EMAIL></rdf:Description><rdf:Description rdf:about="rdf:#c7a47c77-239c-4162-8e5f-c43518a48204"><rdf:value xml:lang="en">Corrections to model name and stimulus current to enable running in COR.</rdf:value><modified xmlns="http://purl.org/dc/terms/"><rdf:Description rdf:about="rdf:#284f2f8e-b412-40b5-aede-4fa9ce58f991"/></modified><cmeta:modifier><rdf:Description rdf:about="rdf:#7ddf42da-f845-4daa-a8a5-e88b90463f6f"/></cmeta:modifier></rdf:Description><rdf:Description rdf:about="rdf:#cdba8753-0aad-43e3-b203-2d8a4702b4cc"><rdf:type><rdf:Description rdf:about="http://imc.org/vCard/3.0#internet"/></rdf:type><rdf:value xml:lang="en">penny.noble@dpag.ox.ac.uk</rdf:value></rdf:Description><rdf:Description rdf:about="rdf:#98df33c7-c070-483c-99ae-b8509b783a5e"><Pubmed_id xmlns="http://www.cellml.org/bqs/1.0#" xml:lang="en">16565318</Pubmed_id><JournalArticle xmlns="http://www.cellml.org/bqs/1.0#"><rdf:Description rdf:about="rdf:#06fb9024-bc07-49da-bd10-33e0b1db9ed3"/></JournalArticle></rdf:Description><rdf:Description rdf:about="rdf:#06fb9024-bc07-49da-bd10-33e0b1db9ed3"><creator xmlns="http://purl.org/dc/elements/1.1/"><rdf:Description rdf:about="rdf:#0d9954b2-ab44-4a3d-8e58-9cf3ed13ba31"/></creator><title xmlns="http://purl.org/dc/elements/1.1/" xml:lang="en">Alternans and spiral breakup in a human ventricular tissue model.</title><volume xmlns="http://www.cellml.org/bqs/1.0#" xml:lang="en">291</volume><first_page xmlns="http://www.cellml.org/bqs/1.0#" xml:lang="en">1088</first_page><Journal xmlns="http://www.cellml.org/bqs/1.0#"><rdf:Description rdf:about="rdf:#0a274688-fffb-4c0d-b9a9-b74bb603df30"/></Journal><issued xmlns="http://purl.org/dc/terms/"><rdf:Description rdf:about="rdf:#a2afd851-3432-4fc3-a822-f41e88e7e76c"/></issued><last_page xmlns="http://www.cellml.org/bqs/1.0#" xml:lang="en">1100</last_page></rdf:Description><rdf:Description rdf:about="rdf:#c5a7a530-af19-4b8e-b66f-f0e1f3d868c8"><W3CDTF xmlns="http://purl.org/dc/terms/" xml:lang="en">2008-05-14T00:00:00+00:00</W3CDTF></rdf:Description><rdf:Description rdf:about="rdf:#0a274688-fffb-4c0d-b9a9-b74bb603df30"><title xmlns="http://purl.org/dc/elements/1.1/" xml:lang="en">American Journal of Physiology</title></rdf:Description><rdf:Description rdf:about="rdf:#$.tsww3"><boundIntervals xmlns="http://www.cellml.org/metadata/simulation/1.0#"><rdf:Description rdf:about="rdf:#$+tsww3"/></boundIntervals></rdf:Description><rdf:Description rdf:about="rdf:#522efe32-0b15-4be9-bfcd-eb4aae679175"><Orgname xmlns="http://www.w3.org/2001/vcard-rdf/3.0#" xml:lang="en">University of Oxford</Orgname><Orgunit xmlns="http://www.w3.org/2001/vcard-rdf/3.0#" xml:lang="en"></Orgunit></rdf:Description><rdf:Description rdf:about="rdf:#$0usww3"><endingValue xmlns="http://www.cellml.org/metadata/simulation/1.0#" xml:lang="en">1000</endingValue><maximumStepSize xmlns="http://www.cellml.org/metadata/simulation/1.0#" xml:lang="en">0.1</maximumStepSize><pointDensity xmlns="http://www.cellml.org/metadata/simulation/1.0#nonstandard-" xml:lang="en">10000</pointDensity></rdf:Description><rdf:Description rdf:about="rdf:#a5630e52-98c2-4cd0-94da-bc4b34c2574a"><W3CDTF xmlns="http://purl.org/dc/terms/" xml:lang="en">2008-06-19T11:14:49+12:00</W3CDTF></rdf:Description><rdf:Description rdf:about="rdf:#231c024a-a857-46d5-a30b-0aeb38837390"><FN xmlns="http://www.w3.org/2001/vcard-rdf/3.0#" xml:lang="en">Penny Noble</FN></rdf:Description><rdf:Description rdf:about="rdf:#338195e8-75fa-40a0-91bb-633409561903"><rdf:value xml:lang="en">The 2006 model is based on earlier ten Tusscher models, and incorporates recent experimental restitution data, an improved description of intracellular calcium dynamics - including subspace calcium dynamics which control L-type calcium current and calcium-induced calcium release (CICR,) by means of modelling CICR with a four-state Markov model for the ryanodine receptor - and incorporation of both fast and slow voltage-gated inactivation of the L-type calcium current. 
-This is the ENDOCARDIAL CELL VARIANT of the model. This model was created by Penny Noble of Oxford University and is known to read in COR and PCEnv.</rdf:value><creator xmlns="http://purl.org/dc/elements/1.1/"><rdf:Description rdf:about="rdf:#b2744ae0-0d1e-4feb-8f9d-fe8e3e0c5fd8"/></creator></rdf:Description><rdf:Description rdf:about="rdf:#1d1afbbe-f465-407b-b6ae-133023c1e84a"><Family xmlns="http://www.w3.org/2001/vcard-rdf/3.0#" xml:lang="en">Noble</Family><Given xmlns="http://www.w3.org/2001/vcard-rdf/3.0#" xml:lang="en">Penny</Given><Other xmlns="http://www.w3.org/2001/vcard-rdf/3.0#" xml:lang="en"></Other></rdf:Description><rdf:Description rdf:about="rdf:#4e3972ef-c7f0-4864-823e-a715bda244e9"><rdf:value xml:lang="en">The 2006 model is based on earlier ten Tusscher models, and incorporates recent experimental restitution data, an improved description of intracellular calcium dynamics - including subspace calcium dynamics which control L-type calcium current and calcium-induced calcium release (CICR,) by means of modelling CICR with a four-state Markov model for the ryanodine receptor - and incorporation of both fast and slow voltage-gated inactivation of the L-type calcium current. 
-This is the ENDOCARDIAL CELL VARIANT of the model. This model was created by Penny Noble of Oxford University and is known to read in COR and PCEnv.</rdf:value><creator xmlns="http://purl.org/dc/elements/1.1/"><rdf:Description rdf:about="rdf:#231c024a-a857-46d5-a30b-0aeb38837390"/></creator></rdf:Description><rdf:Description rdf:about="rdf:#4f912bb3-0dc6-4c80-884b-40c437a29edb"><rdf:value xml:lang="en"></rdf:value><creator xmlns="http://purl.org/dc/elements/1.1/"><rdf:Description rdf:about="rdf:#435fb145-8936-4438-ab10-3ba625d6171e"/></creator></rdf:Description><rdf:Description rdf:about="rdf:#a2afd851-3432-4fc3-a822-f41e88e7e76c"><W3CDTF xmlns="http://purl.org/dc/terms/" xml:lang="en">2006-09-00 00:00</W3CDTF></rdf:Description><rdf:Description rdf:about="#tentusscher_panfilov_2006_endo_cell"><cmeta:comment><rdf:Description rdf:about="rdf:#4f912bb3-0dc6-4c80-884b-40c437a29edb"/></cmeta:comment><reference xmlns="http://www.cellml.org/bqs/1.0#"><rdf:Description rdf:about="rdf:#98df33c7-c070-483c-99ae-b8509b783a5e"/></reference><reference xmlns="http://www.cellml.org/bqs/1.0#"><rdf:Description rdf:nodeID="n1"/></reference><simulation xmlns="http://www.cellml.org/metadata/simulation/1.0#"><rdf:Description rdf:about="rdf:#$.tsww3"/></simulation></rdf:Description><rdf:Description rdf:about="rdf:#6e43709f-d835-41ed-b1e5-fedb2b52558b"><Family xmlns="http://www.w3.org/2001/vcard-rdf/3.0#" xml:lang="en">Lawson</Family><Given xmlns="http://www.w3.org/2001/vcard-rdf/3.0#" xml:lang="en">James</Given><Other xmlns="http://www.w3.org/2001/vcard-rdf/3.0#" xml:lang="en">Richard</Other></rdf:Description><rdf:Description rdf:nodeID="n3"><rdf:type><rdf:Description rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#Bag"/></rdf:type><rdf:_2 xml:lang="en">ventricular myocyte</rdf:_2><rdf:_1 xml:lang="en">spiral breakup</rdf:_1><rdf:_3 xml:lang="en">cardiac electrophysiology</rdf:_3><rdf:_4 xml:lang="en">electrophysiology</rdf:_4><rdf:_5 xml:lang="en">cardiac</rdf:_5><rdf:_6 xml:lang="en">alternans</rdf:_6></rdf:Description><rdf:Description rdf:about="rdf:#435fb145-8936-4438-ab10-3ba625d6171e"><FN xmlns="http://www.w3.org/2001/vcard-rdf/3.0#" xml:lang="en"></FN></rdf:Description><rdf:Description rdf:about="rdf:#83cc9a2f-b0df-4357-bc92-0347d208ab70"><rdf:type><rdf:Description rdf:about="http://www.cellml.org/bqs/1.0#Person"/></rdf:type><N xmlns="http://www.w3.org/2001/vcard-rdf/3.0#"><rdf:Description rdf:about="rdf:#74d85cc7-8ec9-4a98-9ca5-efb11b0726a6"/></N></rdf:Description><rdf:Description rdf:about="rdf:#7ddf42da-f845-4daa-a8a5-e88b90463f6f"><N xmlns="http://www.w3.org/2001/vcard-rdf/3.0#"><rdf:Description rdf:about="rdf:#1a8c2080-33d3-4edf-a044-4122095fa684"/></N></rdf:Description><rdf:Description rdf:about="rdf:#0d9954b2-ab44-4a3d-8e58-9cf3ed13ba31"><rdf:type><rdf:Description rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#Seq"/></rdf:type><rdf:_2><rdf:Description rdf:about="rdf:#25fd4ccf-b6d9-4a69-af7c-5c8dfa652dd5"/></rdf:_2><rdf:_1><rdf:Description rdf:about="rdf:#83cc9a2f-b0df-4357-bc92-0347d208ab70"/></rdf:_1></rdf:Description></rdf:RDF></model>
+   <connection>
+      <map_components component_1="sodium_dynamics" component_2="potassium_dynamics"/>
+	  <map_variables variable_2="conc_clamp" variable_1="conc_clamp"/>
+   </connection>   
+</model>
