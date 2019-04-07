@@ -11,6 +11,8 @@
 #include "TetrahedralMesh.hpp"
 #include "PetscSetupAndFinalize.hpp"
 #include "BidomainProblem.hpp"
+#include "PseudoEcgCalculator.hpp"
+#include "FileFinder.hpp"
 
 #include "ten_tusscher_model_2006_endoBackwardEuler.hpp"
 #include "ten_tusscher_model_2006_epiBackwardEuler.hpp"
@@ -23,6 +25,8 @@ typedef Cellten_tusscher_model_2006_MFromCellMLBackwardEuler    TenTusser2006Mid
 
 double GetEnvDouble(std::string const & key, const double defaultValue) {
     // todo: Не работает :(
+    // let it be from file
+
 
     const char* variable = std::getenv(key.c_str());
     std::cout << "Looking for `" << key << "`..." << std::endl;
@@ -59,31 +63,36 @@ public:
 
         // 20% endocardial cells, 30% midwall cells, and 50% epicardial and first cell with stimulus
 
-        if (x <= stepSize)
+        if (x <= stepSize * 5)
             return new TenTusser2006Endo_BckwardEuler(mpSolver, mpStimulus);
         
+
         if (x < length * 0.2)
             return new TenTusser2006Endo_BckwardEuler(mpSolver, mpZeroStimulus); 
-        else if (x < length * 0.5)
+        
+        if (x < length * 0.5)
             return new TenTusser2006Mid_BckwardEuler(mpSolver, mpZeroStimulus); 
-        else
-            return new TenTusser2006Epi_BckwardEuler(mpSolver, mpZeroStimulus);
+
+        return new TenTusser2006Epi_BckwardEuler(mpSolver, mpZeroStimulus);
     }
 };
 
 
 class HeartTissue1dTest : public CxxTest::TestSuite
 {
+private:
+
+    double stepSize = 0.01;
+    double length = 1.63;
+    double stimulus = -100 * 1000;
+    DistributedTetrahedralMesh<1, 1> mesh;
+
 public:
-    void TestHeartTissue1d()
+
+    void NoTestHeartTissue1d()
     {
-        double stepSize = GetEnvDouble("step_size", 0.01); //размерноcть шага по сетке в см
-        double length = GetEnvDouble("length", 1.63); // length должна делиться на stepSize
-        double stimulus = GetEnvDouble("stimulus", -50000);
-
-        DistributedTetrahedralMesh<1, 1> mesh;
-
         mesh.ConstructRegularSlabMesh(stepSize, length, 0.0, 0.0);
+
         HeartConfig::Instance()->SetOutputUsingOriginalNodeOrdering(true);
         HeartConfig::Instance()->SetSimulationDuration(600);//ms
         HeartConfig::Instance()->SetOutputDirectory("HeartTissue1d");
@@ -118,6 +127,29 @@ public:
         catch (const std::exception& e) {
             std::cout << "Exception: " << e.what() << std::endl;
         }
+    }
+
+    void TestPseudoEcgMeasurement() {
+        mesh.ConstructRegularSlabMesh(stepSize, length, 0.0, 0.0);
+        
+        FileFinder directory("HeartTissue1d", RelativeTo::ChasteTestOutput);
+        std::string h5file = "results";
+
+        // Electrode is here |
+        //                   V
+        //  oooooooooooo - - E
+        ChastePoint<1> electrode(length * 3 / 2);
+
+        PseudoEcgCalculator<1, 1, 1> ecgCalculator(mesh, electrode, directory, h5file);
+
+        try {
+            ecgCalculator.WritePseudoEcg();
+            std::cout << "WritePseudoEcg" << std::endl;
+        }
+        catch (const std::exception& e) {
+            std::cout << "Exception: " << e.what() << std::endl;
+        }
+
     }
 };
 
