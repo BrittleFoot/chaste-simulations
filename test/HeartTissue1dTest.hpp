@@ -23,22 +23,6 @@ typedef Cellten_tusscher_model_2006_epiFromCellMLBackwardEuler  TenTusser2006Epi
 typedef Cellten_tusscher_model_2006_MFromCellMLBackwardEuler    TenTusser2006Mid_BckwardEuler;
 
 
-double GetEnvDouble(std::string const & key, const double defaultValue) {
-    // todo: Не работает :(
-    // let it be from file
-
-
-    const char* variable = std::getenv(key.c_str());
-    std::cout << "Looking for `" << key << "`..." << std::endl;
-
-    if (variable != NULL) {
-        double d = std::stod(std::string(variable));
-        std::cout << "Using " << key << " = " << d << std::endl;
-        return d;
-    };
-    return defaultValue;
-}
-
 
 class CellFactory_HeartTissue1d : public AbstractCardiacCellFactory<1>
 {
@@ -127,29 +111,6 @@ public:
         catch (const std::exception& e) {
             std::cout << "Exception: " << e.what() << std::endl;
         }
-    }
-
-    void TestPseudoEcgMeasurement() {
-        mesh.ConstructRegularSlabMesh(stepSize, length, 0.0, 0.0);
-        
-        FileFinder directory("HeartTissue1d", RelativeTo::ChasteTestOutput);
-        std::string h5file = "results";
-
-        // Electrode is here |
-        //                   V
-        //  oooooooooooo - - E
-        ChastePoint<1> electrode(length * 3 / 2);
-
-        PseudoEcgCalculator<1, 1, 1> ecgCalculator(mesh, electrode, directory, h5file);
-
-        try {
-            ecgCalculator.WritePseudoEcg();
-            std::cout << "WritePseudoEcg" << std::endl;
-        }
-        catch (const std::exception& e) {
-            std::cout << "Exception: " << e.what() << std::endl;
-        }
-
     }
 };
 

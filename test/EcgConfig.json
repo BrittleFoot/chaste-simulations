@@ -1,0 +1,8 @@
+{
+    "step-size": 0.01,
+    "length": 1.63,
+    "electrode-position": -2.445,
+    "directories": [ 
+        "HeartTissue1d" 
+    ]
+}

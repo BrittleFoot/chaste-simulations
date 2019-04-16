@@ -15,9 +15,14 @@
 #include "FileFinder.hpp"
 #include "OdeSystemInformation.hpp"
 
+#include "json.hpp"
+
 #include "ten_tusscher_model_2006_endoBackwardEuler.hpp"
 #include "ten_tusscher_model_2006_epiBackwardEuler.hpp"
 #include "ten_tusscher_model_2006_MBackwardEuler.hpp"
+
+
+using json = nlohmann::json;
 
 typedef Cellten_tusscher_model_2006_endoFromCellMLBackwardEuler TenTusser2006Endo_BckwardEuler;
 typedef Cellten_tusscher_model_2006_epiFromCellMLBackwardEuler  TenTusser2006Epi_BckwardEuler;
@@ -132,29 +137,6 @@ public:
         catch (const std::exception& e) {
             std::cout << "Exception: " << e.what() << std::endl;
         }
-    }
-
-    void NoTestPseudoEcgMeasurement() {
-        mesh.ConstructRegularSlabMesh(stepSize, length, 0.0, 0.0);
-        
-        FileFinder directory("IschemiaTest", RelativeTo::ChasteTestOutput);
-        std::string h5file = "results";
-
-        // Electrode is here |
-        //                   V
-        //  oooooooooooo - - E
-        ChastePoint<1> electrode(length * 3 / 2);
-
-        PseudoEcgCalculator<1, 1, 1> ecgCalculator(mesh, electrode, directory, h5file);
-
-        try {
-            ecgCalculator.WritePseudoEcg();
-            std::cout << "WritePseudoEcg" << std::endl;
-        }
-        catch (const std::exception& e) {
-            std::cout << "Exception: " << e.what() << std::endl;
-        }
-
     }
 };
 
