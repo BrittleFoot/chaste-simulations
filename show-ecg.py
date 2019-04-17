@@ -12,7 +12,7 @@ from os import path
 
 CHASTE_OUTPUT = os.environ['CHASTE_OUTPUT_DIR']
 if not CHASTE_OUTPUT:
-    print(CHASTE_OUTPUT_DIR)
+    print('Cannot find CHASTE_OUTPUT_DIR')
     sys.exit(1)
 
 ECG_DEFAULT_OUTPUT = path.join(CHASTE_OUTPUT, "ChasteResults", "output")
@@ -57,6 +57,7 @@ def load(dat_file):
 
     return ms_s, ecg_s
 
+
 def plot(dat_path):
     """
     :param dat_path: path to .dat file 
@@ -70,5 +71,33 @@ def plot(dat_path):
     plt.show()
 
 
+def plot_all():
+    """
+    :param dat_path: plot all ecg-s from %CHASTE_OUTPUT_DIR%
+
+    :return: shows ecg plot with some comments
+    """
+
+    legend = []
+
+    with os.scandir(ECG_DEFAULT_OUTPUT) as it:
+        for entry in it:
+            if not (entry.is_file() and entry.name.endswith(".dat")):
+                continue
+
+            x, y = load(resolve(entry.name))
+
+            title = path.splitext(entry.name)[0]
+            if title.startswith("PseudoEcgFromElectrodeAt_"):
+                title = title[25:]
+
+            legend.append(title)
+
+            plt.plot(x, y)
+
+    plt.legend(legend)
+    plt.show()
+
+
 if __name__ == '__main__':
-    fire.Fire(plot)
+    fire.Fire({"single": plot, "all": plot_all})

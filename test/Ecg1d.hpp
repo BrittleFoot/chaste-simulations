@@ -2,10 +2,10 @@
 #define ECG1D_HPP
 
 #include <iostream>
+#include <exception>
 #include <cxxtest/TestSuite.h>
 #include <string>
 #include <cstdlib>
-#include <thread>
 #include <vector>
 #include <set>
 
@@ -15,6 +15,7 @@
 #include "PseudoEcgCalculator.hpp"
 #include "FileFinder.hpp"
 #include "OdeSystemInformation.hpp"
+#include "PetscTools.hpp"
 
 #include "json.hpp"
 #include "JsonConfig.hpp"
@@ -49,11 +50,27 @@ private:
 
         try {
             ecgCalculator.WritePseudoEcg();
-            std::cout << "WritePseudoEcg" << std::endl << std::endl;
+            std::cout << "WritePseudoEcg" << std::endl;
+            Rename(sDirectory, electrodePos);
+            std::cout << "Rename" << std::endl << std::endl;
         }
         catch (const std::exception& e) {
             std::cout << "Exception: " << e.what() << std::endl;
         }
+    }
+
+    void Rename(const std::string sDirectory, double electrodePos) {
+        std::stringstream outputName, newName;
+        outputName << "ChasteResults/output/PseudoEcgFromElectrodeAt_" << electrodePos << "_0_0.dat";
+        newName << "ChasteResults/output/PseudoEcgFromElectrodeAt_" << electrodePos << "_0_0." << sDirectory << ".dat";
+
+        FileFinder oldFile(outputName.str(), RelativeTo::ChasteTestOutput);
+        FileFinder newFile(newName.str(), RelativeTo::ChasteTestOutput);
+
+        oldFile.CopyTo(newFile);
+        oldFile.Remove();
+
+        std::cout << "Renamed `" << oldFile.GetLeafName() << "` to `" << newFile.GetLeafName() << "`" << std::endl;
     }
 
 public:
@@ -68,14 +85,8 @@ public:
         auto vDirectories = config["directories"];
         std::set<std::string> directories(vDirectories.begin(), vDirectories.end());
 
-        std::vector<std::thread> threads;
-
         for (const auto& directory : directories) {
-            threads.push_back(std::thread([this, directory]() { DoEcg(directory); }));
-        }
-
-        for (auto& thread : threads) {
-            thread.join();
+            DoEcg(directory);
         }
     }
 

@@ -32,20 +32,18 @@ typedef Cellten_tusscher_model_2006_MFromCellMLBackwardEuler    TenTusser2006Mid
 void InduceIschemia(AbstractCardiacCell* cell) {
     
     // Specifically, the [K+]o was increased from its normal value, 5.4 mmol/L, to 12 mmol/L;15,34 (double)
-    cell->SetParameter("rapid_time_dependent_potassium_current_Xr1_gate__Xr1", cell->GetParameter("rapid_time_dependent_potassium_current_Xr1_gate__Xr1") * 2);
-    cell->SetParameter("rapid_time_dependent_potassium_current_Xr2_gate__Xr2", cell->GetParameter("rapid_time_dependent_potassium_current_Xr2_gate__Xr2") * 2);
-    cell->SetParameter("slow_time_dependent_potassium_current_Xs_gate__Xs", cell->GetParameter("slow_time_dependent_potassium_current_Xs_gate__Xs") * 2);
+    cell->SetParameter("extracellular_potassium_concentration", cell->GetParameter("extracellular_potassium_concentration") * 2);
 
-    // the maximum conductances of the Na+
-    cell->SetParameter("membrane_fast_sodium_current_m_gate", cell->GetParameter("membrane_fast_sodium_current_m_gate") * 0.75);
-    cell->SetParameter("membrane_fast_sodium_current_h_gate", cell->GetParameter("membrane_fast_sodium_current_h_gate") * 0.75);
-    cell->SetParameter("membrane_fast_sodium_current_j_gate", cell->GetParameter("membrane_fast_sodium_current_j_gate") * 0.75);
-    // and L-Type Ca2+ channels (currents INa and ICaL, respectively) 
-    cell->SetParameter("membrane_L_type_calcium_current_d_gate", cell->GetParameter("membrane_L_type_calcium_current_d_gate") * 0.75);
-    cell->SetParameter("membrane_L_type_calcium_current_f_gate", cell->GetParameter("membrane_L_type_calcium_current_f_gate") * 0.75);
-    cell->SetParameter("membrane_L_type_calcium_current_f2_gate", cell->GetParameter("membrane_L_type_calcium_current_f2_gate") * 0.75);
-    cell->SetParameter("membrane_L_type_calcium_current_fCa_gate", cell->GetParameter("membrane_L_type_calcium_current_fCa_gate") * 0.75);
+    // the maximum conductances of the Na+  and L-Type Ca2+ channels (currents INa and ICaL, respectively)
+    cell->SetParameter("membrane_fast_sodium_current_conductance", cell->GetParameter("membrane_fast_sodium_current_conductance") * 0.75);
+    cell->SetParameter("membrane_calcium_pump_current_conductance", cell->GetParameter("membrane_calcium_pump_current_conductance") * 0.75);
     // were decreased by 25%, representing inhibition by acidosis
+
+    // IK(ATP) was activated by decreasing the intracellular ATP concentration from 6.8 mmol/L to 4.6 mmol/L
+    // ATP-sensitive inward-rectifying potassium current (IK(ATP)) 
+    cell->SetParameter("membrane_inward_rectifier_potassium_current_conductance", cell->GetParameter("membrane_inward_rectifier_potassium_current_conductance") * 0.75);
+
+    // and increasing the intracellular ADP concentration from 15 μmol/L to 99 μmol/L
 }
 
 
@@ -82,6 +80,8 @@ public:
             pCell = new TenTusser2006Mid_BckwardEuler(mpSolver, mpZeroStimulus); 
         else
             pCell = new TenTusser2006Epi_BckwardEuler(mpSolver, mpZeroStimulus);
+
+        InduceIschemia(pCell);
 
         return pCell;
     }
