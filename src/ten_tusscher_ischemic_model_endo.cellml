@@ -312,26 +312,69 @@ http://www.cellml.org/
 
     <component name="potassium_atp_current">
         <variable name="i_K_ATP" public_interface="out" units="picoA_per_picoF"/>
+        <variable cmeta:id="atp_channel_conductance" initial_value="0.195" name="g_K_ATP" units="nanoS_per_picoF"/>
+        <variable cmeta:id="membrane_atp_dependent_potassium_current" initial_value="3" name="ATP_i" units="millimolar">
 
+         <!-- IDK IF IT IS IMPORTANT TO STICK TO CORRECT DESCRIPTION 
+                                    BUT I NEED TO BE ABLE TO CHANGE THIS VARIABLE -->
+         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#membrane_atp_dependent_potassium_current">
+               <modifiable-parameter xmlns="https://chaste.comlab.ox.ac.uk/cellml/ns/pycml#">
+                  yes
+               </modifiable-parameter>
+               <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_atp_dependent_potassium_current"/>
+            </rdf:Description>
+         </rdf:RDF>
 
-        <variable cmeta:id="membrane_atp_dependent_potassium_current" initial_value="0" name="ATP" units="picoA_per_picoF">
-            <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
-               <rdf:Description rdf:about="#membrane_atp_dependent_potassium_current">
-                  <modifiable-parameter xmlns="https://chaste.comlab.ox.ac.uk/cellml/ns/pycml#">yes</modifiable-parameter>
-                  <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_atp_dependent_potassium_current"/>
-               </rdf:Description>
-            </rdf:RDF>
         </variable>
-
-
+        <variable name="P_ATP" units="dimensionless"/>
+        <variable name="K_o" public_interface="in" units="millimolar"/>
+        <variable initial_value="5.4" name="K_o_normal" units="millimolar"/>
+        <variable name="V" private_interface="out" public_interface="in" units="millivolt"/>
+        <variable name="E_K" public_interface="in" units="millivolt"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <ci>P_ATP</ci>
+                <apply>
+                    <divide/>
+                    <cn cellml:units="dimensionless">1</cn>
+                    <apply>
+                        <minus/>
+                        <cn cellml:units="dimensionless">1</cn>
+                        <apply>
+                            <power/>
+                            <apply>
+                                <divide/>
+                                <ci>ATP_i</ci>
+                                <cn cellml:units="millimolar">0.114</cn>
+                            </apply>
+                            <cn cellml:units="dimensionless">2</cn>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
             <apply>
                 <eq/>
                 <ci>i_K_ATP</ci>
                 <apply>
                     <times/>
-                    <cn cellml:units="dimensionless">1</cn>
-                    <ci>ATP</ci>
+                    <ci>g_K_ATP</ci>
+                    <ci>P_ATP</ci>
+                    <apply>
+                        <power/>
+                        <apply>
+                            <divide/>
+                            <ci>K_o</ci>
+                            <ci>K_o_normal</ci>
+                        </apply>
+                        <cn cellml:units="dimensionless">0.24</cn>
+                    </apply>
+                    <apply>
+                        <minus/>
+                        <ci>V</ci>
+                        <ci>E_K</ci>
+                    </apply>
                 </apply>
             </apply>
         </math>
@@ -4072,8 +4115,17 @@ http://www.cellml.org/
 
 
    <connection>
+        <map_components component_1="potassium_atp_current" component_2="potassium_dynamics"/>
+        <map_variables variable_1="K_o" variable_2="K_o"/>
+    </connection>
+    <connection>
+        <map_components component_1="potassium_atp_current" component_2="reversal_potentials"/>
+        <map_variables variable_1="E_K" variable_2="E_K"/>
+    </connection>
+    <connection>
         <map_components component_1="membrane" component_2="potassium_atp_current"/>
         <map_variables variable_1="i_K_ATP" variable_2="i_K_ATP"/>
+        <map_variables variable_1="V" variable_2="V"/>
     </connection>
 
 

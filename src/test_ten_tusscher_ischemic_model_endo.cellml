@@ -227,6 +227,7 @@ http://www.cellml.org/
             </apply>
         </math>
     </component>
+    <!-- potassium_atp_current-->
     <component name="potassium_atp_current">
         <variable name="i_K_ATP" public_interface="out" units="picoA_per_picoF"/>
         <variable cmeta:id="atp_channel_conductance" initial_value="0.195" name="g_K_ATP" units="nanoS_per_picoF"/>
@@ -283,6 +284,7 @@ http://www.cellml.org/
             </apply>
         </math>
     </component>
+    <!-- potassium_atp_current end-->
     <component name="reversal_potentials">
         <variable name="E_Na" public_interface="out" units="millivolt"/>
         <variable name="E_K" public_interface="out" units="millivolt"/>
@@ -3644,6 +3646,7 @@ http://www.cellml.org/
         <map_variables variable_1="i_K_ATP" variable_2="i_K_ATP"/>
         <map_variables variable_1="V" variable_2="V"/>
     </connection>
+    <!-- mappings end-->
     <connection>
         <map_components component_1="membrane" component_2="environment"/>
         <map_variables variable_1="time" variable_2="time"/>
