@@ -21,8 +21,12 @@
 #include "ten_tusscher_model_2006_epiBackwardEuler.hpp"
 #include "ten_tusscher_model_2006_MBackwardEuler.hpp"
 
+#include "ten_tusscher_ischemic_model_endoBackwardEuler.hpp"
+
 
 using json = nlohmann::json;
+
+typedef Cellten_tusscher_ischemic_model_endoFromCellMLBackwardEuler IschemicTenTusser2006Endo_BckwardEuler;
 
 typedef Cellten_tusscher_model_2006_endoFromCellMLBackwardEuler TenTusser2006Endo_BckwardEuler;
 typedef Cellten_tusscher_model_2006_epiFromCellMLBackwardEuler  TenTusser2006Epi_BckwardEuler;
@@ -41,7 +45,7 @@ void InduceIschemia(AbstractCardiacCell* cell) {
 
     // IK(ATP) was activated by decreasing the intracellular ATP concentration from 6.8 mmol/L to 4.6 mmol/L
     // ATP-sensitive inward-rectifying potassium current (IK(ATP)) 
-    cell->SetParameter("membrane_inward_rectifier_potassium_current_conductance", cell->GetParameter("membrane_inward_rectifier_potassium_current_conductance") * 0.75);
+    // cell->SetParameter("membrane_inward_rectifier_potassium_current_conductance", cell->GetParameter("membrane_inward_rectifier_potassium_current_conductance") * 0.75);
 
     // and increasing the intracellular ADP concentration from 15 μmol/L to 99 μmol/L
 }
@@ -75,7 +79,7 @@ public:
             pCell = new TenTusser2006Endo_BckwardEuler(mpSolver, mpStimulus);
 
         else if (x < length * 0.2)
-            pCell = new TenTusser2006Endo_BckwardEuler(mpSolver, mpZeroStimulus); 
+            pCell = new IschemicTenTusser2006Endo_BckwardEuler(mpSolver, mpZeroStimulus); 
         else if (x < length * 0.5)
             pCell = new TenTusser2006Mid_BckwardEuler(mpSolver, mpZeroStimulus); 
         else

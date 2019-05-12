@@ -1,0 +1,2760 @@
+    |\^/|     Maple 2018 (X86 64 WINDOWS)
+._|\|   |/|_. Copyright (c) Maplesoft, a division of Waterloo Maple Inc. 2018
+ \  MAPLE  /  All rights reserved. Maple is a trademark of
+ <____ ____>  Waterloo Maple Inc.
+      |       Type ? for help.
+1
+"FULL JACOBIAN"
+var_membrane__time := var_environment__time
+var_inward_rectifier_potassium_current__V := var_membrane__V
+var_reversal_potentials__K_i := var_potassium_dynamics__K_i
+var_reversal_potentials__R := var_membrane__R
+var_reversal_potentials__T := var_membrane__T
+var_reversal_potentials__F := var_membrane__F
+var_reversal_potentials__K_o := var_potassium_dynamics__K_o
+var_reversal_potentials__E_K := var_membrane__R*var_membrane__T/var_membrane__F
+*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)
+var_inward_rectifier_potassium_current__E_K := var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)
+var_inward_rectifier_potassium_current__beta_K1 := (3*exp(.20000000000000001e-3
+*var_membrane__V-.20000000000000001e-3*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)+.\
+2000000000e-1)+exp(.10000000000000001*var_membrane__V-.10000000000000001*
+var_membrane__R*var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)-1.000000000))/(1+exp(-.5*var_membrane__V+.5*
+var_membrane__R*var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)))
+var_inward_rectifier_potassium_current__alpha_K1 := .10000000000000001/(1+exp(.\
+59999999999999998e-1*var_membrane__V-.59999999999999998e-1*var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)-12.00000000))
+var_inward_rectifier_potassium_current__xK1_inf := .10000000000000001/(1+exp(.\
+59999999999999998e-1*var_membrane__V-.59999999999999998e-1*var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)-12.00000000))/(.10000000000000001/(1+exp(.\
+59999999999999998e-1*var_membrane__V-.59999999999999998e-1*var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)-12.00000000))+(3*exp(.20000000000000001e-3*
+var_membrane__V-.20000000000000001e-3*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)+.\
+2000000000e-1)+exp(.10000000000000001*var_membrane__V-.10000000000000001*
+var_membrane__R*var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)-1.000000000))/(1+exp(-.5*var_membrane__V+.5*
+var_membrane__R*var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i))))
+var_inward_rectifier_potassium_current__K_o := var_potassium_dynamics__K_o
+var_inward_rectifier_potassium_current__i_K1 := .4303314829e-1*
+var_inward_rectifier_potassium_current__g_K1/(1+exp(.59999999999999998e-1*
+var_membrane__V-.59999999999999998e-1*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-12.\
+00000000))/(.10000000000000001/(1+exp(.59999999999999998e-1*var_membrane__V-.\
+59999999999999998e-1*var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-12.00000000))+(3*exp(.\
+20000000000000001e-3*var_membrane__V-.20000000000000001e-3*var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)+.2000000000e-1)+exp(.10000000000000001*
+var_membrane__V-.10000000000000001*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-1.0\
+00000000))/(1+exp(-.5*var_membrane__V+.5*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i))))*
+var_potassium_dynamics__K_o^(1/2)*(var_membrane__V-var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i))
+var_membrane__i_K1 := .4303314829e-1*
+var_inward_rectifier_potassium_current__g_K1/(1+exp(.59999999999999998e-1*
+var_membrane__V-.59999999999999998e-1*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-12.\
+00000000))/(.10000000000000001/(1+exp(.59999999999999998e-1*var_membrane__V-.\
+59999999999999998e-1*var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-12.00000000))+(3*exp(.\
+20000000000000001e-3*var_membrane__V-.20000000000000001e-3*var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)+.2000000000e-1)+exp(.10000000000000001*
+var_membrane__V-.10000000000000001*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-1.0\
+00000000))/(1+exp(-.5*var_membrane__V+.5*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i))))*
+var_potassium_dynamics__K_o^(1/2)*(var_membrane__V-var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i))
+var_transient_outward_current__s := var_transient_outward_current_s_gate__s
+var_transient_outward_current__r := var_transient_outward_current_r_gate__r
+var_transient_outward_current__V := var_membrane__V
+var_transient_outward_current__E_K := var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)
+var_transient_outward_current__i_to := var_transient_outward_current__g_to*
+var_transient_outward_current_r_gate__r*var_transient_outward_current_s_gate__s
+*(var_membrane__V-var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_potassium_dynamics__K_o/var_potassium_dynamics__K_i))
+var_membrane__i_to := var_transient_outward_current__g_to*
+var_transient_outward_current_r_gate__r*var_transient_outward_current_s_gate__s
+*(var_membrane__V-var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_potassium_dynamics__K_o/var_potassium_dynamics__K_i))
+var_rapid_time_dependent_potassium_current__Xr1 := 
+var_rapid_time_dependent_potassium_current_Xr1_gate__Xr1
+var_rapid_time_dependent_potassium_current__Xr2 := 
+var_rapid_time_dependent_potassium_current_Xr2_gate__Xr2
+var_rapid_time_dependent_potassium_current__V := var_membrane__V
+var_rapid_time_dependent_potassium_current__K_o := var_potassium_dynamics__K_o
+var_rapid_time_dependent_potassium_current__E_K := var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)
+var_rapid_time_dependent_potassium_current__i_Kr := .4303314829*
+var_rapid_time_dependent_potassium_current__g_Kr*var_potassium_dynamics__K_o^(1
+/2)*var_rapid_time_dependent_potassium_current_Xr1_gate__Xr1*
+var_rapid_time_dependent_potassium_current_Xr2_gate__Xr2*(var_membrane__V-
+var_membrane__R*var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i))
+var_membrane__i_Kr := .4303314829*
+var_rapid_time_dependent_potassium_current__g_Kr*var_potassium_dynamics__K_o^(1
+/2)*var_rapid_time_dependent_potassium_current_Xr1_gate__Xr1*
+var_rapid_time_dependent_potassium_current_Xr2_gate__Xr2*(var_membrane__V-
+var_membrane__R*var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i))
+var_reversal_potentials__Na_o := var_sodium_dynamics__Na_o
+var_reversal_potentials__Na_i := var_sodium_dynamics__Na_i
+var_reversal_potentials__E_Ks := var_membrane__R*var_membrane__T/
+var_membrane__F*ln((var_reversal_potentials__P_kna*var_sodium_dynamics__Na_o+
+var_potassium_dynamics__K_o)/(var_reversal_potentials__P_kna*
+var_sodium_dynamics__Na_i+var_potassium_dynamics__K_i))
+var_slow_time_dependent_potassium_current__E_Ks := var_membrane__R*
+var_membrane__T/var_membrane__F*ln((var_reversal_potentials__P_kna*
+var_sodium_dynamics__Na_o+var_potassium_dynamics__K_o)/(
+var_reversal_potentials__P_kna*var_sodium_dynamics__Na_i+
+var_potassium_dynamics__K_i))
+var_slow_time_dependent_potassium_current__V := var_membrane__V
+var_slow_time_dependent_potassium_current__Xs := 
+var_slow_time_dependent_potassium_current_Xs_gate__Xs
+var_slow_time_dependent_potassium_current__i_Ks := 
+var_slow_time_dependent_potassium_current__g_Ks*
+var_slow_time_dependent_potassium_current_Xs_gate__Xs^2*(var_membrane__V-
+var_membrane__R*var_membrane__T/var_membrane__F*ln((
+var_reversal_potentials__P_kna*var_sodium_dynamics__Na_o+
+var_potassium_dynamics__K_o)/(var_reversal_potentials__P_kna*
+var_sodium_dynamics__Na_i+var_potassium_dynamics__K_i)))
+var_membrane__i_Ks := var_slow_time_dependent_potassium_current__g_Ks*
+var_slow_time_dependent_potassium_current_Xs_gate__Xs^2*(var_membrane__V-
+var_membrane__R*var_membrane__T/var_membrane__F*ln((
+var_reversal_potentials__P_kna*var_sodium_dynamics__Na_o+
+var_potassium_dynamics__K_o)/(var_reversal_potentials__P_kna*
+var_sodium_dynamics__Na_i+var_potassium_dynamics__K_i)))
+var_L_type_Ca_current__Ca_ss := var_calcium_dynamics__Ca_ss
+var_L_type_Ca_current__F := var_membrane__F
+var_L_type_Ca_current__V := var_membrane__V
+var_L_type_Ca_current__T := var_membrane__T
+var_L_type_Ca_current__Ca_o := var_calcium_dynamics__Ca_o
+var_L_type_Ca_current__R := var_membrane__R
+var_L_type_Ca_current__temp := PIECEWISE([(var_membrane__V-15)*(.25*
+var_calcium_dynamics__Ca_ss*exp(2*(var_membrane__V-15)*var_membrane__F/
+var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(exp(2*(
+var_membrane__V-15)*var_membrane__F/var_membrane__R/var_membrane__T)-1), 
+var_membrane__V < var_L_type_Ca_current__V_low or var_L_type_Ca_current__V_high
+< var_membrane__V],[1/2*(var_L_type_Ca_current__V_low-15)*(.25*
+var_calcium_dynamics__Ca_ss*exp(2*(var_L_type_Ca_current__V_low-15)*
+var_membrane__F/var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(
+exp(2*(var_L_type_Ca_current__V_low-15)*var_membrane__F/var_membrane__R/
+var_membrane__T)-1)+1/2*(var_L_type_Ca_current__V_high-15)*(.25*
+var_calcium_dynamics__Ca_ss*exp(2*(var_L_type_Ca_current__V_high-15)*
+var_membrane__F/var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(
+exp(2*(var_L_type_Ca_current__V_high-15)*var_membrane__F/var_membrane__R/
+var_membrane__T)-1), otherwise])
+var_L_type_Ca_current__f := var_L_type_Ca_current_f_gate__f
+var_L_type_Ca_current__d := var_L_type_Ca_current_d_gate__d
+var_L_type_Ca_current__f2 := var_L_type_Ca_current_f2_gate__f2
+var_L_type_Ca_current__fCass := var_L_type_Ca_current_fCass_gate__fCass
+var_L_type_Ca_current__i_CaL := 4*PIECEWISE([(var_membrane__V-15)*(.25*
+var_calcium_dynamics__Ca_ss*exp(2*(var_membrane__V-15)*var_membrane__F/
+var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(exp(2*(
+var_membrane__V-15)*var_membrane__F/var_membrane__R/var_membrane__T)-1), 
+var_membrane__V < var_L_type_Ca_current__V_low or var_L_type_Ca_current__V_high
+< var_membrane__V],[1/2*(var_L_type_Ca_current__V_low-15)*(.25*
+var_calcium_dynamics__Ca_ss*exp(2*(var_L_type_Ca_current__V_low-15)*
+var_membrane__F/var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(
+exp(2*(var_L_type_Ca_current__V_low-15)*var_membrane__F/var_membrane__R/
+var_membrane__T)-1)+1/2*(var_L_type_Ca_current__V_high-15)*(.25*
+var_calcium_dynamics__Ca_ss*exp(2*(var_L_type_Ca_current__V_high-15)*
+var_membrane__F/var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(
+exp(2*(var_L_type_Ca_current__V_high-15)*var_membrane__F/var_membrane__R/
+var_membrane__T)-1), otherwise])*var_L_type_Ca_current__g_CaL*
+var_L_type_Ca_current_d_gate__d*var_L_type_Ca_current_f_gate__f*
+var_L_type_Ca_current_f2_gate__f2*var_L_type_Ca_current_fCass_gate__fCass*
+var_membrane__F^2/var_membrane__R/var_membrane__T
+var_membrane__i_CaL := 4*PIECEWISE([(var_membrane__V-15)*(.25*
+var_calcium_dynamics__Ca_ss*exp(2*(var_membrane__V-15)*var_membrane__F/
+var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(exp(2*(
+var_membrane__V-15)*var_membrane__F/var_membrane__R/var_membrane__T)-1), 
+var_membrane__V < var_L_type_Ca_current__V_low or var_L_type_Ca_current__V_high
+< var_membrane__V],[1/2*(var_L_type_Ca_current__V_low-15)*(.25*
+var_calcium_dynamics__Ca_ss*exp(2*(var_L_type_Ca_current__V_low-15)*
+var_membrane__F/var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(
+exp(2*(var_L_type_Ca_current__V_low-15)*var_membrane__F/var_membrane__R/
+var_membrane__T)-1)+1/2*(var_L_type_Ca_current__V_high-15)*(.25*
+var_calcium_dynamics__Ca_ss*exp(2*(var_L_type_Ca_current__V_high-15)*
+var_membrane__F/var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(
+exp(2*(var_L_type_Ca_current__V_high-15)*var_membrane__F/var_membrane__R/
+var_membrane__T)-1), otherwise])*var_L_type_Ca_current__g_CaL*
+var_L_type_Ca_current_d_gate__d*var_L_type_Ca_current_f_gate__f*
+var_L_type_Ca_current_f2_gate__f2*var_L_type_Ca_current_fCass_gate__fCass*
+var_membrane__F^2/var_membrane__R/var_membrane__T
+var_sodium_potassium_pump_current__Na_i := var_sodium_dynamics__Na_i
+var_sodium_potassium_pump_current__R := var_membrane__R
+var_sodium_potassium_pump_current__T := var_membrane__T
+var_sodium_potassium_pump_current__V := var_membrane__V
+var_sodium_potassium_pump_current__F := var_membrane__F
+var_sodium_potassium_pump_current__K_o := var_potassium_dynamics__K_o
+var_sodium_potassium_pump_current__i_NaK := 
+var_sodium_potassium_pump_current__P_NaK*var_potassium_dynamics__K_o/(
+var_potassium_dynamics__K_o+var_sodium_potassium_pump_current__K_mk)*
+var_sodium_dynamics__Na_i/(var_sodium_dynamics__Na_i+
+var_sodium_potassium_pump_current__K_mNa)/(1+.1245*exp(-.10000000000000001*
+var_membrane__V*var_membrane__F/var_membrane__R/var_membrane__T)+.\
+35299999999999998e-1*exp(-var_membrane__V*var_membrane__F/var_membrane__R/
+var_membrane__T))
+var_membrane__i_NaK := var_sodium_potassium_pump_current__P_NaK*
+var_potassium_dynamics__K_o/(var_potassium_dynamics__K_o+
+var_sodium_potassium_pump_current__K_mk)*var_sodium_dynamics__Na_i/(
+var_sodium_dynamics__Na_i+var_sodium_potassium_pump_current__K_mNa)/(1+.1245*
+exp(-.10000000000000001*var_membrane__V*var_membrane__F/var_membrane__R/
+var_membrane__T)+.35299999999999998e-1*exp(-var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T))
+var_fast_sodium_current__j := var_fast_sodium_current_j_gate__j
+var_fast_sodium_current__h := var_fast_sodium_current_h_gate__h
+var_fast_sodium_current__m := var_fast_sodium_current_m_gate__m
+var_fast_sodium_current__V := var_membrane__V
+var_reversal_potentials__E_Na := var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_sodium_dynamics__Na_o/var_sodium_dynamics__Na_i)
+var_fast_sodium_current__E_Na := var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_sodium_dynamics__Na_o/var_sodium_dynamics__Na_i)
+var_fast_sodium_current__i_Na := var_fast_sodium_current__g_Na*
+var_fast_sodium_current_m_gate__m^3*var_fast_sodium_current_h_gate__h*
+var_fast_sodium_current_j_gate__j*(var_membrane__V-var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_sodium_dynamics__Na_o/
+var_sodium_dynamics__Na_i))
+var_membrane__i_Na := var_fast_sodium_current__g_Na*
+var_fast_sodium_current_m_gate__m^3*var_fast_sodium_current_h_gate__h*
+var_fast_sodium_current_j_gate__j*(var_membrane__V-var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_sodium_dynamics__Na_o/
+var_sodium_dynamics__Na_i))
+var_sodium_background_current__V := var_membrane__V
+var_sodium_background_current__E_Na := var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_sodium_dynamics__Na_o/var_sodium_dynamics__Na_i)
+var_sodium_background_current__i_b_Na := var_sodium_background_current__g_bna*(
+var_membrane__V-var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_sodium_dynamics__Na_o/var_sodium_dynamics__Na_i))
+var_membrane__i_b_Na := var_sodium_background_current__g_bna*(var_membrane__V-
+var_membrane__R*var_membrane__T/var_membrane__F*ln(var_sodium_dynamics__Na_o/
+var_sodium_dynamics__Na_i))
+var_sodium_calcium_exchanger_current__F := var_membrane__F
+var_sodium_calcium_exchanger_current__Ca_i := var_calcium_dynamics__Ca_i
+var_sodium_calcium_exchanger_current__Ca_o := var_calcium_dynamics__Ca_o
+var_sodium_calcium_exchanger_current__V := var_membrane__V
+var_sodium_calcium_exchanger_current__R := var_membrane__R
+var_sodium_calcium_exchanger_current__Na_o := var_sodium_dynamics__Na_o
+var_sodium_calcium_exchanger_current__Na_i := var_sodium_dynamics__Na_i
+var_sodium_calcium_exchanger_current__T := var_membrane__T
+var_sodium_calcium_exchanger_current__i_NaCa := 
+var_sodium_calcium_exchanger_current__K_NaCa*(exp(
+var_sodium_calcium_exchanger_current__gamma*var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T)*var_sodium_dynamics__Na_i^3*
+var_calcium_dynamics__Ca_o-exp((var_sodium_calcium_exchanger_current__gamma-1)*
+var_membrane__V*var_membrane__F/var_membrane__R/var_membrane__T)*
+var_sodium_dynamics__Na_o^3*var_calcium_dynamics__Ca_i*
+var_sodium_calcium_exchanger_current__alpha)/(var_sodium_dynamics__Na_o^3+
+var_sodium_calcium_exchanger_current__Km_Nai^3)/(
+var_sodium_calcium_exchanger_current__Km_Ca+var_calcium_dynamics__Ca_o)/(1+
+var_sodium_calcium_exchanger_current__K_sat*exp((
+var_sodium_calcium_exchanger_current__gamma-1)*var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T))
+var_membrane__i_NaCa := var_sodium_calcium_exchanger_current__K_NaCa*(exp(
+var_sodium_calcium_exchanger_current__gamma*var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T)*var_sodium_dynamics__Na_i^3*
+var_calcium_dynamics__Ca_o-exp((var_sodium_calcium_exchanger_current__gamma-1)*
+var_membrane__V*var_membrane__F/var_membrane__R/var_membrane__T)*
+var_sodium_dynamics__Na_o^3*var_calcium_dynamics__Ca_i*
+var_sodium_calcium_exchanger_current__alpha)/(var_sodium_dynamics__Na_o^3+
+var_sodium_calcium_exchanger_current__Km_Nai^3)/(
+var_sodium_calcium_exchanger_current__Km_Ca+var_calcium_dynamics__Ca_o)/(1+
+var_sodium_calcium_exchanger_current__K_sat*exp((
+var_sodium_calcium_exchanger_current__gamma-1)*var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T))
+var_reversal_potentials__Ca_o := var_calcium_dynamics__Ca_o
+var_reversal_potentials__Ca_i := var_calcium_dynamics__Ca_i
+var_reversal_potentials__E_Ca := .5*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_calcium_dynamics__Ca_o/var_calcium_dynamics__Ca_i)
+var_calcium_background_current__E_Ca := .5*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_calcium_dynamics__Ca_o/var_calcium_dynamics__Ca_i)
+var_calcium_background_current__V := var_membrane__V
+var_calcium_background_current__i_b_Ca := var_calcium_background_current__g_bca
+*(var_membrane__V-.5*var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_calcium_dynamics__Ca_o/var_calcium_dynamics__Ca_i))
+var_membrane__i_b_Ca := var_calcium_background_current__g_bca*(var_membrane__V-\
+.5*var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_calcium_dynamics__Ca_o/var_calcium_dynamics__Ca_i))
+var_potassium_pump_current__V := var_membrane__V
+var_potassium_pump_current__E_K := var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)
+var_potassium_pump_current__i_p_K := var_potassium_pump_current__g_pK*(
+var_membrane__V-var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_potassium_dynamics__K_o/var_potassium_dynamics__K_i))/(1+exp(4.180602008-.1\
+672240803*var_membrane__V))
+var_membrane__i_p_K := var_potassium_pump_current__g_pK*(var_membrane__V-
+var_membrane__R*var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i))/(1+exp(4.180602008-.1672240803*var_membrane__V))
+var_potassium_atp_current__P_ATP := 1/(1-76.94675285*
+var_potassium_atp_current__ATP_i^2)
+var_potassium_atp_current__K_o := var_potassium_dynamics__K_o
+var_potassium_atp_current__V := var_membrane__V
+var_potassium_atp_current__E_K := var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)
+var_potassium_atp_current__i_K_ATP := var_potassium_atp_current__g_K_ATP/(1-76.\
+94675285*var_potassium_atp_current__ATP_i^2)*(var_potassium_dynamics__K_o/
+var_potassium_atp_current__K_o_normal)^.23999999999999999*(var_membrane__V-
+var_membrane__R*var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i))
+var_membrane__i_K_ATP := var_potassium_atp_current__g_K_ATP/(1-76.94675285*
+var_potassium_atp_current__ATP_i^2)*(var_potassium_dynamics__K_o/
+var_potassium_atp_current__K_o_normal)^.23999999999999999*(var_membrane__V-
+var_membrane__R*var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i))
+var_calcium_pump_current__Ca_i := var_calcium_dynamics__Ca_i
+var_calcium_pump_current__i_p_Ca := var_calcium_pump_current__g_pCa*
+var_calcium_dynamics__Ca_i/(var_calcium_dynamics__Ca_i+
+var_calcium_pump_current__K_pCa)
+var_membrane__i_p_Ca := var_calcium_pump_current__g_pCa*
+var_calcium_dynamics__Ca_i/(var_calcium_dynamics__Ca_i+
+var_calcium_pump_current__K_pCa)
+memory used=4.2MB, alloc=40.3MB, time=0.16
+var_membrane__i_Stim := PIECEWISE([var_membrane__stim_amplitude, 
+var_membrane__stim_start <= var_environment__time-floor(var_environment__time/
+var_membrane__stim_period)*var_membrane__stim_period and var_environment__time-
+floor(var_environment__time/var_membrane__stim_period)*
+var_membrane__stim_period <= var_membrane__stim_start+
+var_membrane__stim_duration],[0, otherwise])
+var_rapid_time_dependent_potassium_current__time := var_environment__time
+var_rapid_time_dependent_potassium_current_Xr1_gate__V := var_membrane__V
+var_rapid_time_dependent_potassium_current_Xr1_gate__time := 
+var_environment__time
+var_rapid_time_dependent_potassium_current_Xr1_gate__xr1_inf := 1/(1+exp(-26/7-\
+1/7*var_membrane__V))
+var_rapid_time_dependent_potassium_current_Xr1_gate__alpha_xr1 := 450/(1+exp(-9
+/2-1/10*var_membrane__V))
+var_rapid_time_dependent_potassium_current_Xr1_gate__beta_xr1 := 6/(1+exp(.\
+8695652174e-1*var_membrane__V+2.608695652))
+var_rapid_time_dependent_potassium_current_Xr1_gate__tau_xr1 := 2700/(1+exp(-9/
+2-1/10*var_membrane__V))/(1+exp(.8695652174e-1*var_membrane__V+2.608695652))
+var_rapid_time_dependent_potassium_current_Xr2_gate__V := var_membrane__V
+var_rapid_time_dependent_potassium_current_Xr2_gate__time := 
+var_environment__time
+var_rapid_time_dependent_potassium_current_Xr2_gate__xr2_inf := 1/(1+exp(1/24*
+var_membrane__V+11/3))
+var_rapid_time_dependent_potassium_current_Xr2_gate__alpha_xr2 := 3/(1+exp(-3-1
+/20*var_membrane__V))
+var_rapid_time_dependent_potassium_current_Xr2_gate__beta_xr2 := 1.120000000000\
+0001/(1+exp(1/20*var_membrane__V-3))
+var_rapid_time_dependent_potassium_current_Xr2_gate__tau_xr2 := 3.360000000/(1+
+exp(-3-1/20*var_membrane__V))/(1+exp(1/20*var_membrane__V-3))
+var_slow_time_dependent_potassium_current__time := var_environment__time
+var_slow_time_dependent_potassium_current_Xs_gate__V := var_membrane__V
+var_slow_time_dependent_potassium_current_Xs_gate__time := 
+var_environment__time
+var_slow_time_dependent_potassium_current_Xs_gate__xs_inf := 1/(1+exp(-5/14-1/
+14*var_membrane__V))
+var_slow_time_dependent_potassium_current_Xs_gate__alpha_xs := 1400/(1+exp(5/6-\
+1/6*var_membrane__V))^(1/2)
+var_slow_time_dependent_potassium_current_Xs_gate__beta_xs := 1/(1+exp(1/15*
+var_membrane__V-7/3))
+var_slow_time_dependent_potassium_current_Xs_gate__tau_xs := 1400/(1+exp(5/6-1/
+6*var_membrane__V))^(1/2)/(1+exp(1/15*var_membrane__V-7/3))+80
+var_fast_sodium_current__time := var_environment__time
+var_fast_sodium_current_m_gate__V := var_membrane__V
+var_fast_sodium_current_m_gate__time := var_environment__time
+var_fast_sodium_current_m_gate__m_inf := 1/(1+exp(-6.296788482-.1107419712*
+var_membrane__V))^2
+var_fast_sodium_current_m_gate__alpha_m := 1/(1+exp(-12-1/5*var_membrane__V))
+var_fast_sodium_current_m_gate__beta_m := .10000000000000001/(1+exp(1/5*
+var_membrane__V+7))+.10000000000000001/(1+exp(1/200*var_membrane__V-1/4))
+var_fast_sodium_current_m_gate__tau_m := 1/(1+exp(-12-1/5*var_membrane__V))*(.1\
+0000000000000001/(1+exp(1/5*var_membrane__V+7))+.10000000000000001/(1+exp(1/200
+*var_membrane__V-1/4)))
+var_fast_sodium_current_h_gate__V := var_membrane__V
+var_fast_sodium_current_h_gate__time := var_environment__time
+var_fast_sodium_current_h_gate__perc_reduced_inact_for_IpNa := 
+var_fast_sodium_current__perc_reduced_inact_for_IpNa
+var_fast_sodium_current_h_gate__shift_INa_inact := 
+var_fast_sodium_current__shift_INa_inact
+var_fast_sodium_current_h_gate__h_inf := (1-1/100*
+var_fast_sodium_current__perc_reduced_inact_for_IpNa)/(1+exp(.1345895020*
+var_membrane__V+9.629878868-.1345895020*
+var_fast_sodium_current__shift_INa_inact))^2+1/100*
+var_fast_sodium_current__perc_reduced_inact_for_IpNa
+var_fast_sodium_current_h_gate__alpha_h := PIECEWISE([.57000000000000002e-1*exp
+(-.1470588235*var_membrane__V-11.76470588+.1470588235*
+var_fast_sodium_current__shift_INa_inact), var_membrane__V < -40+
+var_fast_sodium_current__shift_INa_inact],[0, otherwise])
+var_fast_sodium_current_h_gate__beta_h := PIECEWISE([2.7000000000000002*exp(.\
+79000000000000001e-1*var_membrane__V-.79000000000000001e-1*
+var_fast_sodium_current__shift_INa_inact)+310000*exp(.34849999999999998*
+var_membrane__V-.34849999999999998*var_fast_sodium_current__shift_INa_inact), 
+var_membrane__V < -40+var_fast_sodium_current__shift_INa_inact],[.7700000000000\
+0002/(.13+.13*exp(-.9009009009e-1*var_membrane__V-.9603603604+.9009009009e-1*
+var_fast_sodium_current__shift_INa_inact)), otherwise])
+var_fast_sodium_current_h_gate__tau_h := 1/(PIECEWISE([.57000000000000002e-1*
+exp(-.1470588235*var_membrane__V-11.76470588+.1470588235*
+var_fast_sodium_current__shift_INa_inact), var_membrane__V < -40+
+var_fast_sodium_current__shift_INa_inact],[0, otherwise])+PIECEWISE([2.70000000\
+00000002*exp(.79000000000000001e-1*var_membrane__V-.79000000000000001e-1*
+var_fast_sodium_current__shift_INa_inact)+310000*exp(.34849999999999998*
+var_membrane__V-.34849999999999998*var_fast_sodium_current__shift_INa_inact), 
+var_membrane__V < -40+var_fast_sodium_current__shift_INa_inact],[.7700000000000\
+0002/(.13+.13*exp(-.9009009009e-1*var_membrane__V-.9603603604+.9009009009e-1*
+var_fast_sodium_current__shift_INa_inact)), otherwise]))
+var_fast_sodium_current_j_gate__V := var_membrane__V
+var_fast_sodium_current_j_gate__time := var_environment__time
+var_fast_sodium_current_j_gate__perc_reduced_inact_for_IpNa := 
+var_fast_sodium_current__perc_reduced_inact_for_IpNa
+var_fast_sodium_current_j_gate__shift_INa_inact := 
+var_fast_sodium_current__shift_INa_inact
+var_fast_sodium_current_j_gate__j_inf := (1-1/100*
+var_fast_sodium_current__perc_reduced_inact_for_IpNa)/(1+exp(.1345895020*
+var_membrane__V+9.629878868-.1345895020*
+var_fast_sodium_current__shift_INa_inact))^2+1/100*
+var_fast_sodium_current__perc_reduced_inact_for_IpNa
+var_fast_sodium_current_j_gate__alpha_j := PIECEWISE([(-25428*exp(.244400000000\
+00001*var_membrane__V-.24440000000000001*
+var_fast_sodium_current__shift_INa_inact)-.69480000000000002e-5*exp(-.\
+43909999999999998e-1*var_membrane__V+.43909999999999998e-1*
+var_fast_sodium_current__shift_INa_inact))*(var_membrane__V+37.780000000000001)
+/(1+exp(.311*var_membrane__V+24.64053000-.311*
+var_fast_sodium_current__shift_INa_inact)), var_membrane__V < -40+
+var_fast_sodium_current__shift_INa_inact],[0, otherwise])
+var_fast_sodium_current_j_gate__beta_j := PIECEWISE([.24240000000000001e-1*exp(
+-.1052e-1*var_membrane__V+.1052e-1*var_fast_sodium_current__shift_INa_inact)/(1
++exp(-.13780000000000001*var_membrane__V-5.531292000+.13780000000000001*
+var_fast_sodium_current__shift_INa_inact)), var_membrane__V < -40+
+var_fast_sodium_current__shift_INa_inact],[.59999999999999998*exp(.\
+57000000000000002e-1*var_membrane__V-.57000000000000002e-1*
+var_fast_sodium_current__shift_INa_inact)/(1+exp(-.10000000000000001*
+var_membrane__V-3.200000000+.10000000000000001*
+var_fast_sodium_current__shift_INa_inact)), otherwise])
+var_fast_sodium_current_j_gate__tau_j := 1/(PIECEWISE([(-25428*exp(.24440000000\
+000001*var_membrane__V-.24440000000000001*
+var_fast_sodium_current__shift_INa_inact)-.69480000000000002e-5*exp(-.\
+43909999999999998e-1*var_membrane__V+.43909999999999998e-1*
+var_fast_sodium_current__shift_INa_inact))*(var_membrane__V+37.780000000000001)
+/(1+exp(.311*var_membrane__V+24.64053000-.311*
+var_fast_sodium_current__shift_INa_inact)), var_membrane__V < -40+
+var_fast_sodium_current__shift_INa_inact],[0, otherwise])+PIECEWISE([.\
+24240000000000001e-1*exp(-.1052e-1*var_membrane__V+.1052e-1*
+var_fast_sodium_current__shift_INa_inact)/(1+exp(-.13780000000000001*
+var_membrane__V-5.531292000+.13780000000000001*
+var_fast_sodium_current__shift_INa_inact)), var_membrane__V < -40+
+var_fast_sodium_current__shift_INa_inact],[.59999999999999998*exp(.\
+57000000000000002e-1*var_membrane__V-.57000000000000002e-1*
+var_fast_sodium_current__shift_INa_inact)/(1+exp(-.10000000000000001*
+var_membrane__V-3.200000000+.10000000000000001*
+var_fast_sodium_current__shift_INa_inact)), otherwise]))
+var_L_type_Ca_current__time := var_environment__time
+var_L_type_Ca_current_d_gate__V := var_membrane__V
+var_L_type_Ca_current_d_gate__time := var_environment__time
+var_L_type_Ca_current_d_gate__d_inf := 1/(1+exp(-1.066666666-.1333333333*
+var_membrane__V))
+var_L_type_Ca_current_d_gate__alpha_d := 1.3999999999999999/(1+exp(-35/13-1/13*
+var_membrane__V))+.25
+var_L_type_Ca_current_d_gate__beta_d := 1.3999999999999999/(1+exp(1/5*
+var_membrane__V+1))
+var_L_type_Ca_current_d_gate__gamma_d := 1/(1+exp(5/2-1/20*var_membrane__V))
+var_L_type_Ca_current_d_gate__tau_d := 1.3999999999999999*(1.3999999999999999/(
+1+exp(-35/13-1/13*var_membrane__V))+.25)/(1+exp(1/5*var_membrane__V+1))+1/(1+
+exp(5/2-1/20*var_membrane__V))
+var_L_type_Ca_current_f_gate__V := var_membrane__V
+var_L_type_Ca_current_f_gate__time := var_environment__time
+var_L_type_Ca_current_f_gate__f_inf := 1/(1+exp(1/7*var_membrane__V+20/7))
+var_L_type_Ca_current_f_gate__tau_f := 1102.5*exp(-1/225*(var_membrane__V+27)^2
+)+200/(1+exp(13/10-1/10*var_membrane__V))+180/(1+exp(1/10*var_membrane__V+3))+
+20
+var_L_type_Ca_current_f2_gate__V := var_membrane__V
+var_L_type_Ca_current_f2_gate__time := var_environment__time
+var_L_type_Ca_current_f2_gate__f2_inf := .67000000000000004/(1+exp(1/7*
+var_membrane__V+5))+.33000000000000002
+var_L_type_Ca_current_f2_gate__tau_f2 := 562*exp(-1/240*(var_membrane__V+27)^2)
++31/(1+exp(5/2-1/10*var_membrane__V))+80/(1+exp(1/10*var_membrane__V+3))
+var_L_type_Ca_current_fCass_gate__Ca_ss := var_calcium_dynamics__Ca_ss
+var_L_type_Ca_current_fCass_gate__time := var_environment__time
+var_L_type_Ca_current_fCass_gate__fCass_inf := .59999999999999998/(1+400.000000\
+0*var_calcium_dynamics__Ca_ss^2)+.40000000000000002
+var_L_type_Ca_current_fCass_gate__tau_fCass := 80/(1+400.0000000*
+var_calcium_dynamics__Ca_ss^2)+2
+var_transient_outward_current__time := var_environment__time
+var_transient_outward_current_s_gate__V := var_membrane__V
+var_transient_outward_current_s_gate__time := var_environment__time
+var_transient_outward_current_s_gate__s_inf := 1/(1+exp(1/5*var_membrane__V+4))
+var_transient_outward_current_s_gate__tau_s := 85*exp(-1/320*(var_membrane__V+
+45)^2)+5/(1+exp(1/5*var_membrane__V-4))+3
+var_transient_outward_current_r_gate__V := var_membrane__V
+var_transient_outward_current_r_gate__time := var_environment__time
+var_transient_outward_current_r_gate__r_inf := 1/(1+exp(10/3-1/6*
+var_membrane__V))
+var_transient_outward_current_r_gate__tau_r := 9.5*exp(-1/1800*(var_membrane__V
++40)^2)+.80000000000000004
+var_calcium_dynamics__kcasr := var_calcium_dynamics__max_sr-(
+var_calcium_dynamics__max_sr-var_calcium_dynamics__min_sr)/(1+
+var_calcium_dynamics__EC^2/var_calcium_dynamics__Ca_SR^2)
+var_calcium_dynamics__k1 := var_calcium_dynamics__k1_prime/(
+var_calcium_dynamics__max_sr-(var_calcium_dynamics__max_sr-
+var_calcium_dynamics__min_sr)/(1+var_calcium_dynamics__EC^2/
+var_calcium_dynamics__Ca_SR^2))
+var_calcium_dynamics__O := var_calcium_dynamics__k1_prime/(
+var_calcium_dynamics__max_sr-(var_calcium_dynamics__max_sr-
+var_calcium_dynamics__min_sr)/(1+var_calcium_dynamics__EC^2/
+var_calcium_dynamics__Ca_SR^2))*var_calcium_dynamics__Ca_ss^2*
+var_calcium_dynamics__R_prime/(var_calcium_dynamics__Ca_ss^2*
+var_calcium_dynamics__k1_prime/(var_calcium_dynamics__max_sr-(
+var_calcium_dynamics__max_sr-var_calcium_dynamics__min_sr)/(1+
+var_calcium_dynamics__EC^2/var_calcium_dynamics__Ca_SR^2))+
+var_calcium_dynamics__k3)
+var_calcium_dynamics__i_rel := var_calcium_dynamics__V_rel*
+var_calcium_dynamics__k1_prime/(var_calcium_dynamics__max_sr-(
+var_calcium_dynamics__max_sr-var_calcium_dynamics__min_sr)/(1+
+var_calcium_dynamics__EC^2/var_calcium_dynamics__Ca_SR^2))*
+var_calcium_dynamics__Ca_ss^2*var_calcium_dynamics__R_prime/(
+var_calcium_dynamics__Ca_ss^2*var_calcium_dynamics__k1_prime/(
+var_calcium_dynamics__max_sr-(var_calcium_dynamics__max_sr-
+var_calcium_dynamics__min_sr)/(1+var_calcium_dynamics__EC^2/
+var_calcium_dynamics__Ca_SR^2))+var_calcium_dynamics__k3)*(
+var_calcium_dynamics__Ca_SR-var_calcium_dynamics__Ca_ss)
+var_calcium_dynamics__i_up := var_calcium_dynamics__Vmax_up/(1+
+var_calcium_dynamics__K_up^2/var_calcium_dynamics__Ca_i^2)
+var_calcium_dynamics__i_leak := var_calcium_dynamics__V_leak*(
+var_calcium_dynamics__Ca_SR-var_calcium_dynamics__Ca_i)
+var_calcium_dynamics__i_xfer := var_calcium_dynamics__V_xfer*(
+var_calcium_dynamics__Ca_ss-var_calcium_dynamics__Ca_i)
+var_calcium_dynamics__k2 := var_calcium_dynamics__k2_prime*(
+var_calcium_dynamics__max_sr-(var_calcium_dynamics__max_sr-
+var_calcium_dynamics__min_sr)/(1+var_calcium_dynamics__EC^2/
+var_calcium_dynamics__Ca_SR^2))
+var_calcium_dynamics__Ca_i_bufc := 1/(1+var_calcium_dynamics__Buf_c*
+var_calcium_dynamics__K_buf_c/(var_calcium_dynamics__Ca_i+
+var_calcium_dynamics__K_buf_c)^2)
+var_calcium_dynamics__Ca_sr_bufsr := 1/(1+var_calcium_dynamics__Buf_sr*
+var_calcium_dynamics__K_buf_sr/(var_calcium_dynamics__Ca_SR+
+var_calcium_dynamics__K_buf_sr)^2)
+var_calcium_dynamics__Ca_ss_bufss := 1/(1+var_calcium_dynamics__Buf_ss*
+var_calcium_dynamics__K_buf_ss/(var_calcium_dynamics__Ca_ss+
+var_calcium_dynamics__K_buf_ss)^2)
+var_calcium_dynamics__V_c := var_membrane__V_c
+var_calcium_dynamics__time := var_environment__time
+var_calcium_dynamics__F := var_membrane__F
+var_calcium_dynamics__Cm := var_membrane__Cm
+var_calcium_dynamics__i_CaL := 4*PIECEWISE([(var_membrane__V-15)*(.25*
+var_calcium_dynamics__Ca_ss*exp(2*(var_membrane__V-15)*var_membrane__F/
+var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(exp(2*(
+var_membrane__V-15)*var_membrane__F/var_membrane__R/var_membrane__T)-1), 
+var_membrane__V < var_L_type_Ca_current__V_low or var_L_type_Ca_current__V_high
+< var_membrane__V],[1/2*(var_L_type_Ca_current__V_low-15)*(.25*
+var_calcium_dynamics__Ca_ss*exp(2*(var_L_type_Ca_current__V_low-15)*
+var_membrane__F/var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(
+exp(2*(var_L_type_Ca_current__V_low-15)*var_membrane__F/var_membrane__R/
+var_membrane__T)-1)+1/2*(var_L_type_Ca_current__V_high-15)*(.25*
+var_calcium_dynamics__Ca_ss*exp(2*(var_L_type_Ca_current__V_high-15)*
+var_membrane__F/var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(
+exp(2*(var_L_type_Ca_current__V_high-15)*var_membrane__F/var_membrane__R/
+var_membrane__T)-1), otherwise])*var_L_type_Ca_current__g_CaL*
+var_L_type_Ca_current_d_gate__d*var_L_type_Ca_current_f_gate__f*
+var_L_type_Ca_current_f2_gate__f2*var_L_type_Ca_current_fCass_gate__fCass*
+var_membrane__F^2/var_membrane__R/var_membrane__T
+var_calcium_dynamics__i_NaCa := var_sodium_calcium_exchanger_current__K_NaCa*(
+exp(var_sodium_calcium_exchanger_current__gamma*var_membrane__V*var_membrane__F
+/var_membrane__R/var_membrane__T)*var_sodium_dynamics__Na_i^3*
+var_calcium_dynamics__Ca_o-exp((var_sodium_calcium_exchanger_current__gamma-1)*
+var_membrane__V*var_membrane__F/var_membrane__R/var_membrane__T)*
+var_sodium_dynamics__Na_o^3*var_calcium_dynamics__Ca_i*
+var_sodium_calcium_exchanger_current__alpha)/(var_sodium_dynamics__Na_o^3+
+var_sodium_calcium_exchanger_current__Km_Nai^3)/(
+var_sodium_calcium_exchanger_current__Km_Ca+var_calcium_dynamics__Ca_o)/(1+
+var_sodium_calcium_exchanger_current__K_sat*exp((
+var_sodium_calcium_exchanger_current__gamma-1)*var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T))
+var_calcium_dynamics__i_p_Ca := var_calcium_pump_current__g_pCa*
+var_calcium_dynamics__Ca_i/(var_calcium_dynamics__Ca_i+
+var_calcium_pump_current__K_pCa)
+var_calcium_dynamics__i_b_Ca := var_calcium_background_current__g_bca*(
+var_membrane__V-.5*var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_calcium_dynamics__Ca_o/var_calcium_dynamics__Ca_i))
+var_sodium_dynamics__time := var_environment__time
+var_sodium_dynamics__F := var_membrane__F
+var_sodium_dynamics__Cm := var_membrane__Cm
+var_sodium_dynamics__V_c := var_membrane__V_c
+var_sodium_dynamics__i_Na := var_fast_sodium_current__g_Na*
+var_fast_sodium_current_m_gate__m^3*var_fast_sodium_current_h_gate__h*
+var_fast_sodium_current_j_gate__j*(var_membrane__V-var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_sodium_dynamics__Na_o/
+var_sodium_dynamics__Na_i))
+var_sodium_dynamics__i_NaCa := var_sodium_calcium_exchanger_current__K_NaCa*(
+exp(var_sodium_calcium_exchanger_current__gamma*var_membrane__V*var_membrane__F
+/var_membrane__R/var_membrane__T)*var_sodium_dynamics__Na_i^3*
+var_calcium_dynamics__Ca_o-exp((var_sodium_calcium_exchanger_current__gamma-1)*
+var_membrane__V*var_membrane__F/var_membrane__R/var_membrane__T)*
+var_sodium_dynamics__Na_o^3*var_calcium_dynamics__Ca_i*
+var_sodium_calcium_exchanger_current__alpha)/(var_sodium_dynamics__Na_o^3+
+var_sodium_calcium_exchanger_current__Km_Nai^3)/(
+var_sodium_calcium_exchanger_current__Km_Ca+var_calcium_dynamics__Ca_o)/(1+
+var_sodium_calcium_exchanger_current__K_sat*exp((
+var_sodium_calcium_exchanger_current__gamma-1)*var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T))
+var_sodium_dynamics__i_NaK := var_sodium_potassium_pump_current__P_NaK*
+var_potassium_dynamics__K_o/(var_potassium_dynamics__K_o+
+var_sodium_potassium_pump_current__K_mk)*var_sodium_dynamics__Na_i/(
+var_sodium_dynamics__Na_i+var_sodium_potassium_pump_current__K_mNa)/(1+.1245*
+exp(-.10000000000000001*var_membrane__V*var_membrane__F/var_membrane__R/
+var_membrane__T)+.35299999999999998e-1*exp(-var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T))
+var_sodium_dynamics__i_b_Na := var_sodium_background_current__g_bna*(
+var_membrane__V-var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_sodium_dynamics__Na_o/var_sodium_dynamics__Na_i))
+var_potassium_dynamics__conc_clamp := var_sodium_dynamics__conc_clamp
+var_potassium_dynamics__time := var_environment__time
+var_potassium_dynamics__F := var_membrane__F
+var_potassium_dynamics__Cm := var_membrane__Cm
+var_potassium_dynamics__V_c := var_membrane__V_c
+var_potassium_dynamics__i_K1 := .4303314829e-1*
+var_inward_rectifier_potassium_current__g_K1/(1+exp(.59999999999999998e-1*
+var_membrane__V-.59999999999999998e-1*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-12.\
+00000000))/(.10000000000000001/(1+exp(.59999999999999998e-1*var_membrane__V-.\
+59999999999999998e-1*var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-12.00000000))+(3*exp(.\
+20000000000000001e-3*var_membrane__V-.20000000000000001e-3*var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)+.2000000000e-1)+exp(.10000000000000001*
+var_membrane__V-.10000000000000001*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-1.0\
+00000000))/(1+exp(-.5*var_membrane__V+.5*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i))))*
+var_potassium_dynamics__K_o^(1/2)*(var_membrane__V-var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i))
+var_potassium_dynamics__i_to := var_transient_outward_current__g_to*
+var_transient_outward_current_r_gate__r*var_transient_outward_current_s_gate__s
+*(var_membrane__V-var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_potassium_dynamics__K_o/var_potassium_dynamics__K_i))
+var_potassium_dynamics__i_NaK := var_sodium_potassium_pump_current__P_NaK*
+var_potassium_dynamics__K_o/(var_potassium_dynamics__K_o+
+var_sodium_potassium_pump_current__K_mk)*var_sodium_dynamics__Na_i/(
+var_sodium_dynamics__Na_i+var_sodium_potassium_pump_current__K_mNa)/(1+.1245*
+exp(-.10000000000000001*var_membrane__V*var_membrane__F/var_membrane__R/
+var_membrane__T)+.35299999999999998e-1*exp(-var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T))
+var_potassium_dynamics__i_Kr := .4303314829*
+var_rapid_time_dependent_potassium_current__g_Kr*var_potassium_dynamics__K_o^(1
+/2)*var_rapid_time_dependent_potassium_current_Xr1_gate__Xr1*
+var_rapid_time_dependent_potassium_current_Xr2_gate__Xr2*(var_membrane__V-
+var_membrane__R*var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i))
+var_potassium_dynamics__i_Ks := var_slow_time_dependent_potassium_current__g_Ks
+*var_slow_time_dependent_potassium_current_Xs_gate__Xs^2*(var_membrane__V-
+var_membrane__R*var_membrane__T/var_membrane__F*ln((
+var_reversal_potentials__P_kna*var_sodium_dynamics__Na_o+
+var_potassium_dynamics__K_o)/(var_reversal_potentials__P_kna*
+var_sodium_dynamics__Na_i+var_potassium_dynamics__K_i)))
+var_potassium_dynamics__i_p_K := var_potassium_pump_current__g_pK*(
+var_membrane__V-var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_potassium_dynamics__K_o/var_potassium_dynamics__K_i))/(1+exp(4.180602008-.1\
+672240803*var_membrane__V))
+var_potassium_dynamics__i_Stim := PIECEWISE([var_membrane__stim_amplitude, 
+var_membrane__stim_start <= var_environment__time-floor(var_environment__time/
+var_membrane__stim_period)*var_membrane__stim_period and var_environment__time-
+floor(var_environment__time/var_membrane__stim_period)*
+var_membrane__stim_period <= var_membrane__stim_start+
+var_membrane__stim_duration],[0, otherwise])
+d_dt_membrane__V := -.4303314829e-1*
+var_inward_rectifier_potassium_current__g_K1/(1+exp(.59999999999999998e-1*
+var_membrane__V-.59999999999999998e-1*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-12.\
+00000000))/(.10000000000000001/(1+exp(.59999999999999998e-1*var_membrane__V-.\
+59999999999999998e-1*var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-12.00000000))+(3*exp(.\
+20000000000000001e-3*var_membrane__V-.20000000000000001e-3*var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)+.2000000000e-1)+exp(.10000000000000001*
+var_membrane__V-.10000000000000001*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-1.0\
+00000000))/(1+exp(-.5*var_membrane__V+.5*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i))))*
+var_potassium_dynamics__K_o^(1/2)*(var_membrane__V-var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i))-var_transient_outward_current__g_to*
+var_transient_outward_current_r_gate__r*var_transient_outward_current_s_gate__s
+*(var_membrane__V-var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_potassium_dynamics__K_o/var_potassium_dynamics__K_i))-.4303314829*
+var_rapid_time_dependent_potassium_current__g_Kr*var_potassium_dynamics__K_o^(1
+/2)*var_rapid_time_dependent_potassium_current_Xr1_gate__Xr1*
+var_rapid_time_dependent_potassium_current_Xr2_gate__Xr2*(var_membrane__V-
+var_membrane__R*var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i))-var_slow_time_dependent_potassium_current__g_Ks*
+var_slow_time_dependent_potassium_current_Xs_gate__Xs^2*(var_membrane__V-
+var_membrane__R*var_membrane__T/var_membrane__F*ln((
+var_reversal_potentials__P_kna*var_sodium_dynamics__Na_o+
+var_potassium_dynamics__K_o)/(var_reversal_potentials__P_kna*
+var_sodium_dynamics__Na_i+var_potassium_dynamics__K_i)))-4*PIECEWISE([(
+var_membrane__V-15)*(.25*var_calcium_dynamics__Ca_ss*exp(2*(var_membrane__V-15)
+*var_membrane__F/var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(
+exp(2*(var_membrane__V-15)*var_membrane__F/var_membrane__R/var_membrane__T)-1),
+var_membrane__V < var_L_type_Ca_current__V_low or var_L_type_Ca_current__V_high
+< var_membrane__V],[1/2*(var_L_type_Ca_current__V_low-15)*(.25*
+var_calcium_dynamics__Ca_ss*exp(2*(var_L_type_Ca_current__V_low-15)*
+var_membrane__F/var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(
+exp(2*(var_L_type_Ca_current__V_low-15)*var_membrane__F/var_membrane__R/
+var_membrane__T)-1)+1/2*(var_L_type_Ca_current__V_high-15)*(.25*
+var_calcium_dynamics__Ca_ss*exp(2*(var_L_type_Ca_current__V_high-15)*
+var_membrane__F/var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(
+exp(2*(var_L_type_Ca_current__V_high-15)*var_membrane__F/var_membrane__R/
+var_membrane__T)-1), otherwise])*var_L_type_Ca_current__g_CaL*
+var_L_type_Ca_current_d_gate__d*var_L_type_Ca_current_f_gate__f*
+var_L_type_Ca_current_f2_gate__f2*var_L_type_Ca_current_fCass_gate__fCass*
+var_membrane__F^2/var_membrane__R/var_membrane__T-
+var_sodium_potassium_pump_current__P_NaK*var_potassium_dynamics__K_o/(
+var_potassium_dynamics__K_o+var_sodium_potassium_pump_current__K_mk)*
+var_sodium_dynamics__Na_i/(var_sodium_dynamics__Na_i+
+var_sodium_potassium_pump_current__K_mNa)/(1+.1245*exp(-.10000000000000001*
+var_membrane__V*var_membrane__F/var_membrane__R/var_membrane__T)+.\
+35299999999999998e-1*exp(-var_membrane__V*var_membrane__F/var_membrane__R/
+var_membrane__T))-var_fast_sodium_current__g_Na*
+var_fast_sodium_current_m_gate__m^3*var_fast_sodium_current_h_gate__h*
+var_fast_sodium_current_j_gate__j*(var_membrane__V-var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_sodium_dynamics__Na_o/
+var_sodium_dynamics__Na_i))-var_sodium_background_current__g_bna*(
+var_membrane__V-var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_sodium_dynamics__Na_o/var_sodium_dynamics__Na_i))-
+var_sodium_calcium_exchanger_current__K_NaCa*(exp(
+var_sodium_calcium_exchanger_current__gamma*var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T)*var_sodium_dynamics__Na_i^3*
+var_calcium_dynamics__Ca_o-exp((var_sodium_calcium_exchanger_current__gamma-1)*
+var_membrane__V*var_membrane__F/var_membrane__R/var_membrane__T)*
+var_sodium_dynamics__Na_o^3*var_calcium_dynamics__Ca_i*
+var_sodium_calcium_exchanger_current__alpha)/(var_sodium_dynamics__Na_o^3+
+var_sodium_calcium_exchanger_current__Km_Nai^3)/(
+var_sodium_calcium_exchanger_current__Km_Ca+var_calcium_dynamics__Ca_o)/(1+
+var_sodium_calcium_exchanger_current__K_sat*exp((
+var_sodium_calcium_exchanger_current__gamma-1)*var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T))-var_calcium_background_current__g_bca*(
+var_membrane__V-.5*var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_calcium_dynamics__Ca_o/var_calcium_dynamics__Ca_i))-
+var_potassium_pump_current__g_pK*(var_membrane__V-var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i))/(1+exp(4.180602008-.1672240803*var_membrane__V))-
+var_potassium_atp_current__g_K_ATP/(1-76.94675285*
+var_potassium_atp_current__ATP_i^2)*(var_potassium_dynamics__K_o/
+var_potassium_atp_current__K_o_normal)^.23999999999999999*(var_membrane__V-
+var_membrane__R*var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i))-var_calcium_pump_current__g_pCa*
+var_calcium_dynamics__Ca_i/(var_calcium_dynamics__Ca_i+
+var_calcium_pump_current__K_pCa)-PIECEWISE([var_membrane__stim_amplitude, 
+var_membrane__stim_start <= var_environment__time-floor(var_environment__time/
+var_membrane__stim_period)*var_membrane__stim_period and var_environment__time-
+floor(var_environment__time/var_membrane__stim_period)*
+var_membrane__stim_period <= var_membrane__stim_start+
+var_membrane__stim_duration],[0, otherwise])
+d_dt_rapid_time_dependent_potassium_current_Xr1_gate__Xr1 := 1/2700*(1/(1+exp(-\
+26/7-1/7*var_membrane__V))-
+var_rapid_time_dependent_potassium_current_Xr1_gate__Xr1)*(1+exp(-9/2-1/10*
+var_membrane__V))*(1+exp(.8695652174e-1*var_membrane__V+2.608695652))
+d_dt_rapid_time_dependent_potassium_current_Xr2_gate__Xr2 := .2976190476*(1/(1+
+exp(1/24*var_membrane__V+11/3))-
+var_rapid_time_dependent_potassium_current_Xr2_gate__Xr2)*(1+exp(-3-1/20*
+var_membrane__V))*(1+exp(1/20*var_membrane__V-3))
+d_dt_slow_time_dependent_potassium_current_Xs_gate__Xs := (1/(1+exp(-5/14-1/14*
+var_membrane__V))-var_slow_time_dependent_potassium_current_Xs_gate__Xs)/(1400/
+(1+exp(5/6-1/6*var_membrane__V))^(1/2)/(1+exp(1/15*var_membrane__V-7/3))+80)
+d_dt_fast_sodium_current_m_gate__m := (1/(1+exp(-6.296788482-.1107419712*
+var_membrane__V))^2-var_fast_sodium_current_m_gate__m)*(1+exp(-12-1/5*
+var_membrane__V))/(.10000000000000001/(1+exp(1/5*var_membrane__V+7))+.100000000\
+00000001/(1+exp(1/200*var_membrane__V-1/4)))
+d_dt_fast_sodium_current_h_gate__h := ((1-1/100*
+var_fast_sodium_current__perc_reduced_inact_for_IpNa)/(1+exp(.1345895020*
+var_membrane__V+9.629878868-.1345895020*
+var_fast_sodium_current__shift_INa_inact))^2+1/100*
+var_fast_sodium_current__perc_reduced_inact_for_IpNa-
+var_fast_sodium_current_h_gate__h)*(PIECEWISE([.57000000000000002e-1*exp(-.1470\
+588235*var_membrane__V-11.76470588+.1470588235*
+var_fast_sodium_current__shift_INa_inact), var_membrane__V < -40+
+var_fast_sodium_current__shift_INa_inact],[0, otherwise])+PIECEWISE([2.70000000\
+00000002*exp(.79000000000000001e-1*var_membrane__V-.79000000000000001e-1*
+var_fast_sodium_current__shift_INa_inact)+310000*exp(.34849999999999998*
+var_membrane__V-.34849999999999998*var_fast_sodium_current__shift_INa_inact), 
+var_membrane__V < -40+var_fast_sodium_current__shift_INa_inact],[.7700000000000\
+0002/(.13+.13*exp(-.9009009009e-1*var_membrane__V-.9603603604+.9009009009e-1*
+var_fast_sodium_current__shift_INa_inact)), otherwise]))
+d_dt_fast_sodium_current_j_gate__j := ((1-1/100*
+var_fast_sodium_current__perc_reduced_inact_for_IpNa)/(1+exp(.1345895020*
+var_membrane__V+9.629878868-.1345895020*
+var_fast_sodium_current__shift_INa_inact))^2+1/100*
+var_fast_sodium_current__perc_reduced_inact_for_IpNa-
+var_fast_sodium_current_j_gate__j)*(PIECEWISE([(-25428*exp(.24440000000000001*
+var_membrane__V-.24440000000000001*var_fast_sodium_current__shift_INa_inact)-.\
+69480000000000002e-5*exp(-.43909999999999998e-1*var_membrane__V+.\
+43909999999999998e-1*var_fast_sodium_current__shift_INa_inact))*(
+var_membrane__V+37.780000000000001)/(1+exp(.311*var_membrane__V+24.64053000-.31\
+1*var_fast_sodium_current__shift_INa_inact)), var_membrane__V < -40+
+var_fast_sodium_current__shift_INa_inact],[0, otherwise])+PIECEWISE([.\
+24240000000000001e-1*exp(-.1052e-1*var_membrane__V+.1052e-1*
+var_fast_sodium_current__shift_INa_inact)/(1+exp(-.13780000000000001*
+var_membrane__V-5.531292000+.13780000000000001*
+var_fast_sodium_current__shift_INa_inact)), var_membrane__V < -40+
+var_fast_sodium_current__shift_INa_inact],[.59999999999999998*exp(.\
+57000000000000002e-1*var_membrane__V-.57000000000000002e-1*
+var_fast_sodium_current__shift_INa_inact)/(1+exp(-.10000000000000001*
+var_membrane__V-3.200000000+.10000000000000001*
+var_fast_sodium_current__shift_INa_inact)), otherwise]))
+d_dt_L_type_Ca_current_d_gate__d := (1/(1+exp(-1.066666666-.1333333333*
+var_membrane__V))-var_L_type_Ca_current_d_gate__d)/(1.3999999999999999*(1.39999\
+99999999999/(1+exp(-35/13-1/13*var_membrane__V))+.25)/(1+exp(1/5*
+var_membrane__V+1))+1/(1+exp(5/2-1/20*var_membrane__V)))
+d_dt_L_type_Ca_current_f_gate__f := (1/(1+exp(1/7*var_membrane__V+20/7))-
+var_L_type_Ca_current_f_gate__f)/(1102.5*exp(-1/225*(var_membrane__V+27)^2)+200
+/(1+exp(13/10-1/10*var_membrane__V))+180/(1+exp(1/10*var_membrane__V+3))+20)
+d_dt_L_type_Ca_current_f2_gate__f2 := (.67000000000000004/(1+exp(1/7*
+var_membrane__V+5))+.33000000000000002-var_L_type_Ca_current_f2_gate__f2)/(562*
+exp(-1/240*(var_membrane__V+27)^2)+31/(1+exp(5/2-1/10*var_membrane__V))+80/(1+
+exp(1/10*var_membrane__V+3)))
+d_dt_L_type_Ca_current_fCass_gate__fCass := (.59999999999999998/(1+400.0000000*
+var_calcium_dynamics__Ca_ss^2)+.40000000000000002-
+var_L_type_Ca_current_fCass_gate__fCass)/(80/(1+400.0000000*
+var_calcium_dynamics__Ca_ss^2)+2)
+d_dt_transient_outward_current_s_gate__s := (1/(1+exp(1/5*var_membrane__V+4))-
+var_transient_outward_current_s_gate__s)/(85*exp(-1/320*(var_membrane__V+45)^2)
++5/(1+exp(1/5*var_membrane__V-4))+3)
+d_dt_transient_outward_current_r_gate__r := (1/(1+exp(10/3-1/6*var_membrane__V)
+)-var_transient_outward_current_r_gate__r)/(9.5*exp(-1/1800*(var_membrane__V+40
+)^2)+.80000000000000004)
+d_dt_calcium_dynamics__R_prime := -var_calcium_dynamics__k2_prime*(
+var_calcium_dynamics__max_sr-(var_calcium_dynamics__max_sr-
+var_calcium_dynamics__min_sr)/(1+var_calcium_dynamics__EC^2/
+var_calcium_dynamics__Ca_SR^2))*var_calcium_dynamics__Ca_ss*
+var_calcium_dynamics__R_prime+var_calcium_dynamics__k4*(1-
+var_calcium_dynamics__R_prime)
+d_dt_calcium_dynamics__Ca_i := 1/(1+var_calcium_dynamics__Buf_c*
+var_calcium_dynamics__K_buf_c/(var_calcium_dynamics__Ca_i+
+var_calcium_dynamics__K_buf_c)^2)*((var_calcium_dynamics__V_leak*(
+var_calcium_dynamics__Ca_SR-var_calcium_dynamics__Ca_i)-
+var_calcium_dynamics__Vmax_up/(1+var_calcium_dynamics__K_up^2/
+var_calcium_dynamics__Ca_i^2))*var_calcium_dynamics__V_sr/var_membrane__V_c+
+var_calcium_dynamics__V_xfer*(var_calcium_dynamics__Ca_ss-
+var_calcium_dynamics__Ca_i)-1/2*(var_calcium_background_current__g_bca*(
+var_membrane__V-.5*var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_calcium_dynamics__Ca_o/var_calcium_dynamics__Ca_i))+
+var_calcium_pump_current__g_pCa*var_calcium_dynamics__Ca_i/(
+var_calcium_dynamics__Ca_i+var_calcium_pump_current__K_pCa)-2*
+var_sodium_calcium_exchanger_current__K_NaCa*(exp(
+var_sodium_calcium_exchanger_current__gamma*var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T)*var_sodium_dynamics__Na_i^3*
+var_calcium_dynamics__Ca_o-exp((var_sodium_calcium_exchanger_current__gamma-1)*
+var_membrane__V*var_membrane__F/var_membrane__R/var_membrane__T)*
+var_sodium_dynamics__Na_o^3*var_calcium_dynamics__Ca_i*
+var_sodium_calcium_exchanger_current__alpha)/(var_sodium_dynamics__Na_o^3+
+var_sodium_calcium_exchanger_current__Km_Nai^3)/(
+var_sodium_calcium_exchanger_current__Km_Ca+var_calcium_dynamics__Ca_o)/(1+
+var_sodium_calcium_exchanger_current__K_sat*exp((
+var_sodium_calcium_exchanger_current__gamma-1)*var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T)))*var_membrane__Cm/var_membrane__V_c/
+var_membrane__F)
+d_dt_calcium_dynamics__Ca_SR := 1/(1+var_calcium_dynamics__Buf_sr*
+var_calcium_dynamics__K_buf_sr/(var_calcium_dynamics__Ca_SR+
+var_calcium_dynamics__K_buf_sr)^2)*(var_calcium_dynamics__Vmax_up/(1+
+var_calcium_dynamics__K_up^2/var_calcium_dynamics__Ca_i^2)-
+var_calcium_dynamics__V_rel*var_calcium_dynamics__k1_prime/(
+var_calcium_dynamics__max_sr-(var_calcium_dynamics__max_sr-
+var_calcium_dynamics__min_sr)/(1+var_calcium_dynamics__EC^2/
+var_calcium_dynamics__Ca_SR^2))*var_calcium_dynamics__Ca_ss^2*
+var_calcium_dynamics__R_prime/(var_calcium_dynamics__Ca_ss^2*
+var_calcium_dynamics__k1_prime/(var_calcium_dynamics__max_sr-(
+var_calcium_dynamics__max_sr-var_calcium_dynamics__min_sr)/(1+
+var_calcium_dynamics__EC^2/var_calcium_dynamics__Ca_SR^2))+
+var_calcium_dynamics__k3)*(var_calcium_dynamics__Ca_SR-
+var_calcium_dynamics__Ca_ss)-var_calcium_dynamics__V_leak*(
+var_calcium_dynamics__Ca_SR-var_calcium_dynamics__Ca_i))
+d_dt_calcium_dynamics__Ca_ss := 1/(1+var_calcium_dynamics__Buf_ss*
+var_calcium_dynamics__K_buf_ss/(var_calcium_dynamics__Ca_ss+
+var_calcium_dynamics__K_buf_ss)^2)*(-2*PIECEWISE([(var_membrane__V-15)*(.25*
+var_calcium_dynamics__Ca_ss*exp(2*(var_membrane__V-15)*var_membrane__F/
+var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(exp(2*(
+var_membrane__V-15)*var_membrane__F/var_membrane__R/var_membrane__T)-1), 
+var_membrane__V < var_L_type_Ca_current__V_low or var_L_type_Ca_current__V_high
+< var_membrane__V],[1/2*(var_L_type_Ca_current__V_low-15)*(.25*
+var_calcium_dynamics__Ca_ss*exp(2*(var_L_type_Ca_current__V_low-15)*
+var_membrane__F/var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(
+exp(2*(var_L_type_Ca_current__V_low-15)*var_membrane__F/var_membrane__R/
+var_membrane__T)-1)+1/2*(var_L_type_Ca_current__V_high-15)*(.25*
+var_calcium_dynamics__Ca_ss*exp(2*(var_L_type_Ca_current__V_high-15)*
+var_membrane__F/var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(
+exp(2*(var_L_type_Ca_current__V_high-15)*var_membrane__F/var_membrane__R/
+var_membrane__T)-1), otherwise])*var_L_type_Ca_current__g_CaL*
+var_L_type_Ca_current_d_gate__d*var_L_type_Ca_current_f_gate__f*
+var_L_type_Ca_current_f2_gate__f2*var_L_type_Ca_current_fCass_gate__fCass*
+var_membrane__F/var_membrane__R/var_membrane__T*var_membrane__Cm/
+var_calcium_dynamics__V_ss+var_calcium_dynamics__V_rel*
+var_calcium_dynamics__k1_prime/(var_calcium_dynamics__max_sr-(
+var_calcium_dynamics__max_sr-var_calcium_dynamics__min_sr)/(1+
+var_calcium_dynamics__EC^2/var_calcium_dynamics__Ca_SR^2))*
+var_calcium_dynamics__Ca_ss^2*var_calcium_dynamics__R_prime/(
+var_calcium_dynamics__Ca_ss^2*var_calcium_dynamics__k1_prime/(
+var_calcium_dynamics__max_sr-(var_calcium_dynamics__max_sr-
+var_calcium_dynamics__min_sr)/(1+var_calcium_dynamics__EC^2/
+var_calcium_dynamics__Ca_SR^2))+var_calcium_dynamics__k3)*(
+var_calcium_dynamics__Ca_SR-var_calcium_dynamics__Ca_ss)*
+var_calcium_dynamics__V_sr/var_calcium_dynamics__V_ss-
+var_calcium_dynamics__V_xfer*(var_calcium_dynamics__Ca_ss-
+var_calcium_dynamics__Ca_i)*var_membrane__V_c/var_calcium_dynamics__V_ss)
+d_dt_sodium_dynamics__Na_i := -var_sodium_dynamics__conc_clamp*(
+var_fast_sodium_current__g_Na*var_fast_sodium_current_m_gate__m^3*
+var_fast_sodium_current_h_gate__h*var_fast_sodium_current_j_gate__j*(
+var_membrane__V-var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_sodium_dynamics__Na_o/var_sodium_dynamics__Na_i))+
+var_sodium_background_current__g_bna*(var_membrane__V-var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_sodium_dynamics__Na_o/
+var_sodium_dynamics__Na_i))+3*var_sodium_potassium_pump_current__P_NaK*
+var_potassium_dynamics__K_o/(var_potassium_dynamics__K_o+
+var_sodium_potassium_pump_current__K_mk)*var_sodium_dynamics__Na_i/(
+var_sodium_dynamics__Na_i+var_sodium_potassium_pump_current__K_mNa)/(1+.1245*
+exp(-.10000000000000001*var_membrane__V*var_membrane__F/var_membrane__R/
+var_membrane__T)+.35299999999999998e-1*exp(-var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T))+3*
+var_sodium_calcium_exchanger_current__K_NaCa*(exp(
+var_sodium_calcium_exchanger_current__gamma*var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T)*var_sodium_dynamics__Na_i^3*
+var_calcium_dynamics__Ca_o-exp((var_sodium_calcium_exchanger_current__gamma-1)*
+var_membrane__V*var_membrane__F/var_membrane__R/var_membrane__T)*
+var_sodium_dynamics__Na_o^3*var_calcium_dynamics__Ca_i*
+var_sodium_calcium_exchanger_current__alpha)/(var_sodium_dynamics__Na_o^3+
+var_sodium_calcium_exchanger_current__Km_Nai^3)/(
+var_sodium_calcium_exchanger_current__Km_Ca+var_calcium_dynamics__Ca_o)/(1+
+var_sodium_calcium_exchanger_current__K_sat*exp((
+var_sodium_calcium_exchanger_current__gamma-1)*var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T)))/var_membrane__V_c/var_membrane__F*
+var_membrane__Cm
+d_dt_potassium_dynamics__K_i := -var_sodium_dynamics__conc_clamp*(.4303314829e-\
+1*var_inward_rectifier_potassium_current__g_K1/(1+exp(.59999999999999998e-1*
+var_membrane__V-.59999999999999998e-1*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-12.\
+00000000))/(.10000000000000001/(1+exp(.59999999999999998e-1*var_membrane__V-.\
+59999999999999998e-1*var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-12.00000000))+(3*exp(.\
+20000000000000001e-3*var_membrane__V-.20000000000000001e-3*var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)+.2000000000e-1)+exp(.10000000000000001*
+var_membrane__V-.10000000000000001*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-1.0\
+00000000))/(1+exp(-.5*var_membrane__V+.5*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i))))*
+var_potassium_dynamics__K_o^(1/2)*(var_membrane__V-var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i))+var_transient_outward_current__g_to*
+var_transient_outward_current_r_gate__r*var_transient_outward_current_s_gate__s
+*(var_membrane__V-var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_potassium_dynamics__K_o/var_potassium_dynamics__K_i))+.4303314829*
+var_rapid_time_dependent_potassium_current__g_Kr*var_potassium_dynamics__K_o^(1
+/2)*var_rapid_time_dependent_potassium_current_Xr1_gate__Xr1*
+var_rapid_time_dependent_potassium_current_Xr2_gate__Xr2*(var_membrane__V-
+var_membrane__R*var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i))+var_slow_time_dependent_potassium_current__g_Ks*
+var_slow_time_dependent_potassium_current_Xs_gate__Xs^2*(var_membrane__V-
+var_membrane__R*var_membrane__T/var_membrane__F*ln((
+var_reversal_potentials__P_kna*var_sodium_dynamics__Na_o+
+var_potassium_dynamics__K_o)/(var_reversal_potentials__P_kna*
+var_sodium_dynamics__Na_i+var_potassium_dynamics__K_i)))+
+var_potassium_pump_current__g_pK*(var_membrane__V-var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i))/(1+exp(4.180602008-.1672240803*var_membrane__V))+
+PIECEWISE([var_membrane__stim_amplitude, var_membrane__stim_start <= 
+var_environment__time-floor(var_environment__time/var_membrane__stim_period)*
+var_membrane__stim_period and var_environment__time-floor(var_environment__time
+/var_membrane__stim_period)*var_membrane__stim_period <= 
+var_membrane__stim_start+var_membrane__stim_duration],[0, otherwise])-2*
+var_sodium_potassium_pump_current__P_NaK*var_potassium_dynamics__K_o/(
+var_potassium_dynamics__K_o+var_sodium_potassium_pump_current__K_mk)*
+var_sodium_dynamics__Na_i/(var_sodium_dynamics__Na_i+
+var_sodium_potassium_pump_current__K_mNa)/(1+.1245*exp(-.10000000000000001*
+var_membrane__V*var_membrane__F/var_membrane__R/var_membrane__T)+.\
+35299999999999998e-1*exp(-var_membrane__V*var_membrane__F/var_membrane__R/
+var_membrane__T)))/var_membrane__V_c/var_membrane__F*var_membrane__Cm
+"--1--var_membrane__V--"
+"--2--var_rapid_time_dependent_potassium_current_Xr1_gate__Xr1--"
+"--3--var_rapid_time_dependent_potassium_current_Xr2_gate__Xr2--"
+"--4--var_slow_time_dependent_potassium_current_Xs_gate__Xs--"
+"--5--var_fast_sodium_current_m_gate__m--"
+"--6--var_fast_sodium_current_h_gate__h--"
+"--7--var_fast_sodium_current_j_gate__j--"
+"--8--var_L_type_Ca_current_d_gate__d--"
+"--9--var_L_type_Ca_current_f_gate__f--"
+"--10--var_L_type_Ca_current_f2_gate__f2--"
+"--11--var_L_type_Ca_current_fCass_gate__fCass--"
+"--12--var_transient_outward_current_s_gate__s--"
+"--13--var_transient_outward_current_r_gate__r--"
+"--14--var_calcium_dynamics__Ca_i--"
+"--15--var_calcium_dynamics__Ca_SR--"
+"--16--var_calcium_dynamics__Ca_ss--"
+"--17--var_calcium_dynamics__R_prime--"
+"--18--var_sodium_dynamics__Na_i--"
+"--19--var_potassium_dynamics__K_i--"
+memory used=17.3MB, alloc=75.3MB, time=0.28
+jacobian := matrix([[.2581988897e-2*
+var_inward_rectifier_potassium_current__g_K1/(1+exp(.59999999999999998e-1*
+var_membrane__V-.59999999999999998e-1*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-12.\
+00000000))^2/(.10000000000000001/(1+exp(.59999999999999998e-1*var_membrane__V-.\
+59999999999999998e-1*var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-12.00000000))+(3*exp(.\
+20000000000000001e-3*var_membrane__V-.20000000000000001e-3*var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)+.2000000000e-1)+exp(.10000000000000001*
+var_membrane__V-.10000000000000001*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-1.0\
+00000000))/(1+exp(-.5*var_membrane__V+.5*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i))))*
+var_potassium_dynamics__K_o^(1/2)*(var_membrane__V-var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i))*exp(.59999999999999998e-1*var_membrane__V-.\
+59999999999999998e-1*var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-12.00000000)+.\
+4303314829e-1*var_inward_rectifier_potassium_current__g_K1/(1+exp(.\
+59999999999999998e-1*var_membrane__V-.59999999999999998e-1*var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)-12.00000000))/(.10000000000000001/(1+exp(.\
+59999999999999998e-1*var_membrane__V-.59999999999999998e-1*var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)-12.00000000))+(3*exp(.20000000000000001e-3*
+var_membrane__V-.20000000000000001e-3*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)+.\
+2000000000e-1)+exp(.10000000000000001*var_membrane__V-.10000000000000001*
+var_membrane__R*var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)-1.000000000))/(1+exp(-.5*var_membrane__V+.5*
+var_membrane__R*var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i))))^2*var_potassium_dynamics__K_o^(1/2)*(
+var_membrane__V-var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_potassium_dynamics__K_o/var_potassium_dynamics__K_i))*(-.6000000000e-2/(1+
+exp(.59999999999999998e-1*var_membrane__V-.59999999999999998e-1*var_membrane__R
+*var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)-12.00000000))^2*exp(.59999999999999998e-1*
+var_membrane__V-.59999999999999998e-1*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-12.\
+00000000)+(.6000000000e-3*exp(.20000000000000001e-3*var_membrane__V-.\
+20000000000000001e-3*var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)+.2000000000e-1)+.10000\
+000000000001*exp(.10000000000000001*var_membrane__V-.10000000000000001*
+var_membrane__R*var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)-1.000000000))/(1+exp(-.5*var_membrane__V+.5*
+var_membrane__R*var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)))+.5*(3*exp(.20000000000000001e-3*var_membrane__V-
+.20000000000000001e-3*var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)+.2000000000e-1)+exp(.1\
+0000000000000001*var_membrane__V-.10000000000000001*var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)-1.000000000))/(1+exp(-.5*var_membrane__V+.5*
+var_membrane__R*var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)))^2*exp(-.5*var_membrane__V+.5*var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)))-.4303314829e-1*
+var_inward_rectifier_potassium_current__g_K1/(1+exp(.59999999999999998e-1*
+var_membrane__V-.59999999999999998e-1*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-12.\
+00000000))/(.10000000000000001/(1+exp(.59999999999999998e-1*var_membrane__V-.\
+59999999999999998e-1*var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-12.00000000))+(3*exp(.\
+20000000000000001e-3*var_membrane__V-.20000000000000001e-3*var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)+.2000000000e-1)+exp(.10000000000000001*
+var_membrane__V-.10000000000000001*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-1.0\
+00000000))/(1+exp(-.5*var_membrane__V+.5*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i))))*
+var_potassium_dynamics__K_o^(1/2)-var_transient_outward_current__g_to*
+var_transient_outward_current_r_gate__r*var_transient_outward_current_s_gate__s
+-.4303314829*var_rapid_time_dependent_potassium_current__g_Kr*
+var_potassium_dynamics__K_o^(1/2)*
+var_rapid_time_dependent_potassium_current_Xr1_gate__Xr1*
+var_rapid_time_dependent_potassium_current_Xr2_gate__Xr2-
+var_slow_time_dependent_potassium_current__g_Ks*
+var_slow_time_dependent_potassium_current_Xs_gate__Xs^2-4*PIECEWISE([(.25*
+var_calcium_dynamics__Ca_ss*exp(2*(var_membrane__V-15)*var_membrane__F/
+var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(exp(2*(
+var_membrane__V-15)*var_membrane__F/var_membrane__R/var_membrane__T)-1)+.50*(
+var_membrane__V-15)*var_calcium_dynamics__Ca_ss*var_membrane__F/var_membrane__R
+/var_membrane__T*exp(2*(var_membrane__V-15)*var_membrane__F/var_membrane__R/
+var_membrane__T)/(exp(2*(var_membrane__V-15)*var_membrane__F/var_membrane__R/
+var_membrane__T)-1)-2*(var_membrane__V-15)*(.25*var_calcium_dynamics__Ca_ss*exp
+(2*(var_membrane__V-15)*var_membrane__F/var_membrane__R/var_membrane__T)-
+var_calcium_dynamics__Ca_o)/(exp(2*(var_membrane__V-15)*var_membrane__F/
+var_membrane__R/var_membrane__T)-1)^2*var_membrane__F/var_membrane__R/
+var_membrane__T*exp(2*(var_membrane__V-15)*var_membrane__F/var_membrane__R/
+var_membrane__T), var_membrane__V < var_L_type_Ca_current__V_low or 
+var_L_type_Ca_current__V_high < var_membrane__V],[0, otherwise])*
+var_L_type_Ca_current__g_CaL*var_L_type_Ca_current_d_gate__d*
+var_L_type_Ca_current_f_gate__f*var_L_type_Ca_current_f2_gate__f2*
+var_L_type_Ca_current_fCass_gate__fCass*var_membrane__F^2/var_membrane__R/
+var_membrane__T+var_sodium_potassium_pump_current__P_NaK*
+var_potassium_dynamics__K_o/(var_potassium_dynamics__K_o+
+var_sodium_potassium_pump_current__K_mk)*var_sodium_dynamics__Na_i/(
+var_sodium_dynamics__Na_i+var_sodium_potassium_pump_current__K_mNa)/(1+.1245*
+exp(-.10000000000000001*var_membrane__V*var_membrane__F/var_membrane__R/
+var_membrane__T)+.35299999999999998e-1*exp(-var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T))^2*(-.1245000000e-1*var_membrane__F/
+var_membrane__R/var_membrane__T*exp(-.10000000000000001*var_membrane__V*
+var_membrane__F/var_membrane__R/var_membrane__T)-.35299999999999998e-1*
+var_membrane__F/var_membrane__R/var_membrane__T*exp(-var_membrane__V*
+var_membrane__F/var_membrane__R/var_membrane__T))-var_fast_sodium_current__g_Na
+*var_fast_sodium_current_m_gate__m^3*var_fast_sodium_current_h_gate__h*
+var_fast_sodium_current_j_gate__j-var_sodium_background_current__g_bna-
+var_sodium_calcium_exchanger_current__K_NaCa*(
+var_sodium_calcium_exchanger_current__gamma*var_membrane__F/var_membrane__R/
+var_membrane__T*exp(var_sodium_calcium_exchanger_current__gamma*var_membrane__V
+*var_membrane__F/var_membrane__R/var_membrane__T)*var_sodium_dynamics__Na_i^3*
+var_calcium_dynamics__Ca_o-(var_sodium_calcium_exchanger_current__gamma-1)*
+var_membrane__F/var_membrane__R/var_membrane__T*exp((
+var_sodium_calcium_exchanger_current__gamma-1)*var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T)*var_sodium_dynamics__Na_o^3*
+var_calcium_dynamics__Ca_i*var_sodium_calcium_exchanger_current__alpha)/(
+var_sodium_dynamics__Na_o^3+var_sodium_calcium_exchanger_current__Km_Nai^3)/(
+var_sodium_calcium_exchanger_current__Km_Ca+var_calcium_dynamics__Ca_o)/(1+
+var_sodium_calcium_exchanger_current__K_sat*exp((
+var_sodium_calcium_exchanger_current__gamma-1)*var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T))+var_sodium_calcium_exchanger_current__K_NaCa*
+(exp(var_sodium_calcium_exchanger_current__gamma*var_membrane__V*
+var_membrane__F/var_membrane__R/var_membrane__T)*var_sodium_dynamics__Na_i^3*
+var_calcium_dynamics__Ca_o-exp((var_sodium_calcium_exchanger_current__gamma-1)*
+var_membrane__V*var_membrane__F/var_membrane__R/var_membrane__T)*
+var_sodium_dynamics__Na_o^3*var_calcium_dynamics__Ca_i*
+var_sodium_calcium_exchanger_current__alpha)/(var_sodium_dynamics__Na_o^3+
+var_sodium_calcium_exchanger_current__Km_Nai^3)/(
+var_sodium_calcium_exchanger_current__Km_Ca+var_calcium_dynamics__Ca_o)/(1+
+var_sodium_calcium_exchanger_current__K_sat*exp((
+var_sodium_calcium_exchanger_current__gamma-1)*var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T))^2*var_sodium_calcium_exchanger_current__K_sat
+*(var_sodium_calcium_exchanger_current__gamma-1)*var_membrane__F/
+var_membrane__R/var_membrane__T*exp((
+var_sodium_calcium_exchanger_current__gamma-1)*var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T)-var_calcium_background_current__g_bca-
+var_potassium_pump_current__g_pK/(1+exp(4.180602008-.1672240803*var_membrane__V
+))-.1672240803*var_potassium_pump_current__g_pK*(var_membrane__V-
+var_membrane__R*var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i))/(1+exp(4.180602008-.1672240803*var_membrane__V))^
+2*exp(4.180602008-.1672240803*var_membrane__V)-
+var_potassium_atp_current__g_K_ATP/(1-76.94675285*
+var_potassium_atp_current__ATP_i^2)*(var_potassium_dynamics__K_o/
+var_potassium_atp_current__K_o_normal)^.23999999999999999, -.4303314829*
+var_rapid_time_dependent_potassium_current__g_Kr*var_potassium_dynamics__K_o^(1
+/2)*var_rapid_time_dependent_potassium_current_Xr2_gate__Xr2*(var_membrane__V-
+var_membrane__R*var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)), -.4303314829*
+var_rapid_time_dependent_potassium_current__g_Kr*var_potassium_dynamics__K_o^(1
+/2)*var_rapid_time_dependent_potassium_current_Xr1_gate__Xr1*(var_membrane__V-
+var_membrane__R*var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)), -2*
+var_slow_time_dependent_potassium_current__g_Ks*
+var_slow_time_dependent_potassium_current_Xs_gate__Xs*(var_membrane__V-
+var_membrane__R*var_membrane__T/var_membrane__F*ln((
+var_reversal_potentials__P_kna*var_sodium_dynamics__Na_o+
+var_potassium_dynamics__K_o)/(var_reversal_potentials__P_kna*
+var_sodium_dynamics__Na_i+var_potassium_dynamics__K_i))), -3*
+var_fast_sodium_current__g_Na*var_fast_sodium_current_m_gate__m^2*
+var_fast_sodium_current_h_gate__h*var_fast_sodium_current_j_gate__j*(
+var_membrane__V-var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_sodium_dynamics__Na_o/var_sodium_dynamics__Na_i)), -
+var_fast_sodium_current__g_Na*var_fast_sodium_current_m_gate__m^3*
+var_fast_sodium_current_j_gate__j*(var_membrane__V-var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_sodium_dynamics__Na_o/
+var_sodium_dynamics__Na_i)), -var_fast_sodium_current__g_Na*
+var_fast_sodium_current_m_gate__m^3*var_fast_sodium_current_h_gate__h*(
+var_membrane__V-var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_sodium_dynamics__Na_o/var_sodium_dynamics__Na_i)), -4*PIECEWISE([(
+var_membrane__V-15)*(.25*var_calcium_dynamics__Ca_ss*exp(2*(var_membrane__V-15)
+*var_membrane__F/var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(
+exp(2*(var_membrane__V-15)*var_membrane__F/var_membrane__R/var_membrane__T)-1),
+var_membrane__V < var_L_type_Ca_current__V_low or var_L_type_Ca_current__V_high
+< var_membrane__V],[1/2*(var_L_type_Ca_current__V_low-15)*(.25*
+var_calcium_dynamics__Ca_ss*exp(2*(var_L_type_Ca_current__V_low-15)*
+var_membrane__F/var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(
+exp(2*(var_L_type_Ca_current__V_low-15)*var_membrane__F/var_membrane__R/
+var_membrane__T)-1)+1/2*(var_L_type_Ca_current__V_high-15)*(.25*
+var_calcium_dynamics__Ca_ss*exp(2*(var_L_type_Ca_current__V_high-15)*
+var_membrane__F/var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(
+exp(2*(var_L_type_Ca_current__V_high-15)*var_membrane__F/var_membrane__R/
+var_membrane__T)-1), otherwise])*var_L_type_Ca_current__g_CaL*
+var_L_type_Ca_current_f_gate__f*var_L_type_Ca_current_f2_gate__f2*
+var_L_type_Ca_current_fCass_gate__fCass*var_membrane__F^2/var_membrane__R/
+var_membrane__T, -4*PIECEWISE([(var_membrane__V-15)*(.25*
+var_calcium_dynamics__Ca_ss*exp(2*(var_membrane__V-15)*var_membrane__F/
+var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(exp(2*(
+var_membrane__V-15)*var_membrane__F/var_membrane__R/var_membrane__T)-1), 
+var_membrane__V < var_L_type_Ca_current__V_low or var_L_type_Ca_current__V_high
+< var_membrane__V],[1/2*(var_L_type_Ca_current__V_low-15)*(.25*
+var_calcium_dynamics__Ca_ss*exp(2*(var_L_type_Ca_current__V_low-15)*
+var_membrane__F/var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(
+exp(2*(var_L_type_Ca_current__V_low-15)*var_membrane__F/var_membrane__R/
+var_membrane__T)-1)+1/2*(var_L_type_Ca_current__V_high-15)*(.25*
+var_calcium_dynamics__Ca_ss*exp(2*(var_L_type_Ca_current__V_high-15)*
+var_membrane__F/var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(
+exp(2*(var_L_type_Ca_current__V_high-15)*var_membrane__F/var_membrane__R/
+var_membrane__T)-1), otherwise])*var_L_type_Ca_current__g_CaL*
+var_L_type_Ca_current_d_gate__d*var_L_type_Ca_current_f2_gate__f2*
+var_L_type_Ca_current_fCass_gate__fCass*var_membrane__F^2/var_membrane__R/
+var_membrane__T, -4*PIECEWISE([(var_membrane__V-15)*(.25*
+var_calcium_dynamics__Ca_ss*exp(2*(var_membrane__V-15)*var_membrane__F/
+var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(exp(2*(
+var_membrane__V-15)*var_membrane__F/var_membrane__R/var_membrane__T)-1), 
+var_membrane__V < var_L_type_Ca_current__V_low or var_L_type_Ca_current__V_high
+< var_membrane__V],[1/2*(var_L_type_Ca_current__V_low-15)*(.25*
+var_calcium_dynamics__Ca_ss*exp(2*(var_L_type_Ca_current__V_low-15)*
+var_membrane__F/var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(
+exp(2*(var_L_type_Ca_current__V_low-15)*var_membrane__F/var_membrane__R/
+var_membrane__T)-1)+1/2*(var_L_type_Ca_current__V_high-15)*(.25*
+var_calcium_dynamics__Ca_ss*exp(2*(var_L_type_Ca_current__V_high-15)*
+var_membrane__F/var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(
+exp(2*(var_L_type_Ca_current__V_high-15)*var_membrane__F/var_membrane__R/
+var_membrane__T)-1), otherwise])*var_L_type_Ca_current__g_CaL*
+var_L_type_Ca_current_d_gate__d*var_L_type_Ca_current_f_gate__f*
+var_L_type_Ca_current_fCass_gate__fCass*var_membrane__F^2/var_membrane__R/
+var_membrane__T, -4*PIECEWISE([(var_membrane__V-15)*(.25*
+var_calcium_dynamics__Ca_ss*exp(2*(var_membrane__V-15)*var_membrane__F/
+var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(exp(2*(
+var_membrane__V-15)*var_membrane__F/var_membrane__R/var_membrane__T)-1), 
+var_membrane__V < var_L_type_Ca_current__V_low or var_L_type_Ca_current__V_high
+< var_membrane__V],[1/2*(var_L_type_Ca_current__V_low-15)*(.25*
+var_calcium_dynamics__Ca_ss*exp(2*(var_L_type_Ca_current__V_low-15)*
+var_membrane__F/var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(
+exp(2*(var_L_type_Ca_current__V_low-15)*var_membrane__F/var_membrane__R/
+var_membrane__T)-1)+1/2*(var_L_type_Ca_current__V_high-15)*(.25*
+var_calcium_dynamics__Ca_ss*exp(2*(var_L_type_Ca_current__V_high-15)*
+var_membrane__F/var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(
+exp(2*(var_L_type_Ca_current__V_high-15)*var_membrane__F/var_membrane__R/
+var_membrane__T)-1), otherwise])*var_L_type_Ca_current__g_CaL*
+var_L_type_Ca_current_d_gate__d*var_L_type_Ca_current_f_gate__f*
+var_L_type_Ca_current_f2_gate__f2*var_membrane__F^2/var_membrane__R/
+var_membrane__T, -var_transient_outward_current__g_to*
+var_transient_outward_current_r_gate__r*(var_membrane__V-var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)), -var_transient_outward_current__g_to*
+var_transient_outward_current_s_gate__s*(var_membrane__V-var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)), var_sodium_calcium_exchanger_current__K_NaCa*exp
+((var_sodium_calcium_exchanger_current__gamma-1)*var_membrane__V*
+var_membrane__F/var_membrane__R/var_membrane__T)*var_sodium_dynamics__Na_o^3*
+var_sodium_calcium_exchanger_current__alpha/(var_sodium_dynamics__Na_o^3+
+var_sodium_calcium_exchanger_current__Km_Nai^3)/(
+var_sodium_calcium_exchanger_current__Km_Ca+var_calcium_dynamics__Ca_o)/(1+
+var_sodium_calcium_exchanger_current__K_sat*exp((
+var_sodium_calcium_exchanger_current__gamma-1)*var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T))-.5*var_calcium_background_current__g_bca*
+var_membrane__R*var_membrane__T/var_membrane__F/var_calcium_dynamics__Ca_i-
+var_calcium_pump_current__g_pCa/(var_calcium_dynamics__Ca_i+
+var_calcium_pump_current__K_pCa)+var_calcium_pump_current__g_pCa*
+var_calcium_dynamics__Ca_i/(var_calcium_dynamics__Ca_i+
+var_calcium_pump_current__K_pCa)^2, 0, -4*PIECEWISE([.25*(var_membrane__V-15)*
+exp(2*(var_membrane__V-15)*var_membrane__F/var_membrane__R/var_membrane__T)/(
+exp(2*(var_membrane__V-15)*var_membrane__F/var_membrane__R/var_membrane__T)-1),
+var_membrane__V < var_L_type_Ca_current__V_low or var_L_type_Ca_current__V_high
+< var_membrane__V],[.1250000000*(var_L_type_Ca_current__V_low-15)*exp(2*(
+var_L_type_Ca_current__V_low-15)*var_membrane__F/var_membrane__R/
+var_membrane__T)/(exp(2*(var_L_type_Ca_current__V_low-15)*var_membrane__F/
+var_membrane__R/var_membrane__T)-1)+.1250000000*(var_L_type_Ca_current__V_high-\
+15)*exp(2*(var_L_type_Ca_current__V_high-15)*var_membrane__F/var_membrane__R/
+var_membrane__T)/(exp(2*(var_L_type_Ca_current__V_high-15)*var_membrane__F/
+var_membrane__R/var_membrane__T)-1), otherwise])*var_L_type_Ca_current__g_CaL*
+var_L_type_Ca_current_d_gate__d*var_L_type_Ca_current_f_gate__f*
+var_L_type_Ca_current_f2_gate__f2*var_L_type_Ca_current_fCass_gate__fCass*
+var_membrane__F^2/var_membrane__R/var_membrane__T, 0, -
+var_slow_time_dependent_potassium_current__g_Ks*
+var_slow_time_dependent_potassium_current_Xs_gate__Xs^2*var_membrane__R*
+var_membrane__T/var_membrane__F/(var_reversal_potentials__P_kna*
+var_sodium_dynamics__Na_i+var_potassium_dynamics__K_i)*
+var_reversal_potentials__P_kna-var_sodium_potassium_pump_current__P_NaK*
+var_potassium_dynamics__K_o/(var_potassium_dynamics__K_o+
+var_sodium_potassium_pump_current__K_mk)/(var_sodium_dynamics__Na_i+
+var_sodium_potassium_pump_current__K_mNa)/(1+.1245*exp(-.10000000000000001*
+var_membrane__V*var_membrane__F/var_membrane__R/var_membrane__T)+.\
+35299999999999998e-1*exp(-var_membrane__V*var_membrane__F/var_membrane__R/
+var_membrane__T))+var_sodium_potassium_pump_current__P_NaK*
+var_potassium_dynamics__K_o/(var_potassium_dynamics__K_o+
+var_sodium_potassium_pump_current__K_mk)*var_sodium_dynamics__Na_i/(
+var_sodium_dynamics__Na_i+var_sodium_potassium_pump_current__K_mNa)^2/(1+.1245*
+exp(-.10000000000000001*var_membrane__V*var_membrane__F/var_membrane__R/
+var_membrane__T)+.35299999999999998e-1*exp(-var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T))-var_fast_sodium_current__g_Na*
+var_fast_sodium_current_m_gate__m^3*var_fast_sodium_current_h_gate__h*
+var_fast_sodium_current_j_gate__j*var_membrane__R*var_membrane__T/
+var_membrane__F/var_sodium_dynamics__Na_i-var_sodium_background_current__g_bna*
+var_membrane__R*var_membrane__T/var_membrane__F/var_sodium_dynamics__Na_i-3*
+var_sodium_calcium_exchanger_current__K_NaCa*exp(
+var_sodium_calcium_exchanger_current__gamma*var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T)*var_sodium_dynamics__Na_i^2*
+var_calcium_dynamics__Ca_o/(var_sodium_dynamics__Na_o^3+
+var_sodium_calcium_exchanger_current__Km_Nai^3)/(
+var_sodium_calcium_exchanger_current__Km_Ca+var_calcium_dynamics__Ca_o)/(1+
+var_sodium_calcium_exchanger_current__K_sat*exp((
+var_sodium_calcium_exchanger_current__gamma-1)*var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T)), .2581988897e-2*
+var_inward_rectifier_potassium_current__g_K1/(1+exp(.59999999999999998e-1*
+var_membrane__V-.59999999999999998e-1*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-12.\
+00000000))^2/(.10000000000000001/(1+exp(.59999999999999998e-1*var_membrane__V-.\
+59999999999999998e-1*var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-12.00000000))+(3*exp(.\
+20000000000000001e-3*var_membrane__V-.20000000000000001e-3*var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)+.2000000000e-1)+exp(.10000000000000001*
+var_membrane__V-.10000000000000001*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-1.0\
+00000000))/(1+exp(-.5*var_membrane__V+.5*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i))))*
+var_potassium_dynamics__K_o^(1/2)*(var_membrane__V-var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i))*var_membrane__R*var_membrane__T/var_membrane__F/
+var_potassium_dynamics__K_i*exp(.59999999999999998e-1*var_membrane__V-.\
+59999999999999998e-1*var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-12.00000000)+.\
+4303314829e-1*var_inward_rectifier_potassium_current__g_K1/(1+exp(.\
+59999999999999998e-1*var_membrane__V-.59999999999999998e-1*var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)-12.00000000))/(.10000000000000001/(1+exp(.\
+59999999999999998e-1*var_membrane__V-.59999999999999998e-1*var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)-12.00000000))+(3*exp(.20000000000000001e-3*
+var_membrane__V-.20000000000000001e-3*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)+.\
+2000000000e-1)+exp(.10000000000000001*var_membrane__V-.10000000000000001*
+var_membrane__R*var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)-1.000000000))/(1+exp(-.5*var_membrane__V+.5*
+var_membrane__R*var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i))))^2*var_potassium_dynamics__K_o^(1/2)*(
+var_membrane__V-var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_potassium_dynamics__K_o/var_potassium_dynamics__K_i))*(-.6000000000e-2/(1+
+exp(.59999999999999998e-1*var_membrane__V-.59999999999999998e-1*var_membrane__R
+*var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)-12.00000000))^2*var_membrane__R*var_membrane__T/
+var_membrane__F/var_potassium_dynamics__K_i*exp(.59999999999999998e-1*
+var_membrane__V-.59999999999999998e-1*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-12.\
+00000000)+(.6000000000e-3*var_membrane__R*var_membrane__T/var_membrane__F/
+var_potassium_dynamics__K_i*exp(.20000000000000001e-3*var_membrane__V-.\
+20000000000000001e-3*var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)+.2000000000e-1)+.10000\
+000000000001*var_membrane__R*var_membrane__T/var_membrane__F/
+var_potassium_dynamics__K_i*exp(.10000000000000001*var_membrane__V-.10000000000\
+000001*var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-1.000000000))/(1+exp(-\
+.5*var_membrane__V+.5*var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)))+.5*(3*exp(.\
+20000000000000001e-3*var_membrane__V-.20000000000000001e-3*var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)+.2000000000e-1)+exp(.10000000000000001*
+var_membrane__V-.10000000000000001*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-1.0\
+00000000))/(1+exp(-.5*var_membrane__V+.5*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)))^2
+*var_membrane__R*var_membrane__T/var_membrane__F/var_potassium_dynamics__K_i*
+exp(-.5*var_membrane__V+.5*var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)))-.4303314829e-1*
+var_inward_rectifier_potassium_current__g_K1/(1+exp(.59999999999999998e-1*
+var_membrane__V-.59999999999999998e-1*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-12.\
+00000000))/(.10000000000000001/(1+exp(.59999999999999998e-1*var_membrane__V-.\
+59999999999999998e-1*var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-12.00000000))+(3*exp(.\
+20000000000000001e-3*var_membrane__V-.20000000000000001e-3*var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)+.2000000000e-1)+exp(.10000000000000001*
+var_membrane__V-.10000000000000001*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-1.0\
+00000000))/(1+exp(-.5*var_membrane__V+.5*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i))))*
+var_potassium_dynamics__K_o^(1/2)*var_membrane__R*var_membrane__T/
+var_membrane__F/var_potassium_dynamics__K_i-var_transient_outward_current__g_to
+*var_transient_outward_current_r_gate__r*
+var_transient_outward_current_s_gate__s*var_membrane__R*var_membrane__T/
+var_membrane__F/var_potassium_dynamics__K_i-.4303314829*
+var_rapid_time_dependent_potassium_current__g_Kr*var_potassium_dynamics__K_o^(1
+/2)*var_rapid_time_dependent_potassium_current_Xr1_gate__Xr1*
+var_rapid_time_dependent_potassium_current_Xr2_gate__Xr2*var_membrane__R*
+var_membrane__T/var_membrane__F/var_potassium_dynamics__K_i-
+var_slow_time_dependent_potassium_current__g_Ks*
+var_slow_time_dependent_potassium_current_Xs_gate__Xs^2*var_membrane__R*
+var_membrane__T/var_membrane__F/(var_reversal_potentials__P_kna*
+var_sodium_dynamics__Na_i+var_potassium_dynamics__K_i)-
+var_potassium_pump_current__g_pK*var_membrane__R*var_membrane__T/
+var_membrane__F/var_potassium_dynamics__K_i/(1+exp(4.180602008-.1672240803*
+var_membrane__V))-var_potassium_atp_current__g_K_ATP/(1-76.94675285*
+var_potassium_atp_current__ATP_i^2)*(var_potassium_dynamics__K_o/
+var_potassium_atp_current__K_o_normal)^.23999999999999999*var_membrane__R*
+var_membrane__T/var_membrane__F/var_potassium_dynamics__K_i], [1/18900/(1+exp(-\
+26/7-1/7*var_membrane__V))^2*exp(-26/7-1/7*var_membrane__V)*(1+exp(-9/2-1/10*
+var_membrane__V))*(1+exp(.8695652174e-1*var_membrane__V+2.608695652))-1/27000*(
+1/(1+exp(-26/7-1/7*var_membrane__V))-
+var_rapid_time_dependent_potassium_current_Xr1_gate__Xr1)*exp(-9/2-1/10*
+var_membrane__V)*(1+exp(.8695652174e-1*var_membrane__V+2.608695652))+.\
+3220611916e-4*(1/(1+exp(-26/7-1/7*var_membrane__V))-
+var_rapid_time_dependent_potassium_current_Xr1_gate__Xr1)*(1+exp(-9/2-1/10*
+var_membrane__V))*exp(.8695652174e-1*var_membrane__V+2.608695652), -1/2700*(1+
+exp(-9/2-1/10*var_membrane__V))*(1+exp(.8695652174e-1*var_membrane__V+2.6086956\
+52)), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [-.1240079365e-1/(1+
+exp(1/24*var_membrane__V+11/3))^2*exp(1/24*var_membrane__V+11/3)*(1+exp(-3-1/20
+*var_membrane__V))*(1+exp(1/20*var_membrane__V-3))-.1488095238e-1*(1/(1+exp(1/
+24*var_membrane__V+11/3))-
+var_rapid_time_dependent_potassium_current_Xr2_gate__Xr2)*exp(-3-1/20*
+var_membrane__V)*(1+exp(1/20*var_membrane__V-3))+.1488095238e-1*(1/(1+exp(1/24*
+var_membrane__V+11/3))-var_rapid_time_dependent_potassium_current_Xr2_gate__Xr2
+)*(1+exp(-3-1/20*var_membrane__V))*exp(1/20*var_membrane__V-3), 0, -.2976190476
+*(1+exp(-3-1/20*var_membrane__V))*(1+exp(1/20*var_membrane__V-3)), 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [1/14/(1+exp(-5/14-1/14*var_membrane__V))^
+2*exp(-5/14-1/14*var_membrane__V)/(1400/(1+exp(5/6-1/6*var_membrane__V))^(1/2)/
+(1+exp(1/15*var_membrane__V-7/3))+80)-(1/(1+exp(-5/14-1/14*var_membrane__V))-
+var_slow_time_dependent_potassium_current_Xs_gate__Xs)/(1400/(1+exp(5/6-1/6*
+var_membrane__V))^(1/2)/(1+exp(1/15*var_membrane__V-7/3))+80)^2*(350/3/(1+exp(5
+/6-1/6*var_membrane__V))^(3/2)/(1+exp(1/15*var_membrane__V-7/3))*exp(5/6-1/6*
+var_membrane__V)-280/3/(1+exp(5/6-1/6*var_membrane__V))^(1/2)/(1+exp(1/15*
+var_membrane__V-7/3))^2*exp(1/15*var_membrane__V-7/3)), 0, 0, -1/(1400/(1+exp(5
+/6-1/6*var_membrane__V))^(1/2)/(1+exp(1/15*var_membrane__V-7/3))+80), 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [.2214839424/(1+exp(-6.296788482-.11074197\
+12*var_membrane__V))^3*exp(-6.296788482-.1107419712*var_membrane__V)*(1+exp(-12
+-1/5*var_membrane__V))/(.10000000000000001/(1+exp(1/5*var_membrane__V+7))+.1000\
+0000000000001/(1+exp(1/200*var_membrane__V-1/4)))-1/5*(1/(1+exp(-6.296788482-.1\
+107419712*var_membrane__V))^2-var_fast_sodium_current_m_gate__m)*exp(-12-1/5*
+var_membrane__V)/(.10000000000000001/(1+exp(1/5*var_membrane__V+7))+.1000000000\
+0000001/(1+exp(1/200*var_membrane__V-1/4)))-(1/(1+exp(-6.296788482-.1107419712*
+var_membrane__V))^2-var_fast_sodium_current_m_gate__m)*(1+exp(-12-1/5*
+var_membrane__V))/(.10000000000000001/(1+exp(1/5*var_membrane__V+7))+.100000000\
+00000001/(1+exp(1/200*var_membrane__V-1/4)))^2*(-.2000000000e-1/(1+exp(1/5*
+var_membrane__V+7))^2*exp(1/5*var_membrane__V+7)-.5000000000e-3/(1+exp(1/200*
+var_membrane__V-1/4))^2*exp(1/200*var_membrane__V-1/4)), 0, 0, 0, -(1+exp(-12-1
+/5*var_membrane__V))/(.10000000000000001/(1+exp(1/5*var_membrane__V+7))+.100000\
+00000000001/(1+exp(1/200*var_membrane__V-1/4))), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0], [-.2691790040*(1-1/100*
+var_fast_sodium_current__perc_reduced_inact_for_IpNa)/(1+exp(.1345895020*
+var_membrane__V+9.629878868-.1345895020*
+var_fast_sodium_current__shift_INa_inact))^3*exp(.1345895020*var_membrane__V+9.\
+629878868-.1345895020*var_fast_sodium_current__shift_INa_inact)*(PIECEWISE([.\
+57000000000000002e-1*exp(-.1470588235*var_membrane__V-11.76470588+.1470588235*
+var_fast_sodium_current__shift_INa_inact), var_membrane__V < -40+
+var_fast_sodium_current__shift_INa_inact],[0, otherwise])+PIECEWISE([2.70000000\
+00000002*exp(.79000000000000001e-1*var_membrane__V-.79000000000000001e-1*
+var_fast_sodium_current__shift_INa_inact)+310000*exp(.34849999999999998*
+var_membrane__V-.34849999999999998*var_fast_sodium_current__shift_INa_inact), 
+var_membrane__V < -40+var_fast_sodium_current__shift_INa_inact],[.7700000000000\
+0002/(.13+.13*exp(-.9009009009e-1*var_membrane__V-.9603603604+.9009009009e-1*
+var_fast_sodium_current__shift_INa_inact)), otherwise]))+((1-1/100*
+var_fast_sodium_current__perc_reduced_inact_for_IpNa)/(1+exp(.1345895020*
+var_membrane__V+9.629878868-.1345895020*
+var_fast_sodium_current__shift_INa_inact))^2+1/100*
+var_fast_sodium_current__perc_reduced_inact_for_IpNa-
+var_fast_sodium_current_h_gate__h)*(PIECEWISE([-.8382352941e-2*exp(-.1470588235
+*var_membrane__V-11.76470588+.1470588235*
+var_fast_sodium_current__shift_INa_inact), var_membrane__V < -40.+
+var_fast_sodium_current__shift_INa_inact],[Float(undefined), var_membrane__V =
+-40.+var_fast_sodium_current__shift_INa_inact],[0., -40.+
+var_fast_sodium_current__shift_INa_inact < var_membrane__V])+PIECEWISE([.213300\
+0000*exp(.7900000000e-1*var_membrane__V-.7900000000e-1*
+var_fast_sodium_current__shift_INa_inact)+108035.*exp(.3485000000*
+var_membrane__V-.3485000000*var_fast_sodium_current__shift_INa_inact), 
+var_membrane__V < -40.+var_fast_sodium_current__shift_INa_inact],[Float(
+undefined), var_membrane__V = -40.+var_fast_sodium_current__shift_INa_inact],[.\
+9018018018e-2/(.1300000000+.1300000000*exp(-.9009009009e-1*var_membrane__V-.960\
+3603604+.9009009009e-1*var_fast_sodium_current__shift_INa_inact))^2*exp(-.\
+9009009009e-1*var_membrane__V-.9603603604+.9009009009e-1*
+var_fast_sodium_current__shift_INa_inact), -40.+
+var_fast_sodium_current__shift_INa_inact < var_membrane__V])), 0, 0, 0, 0, -
+PIECEWISE([.57000000000000002e-1*exp(-.1470588235*var_membrane__V-11.76470588+.\
+1470588235*var_fast_sodium_current__shift_INa_inact), var_membrane__V < -40+
+var_fast_sodium_current__shift_INa_inact],[0, otherwise])-PIECEWISE([2.70000000\
+00000002*exp(.79000000000000001e-1*var_membrane__V-.79000000000000001e-1*
+var_fast_sodium_current__shift_INa_inact)+310000*exp(.34849999999999998*
+var_membrane__V-.34849999999999998*var_fast_sodium_current__shift_INa_inact), 
+var_membrane__V < -40+var_fast_sodium_current__shift_INa_inact],[.7700000000000\
+0002/(.13+.13*exp(-.9009009009e-1*var_membrane__V-.9603603604+.9009009009e-1*
+var_fast_sodium_current__shift_INa_inact)), otherwise]), 0, 0, 0, 0, 0, 0, 0, 0
+, 0, 0, 0, 0, 0], [-.2691790040*(1-1/100*
+var_fast_sodium_current__perc_reduced_inact_for_IpNa)/(1+exp(.1345895020*
+var_membrane__V+9.629878868-.1345895020*
+var_fast_sodium_current__shift_INa_inact))^3*exp(.1345895020*var_membrane__V+9.\
+629878868-.1345895020*var_fast_sodium_current__shift_INa_inact)*(PIECEWISE([(-\
+25428*exp(.24440000000000001*var_membrane__V-.24440000000000001*
+var_fast_sodium_current__shift_INa_inact)-.69480000000000002e-5*exp(-.\
+43909999999999998e-1*var_membrane__V+.43909999999999998e-1*
+var_fast_sodium_current__shift_INa_inact))*(var_membrane__V+37.780000000000001)
+/(1+exp(.311*var_membrane__V+24.64053000-.311*
+var_fast_sodium_current__shift_INa_inact)), var_membrane__V < -40+
+var_fast_sodium_current__shift_INa_inact],[0, otherwise])+PIECEWISE([.\
+24240000000000001e-1*exp(-.1052e-1*var_membrane__V+.1052e-1*
+var_fast_sodium_current__shift_INa_inact)/(1+exp(-.13780000000000001*
+var_membrane__V-5.531292000+.13780000000000001*
+var_fast_sodium_current__shift_INa_inact)), var_membrane__V < -40+
+var_fast_sodium_current__shift_INa_inact],[.59999999999999998*exp(.\
+57000000000000002e-1*var_membrane__V-.57000000000000002e-1*
+var_fast_sodium_current__shift_INa_inact)/(1+exp(-.10000000000000001*
+var_membrane__V-3.200000000+.10000000000000001*
+var_fast_sodium_current__shift_INa_inact)), otherwise]))+((1-1/100*
+var_fast_sodium_current__perc_reduced_inact_for_IpNa)/(1+exp(.1345895020*
+var_membrane__V+9.629878868-.1345895020*
+var_fast_sodium_current__shift_INa_inact))^2+1/100*
+var_fast_sodium_current__perc_reduced_inact_for_IpNa-
+var_fast_sodium_current_j_gate__j)*(PIECEWISE([(-6214.603200*exp(.2444000000*
+var_membrane__V-.2444000000*var_fast_sodium_current__shift_INa_inact)+.\
+3050866800e-6*exp(-.4391000000e-1*var_membrane__V+.4391000000e-1*
+var_fast_sodium_current__shift_INa_inact))*(var_membrane__V+37.78000000)/(1.+
+exp(.3110000000*var_membrane__V+24.64053001-.3110000000*
+var_fast_sodium_current__shift_INa_inact))+(-25428.*exp(.2444000000*
+var_membrane__V-.2444000000*var_fast_sodium_current__shift_INa_inact)-.\
+6948000000e-5*exp(-.4391000000e-1*var_membrane__V+.4391000000e-1*
+var_fast_sodium_current__shift_INa_inact))/(1.+exp(.3110000000*var_membrane__V+
+24.64053001-.3110000000*var_fast_sodium_current__shift_INa_inact))-.3110000000*
+(-25428.*exp(.2444000000*var_membrane__V-.2444000000*
+var_fast_sodium_current__shift_INa_inact)-.6948000000e-5*exp(-.4391000000e-1*
+var_membrane__V+.4391000000e-1*var_fast_sodium_current__shift_INa_inact))*(
+var_membrane__V+37.78000000)/(1.+exp(.3110000000*var_membrane__V+24.64053001-.3\
+110000000*var_fast_sodium_current__shift_INa_inact))^2*exp(.3110000000*
+var_membrane__V+24.64053001-.3110000000*
+var_fast_sodium_current__shift_INa_inact), var_membrane__V < -40.+
+var_fast_sodium_current__shift_INa_inact],[Float(undefined), var_membrane__V =
+-40.+var_fast_sodium_current__shift_INa_inact],[0., -40.+
+var_fast_sodium_current__shift_INa_inact < var_membrane__V])+PIECEWISE([-.\
+2550048000e-3*exp(-.1052000000e-1*var_membrane__V+.1052000000e-1*
+var_fast_sodium_current__shift_INa_inact)/(1.+exp(-.1378000000*var_membrane__V-\
+5.531291995+.1378000000*var_fast_sodium_current__shift_INa_inact))+.3340272000e\
+-2*exp(-.1052000000e-1*var_membrane__V+.1052000000e-1*
+var_fast_sodium_current__shift_INa_inact)/(1.+exp(-.1378000000*var_membrane__V-\
+5.531291995+.1378000000*var_fast_sodium_current__shift_INa_inact))^2*exp(-.1378\
+000000*var_membrane__V-5.531291995+.1378000000*
+var_fast_sodium_current__shift_INa_inact), var_membrane__V < -40.+
+var_fast_sodium_current__shift_INa_inact],[Float(undefined), var_membrane__V =
+-40.+var_fast_sodium_current__shift_INa_inact],[.3420000000e-1*exp(.5700000000e\
+-1*var_membrane__V-.5700000000e-1*var_fast_sodium_current__shift_INa_inact)/(1.
++exp(-.1000000000*var_membrane__V-3.200000000+.1000000000*
+var_fast_sodium_current__shift_INa_inact))+.6000000000e-1*exp(.5700000000e-1*
+var_membrane__V-.5700000000e-1*var_fast_sodium_current__shift_INa_inact)/(1.+
+exp(-.1000000000*var_membrane__V-3.200000000+.1000000000*
+var_fast_sodium_current__shift_INa_inact))^2*exp(-.1000000000*var_membrane__V-3\
+.200000000+.1000000000*var_fast_sodium_current__shift_INa_inact), -40.+
+var_fast_sodium_current__shift_INa_inact < var_membrane__V])), 0, 0, 0, 0, 0, -
+PIECEWISE([(-25428*exp(.24440000000000001*var_membrane__V-.24440000000000001*
+var_fast_sodium_current__shift_INa_inact)-.69480000000000002e-5*exp(-.\
+43909999999999998e-1*var_membrane__V+.43909999999999998e-1*
+var_fast_sodium_current__shift_INa_inact))*(var_membrane__V+37.780000000000001)
+/(1+exp(.311*var_membrane__V+24.64053000-.311*
+var_fast_sodium_current__shift_INa_inact)), var_membrane__V < -40+
+var_fast_sodium_current__shift_INa_inact],[0, otherwise])-PIECEWISE([.\
+24240000000000001e-1*exp(-.1052e-1*var_membrane__V+.1052e-1*
+var_fast_sodium_current__shift_INa_inact)/(1+exp(-.13780000000000001*
+var_membrane__V-5.531292000+.13780000000000001*
+var_fast_sodium_current__shift_INa_inact)), var_membrane__V < -40+
+var_fast_sodium_current__shift_INa_inact],[.59999999999999998*exp(.\
+57000000000000002e-1*var_membrane__V-.57000000000000002e-1*
+var_fast_sodium_current__shift_INa_inact)/(1+exp(-.10000000000000001*
+var_membrane__V-3.200000000+.10000000000000001*
+var_fast_sodium_current__shift_INa_inact)), otherwise]), 0, 0, 0, 0, 0, 0, 0, 0
+, 0, 0, 0, 0], [.1333333333/(1+exp(-1.066666666-.1333333333*var_membrane__V))^2
+*exp(-1.066666666-.1333333333*var_membrane__V)/(1.3999999999999999*(1.399999999\
+9999999/(1+exp(-35/13-1/13*var_membrane__V))+.25)/(1+exp(1/5*var_membrane__V+1)
+)+1/(1+exp(5/2-1/20*var_membrane__V)))-(1/(1+exp(-1.066666666-.1333333333*
+var_membrane__V))-var_L_type_Ca_current_d_gate__d)/(1.3999999999999999*(1.39999\
+99999999999/(1+exp(-35/13-1/13*var_membrane__V))+.25)/(1+exp(1/5*
+var_membrane__V+1))+1/(1+exp(5/2-1/20*var_membrane__V)))^2*(.1507692308/(1+exp(
+-35/13-1/13*var_membrane__V))^2*exp(-35/13-1/13*var_membrane__V)/(1+exp(1/5*
+var_membrane__V+1))-.2800000000*(1.3999999999999999/(1+exp(-35/13-1/13*
+var_membrane__V))+.25)/(1+exp(1/5*var_membrane__V+1))^2*exp(1/5*var_membrane__V
++1)+1/20/(1+exp(5/2-1/20*var_membrane__V))^2*exp(5/2-1/20*var_membrane__V)), 0,
+0, 0, 0, 0, 0, -1/(1.3999999999999999*(1.3999999999999999/(1+exp(-35/13-1/13*
+var_membrane__V))+.25)/(1+exp(1/5*var_membrane__V+1))+1/(1+exp(5/2-1/20*
+var_membrane__V))), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [-1/7/(1+exp(1/7*
+var_membrane__V+20/7))^2*exp(1/7*var_membrane__V+20/7)/(1102.5*exp(-1/225*(
+var_membrane__V+27)^2)+200/(1+exp(13/10-1/10*var_membrane__V))+180/(1+exp(1/10*
+var_membrane__V+3))+20)-(1/(1+exp(1/7*var_membrane__V+20/7))-
+var_L_type_Ca_current_f_gate__f)/(1102.5*exp(-1/225*(var_membrane__V+27)^2)+200
+/(1+exp(13/10-1/10*var_membrane__V))+180/(1+exp(1/10*var_membrane__V+3))+20)^2*
+(1102.5*(-2/225*var_membrane__V-6/25)*exp(-1/225*(var_membrane__V+27)^2)+20/(1+
+exp(13/10-1/10*var_membrane__V))^2*exp(13/10-1/10*var_membrane__V)-18/(1+exp(1/
+10*var_membrane__V+3))^2*exp(1/10*var_membrane__V+3)), 0, 0, 0, 0, 0, 0, 0, -1/
+(1102.5*exp(-1/225*(var_membrane__V+27)^2)+200/(1+exp(13/10-1/10*
+var_membrane__V))+180/(1+exp(1/10*var_membrane__V+3))+20), 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0], [-.9571428572e-1/(1+exp(1/7*var_membrane__V+5))^2*exp(1/7*
+var_membrane__V+5)/(562*exp(-1/240*(var_membrane__V+27)^2)+31/(1+exp(5/2-1/10*
+var_membrane__V))+80/(1+exp(1/10*var_membrane__V+3)))-(.67000000000000004/(1+
+exp(1/7*var_membrane__V+5))+.33000000000000002-
+var_L_type_Ca_current_f2_gate__f2)/(562*exp(-1/240*(var_membrane__V+27)^2)+31/(
+1+exp(5/2-1/10*var_membrane__V))+80/(1+exp(1/10*var_membrane__V+3)))^2*(562*(-1
+/120*var_membrane__V-9/40)*exp(-1/240*(var_membrane__V+27)^2)+31/10/(1+exp(5/2-\
+1/10*var_membrane__V))^2*exp(5/2-1/10*var_membrane__V)-8/(1+exp(1/10*
+var_membrane__V+3))^2*exp(1/10*var_membrane__V+3)), 0, 0, 0, 0, 0, 0, 0, 0, -1/
+(562*exp(-1/240*(var_membrane__V+27)^2)+31/(1+exp(5/2-1/10*var_membrane__V))+80
+/(1+exp(1/10*var_membrane__V+3))), 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, -1/(80/(1+400.0000000*var_calcium_dynamics__Ca_ss^2)+2), 0, 0, 0
+, 0, -480.0000000/(1+400.0000000*var_calcium_dynamics__Ca_ss^2)^2*
+var_calcium_dynamics__Ca_ss/(80/(1+400.0000000*var_calcium_dynamics__Ca_ss^2)+2
+)+64000.00000*(.59999999999999998/(1+400.0000000*var_calcium_dynamics__Ca_ss^2)
++.40000000000000002-var_L_type_Ca_current_fCass_gate__fCass)/(80/(1+400.0000000
+*var_calcium_dynamics__Ca_ss^2)+2)^2/(1+400.0000000*var_calcium_dynamics__Ca_ss
+^2)^2*var_calcium_dynamics__Ca_ss, 0, 0, 0], [-1/5/(1+exp(1/5*var_membrane__V+4
+))^2*exp(1/5*var_membrane__V+4)/(85*exp(-1/320*(var_membrane__V+45)^2)+5/(1+exp
+(1/5*var_membrane__V-4))+3)-(1/(1+exp(1/5*var_membrane__V+4))-
+var_transient_outward_current_s_gate__s)/(85*exp(-1/320*(var_membrane__V+45)^2)
++5/(1+exp(1/5*var_membrane__V-4))+3)^2*(85*(-1/160*var_membrane__V-9/32)*exp(-1
+/320*(var_membrane__V+45)^2)-1/(1+exp(1/5*var_membrane__V-4))^2*exp(1/5*
+var_membrane__V-4)), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1/(85*exp(-1/320*(
+var_membrane__V+45)^2)+5/(1+exp(1/5*var_membrane__V-4))+3), 0, 0, 0, 0, 0, 0, 0
+], [1/6/(1+exp(10/3-1/6*var_membrane__V))^2*exp(10/3-1/6*var_membrane__V)/(9.5*
+exp(-1/1800*(var_membrane__V+40)^2)+.80000000000000004)-9.5*(1/(1+exp(10/3-1/6*
+var_membrane__V))-var_transient_outward_current_r_gate__r)/(9.5*exp(-1/1800*(
+var_membrane__V+40)^2)+.80000000000000004)^2*(-1/900*var_membrane__V-2/45)*exp(
+-1/1800*(var_membrane__V+40)^2), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1/(9.5*exp(-\
+1/1800*(var_membrane__V+40)^2)+.80000000000000004), 0, 0, 0, 0, 0, 0], [-1/2/(1
++var_calcium_dynamics__Buf_c*var_calcium_dynamics__K_buf_c/(
+var_calcium_dynamics__Ca_i+var_calcium_dynamics__K_buf_c)^2)*(
+var_calcium_background_current__g_bca-2*
+var_sodium_calcium_exchanger_current__K_NaCa*(
+var_sodium_calcium_exchanger_current__gamma*var_membrane__F/var_membrane__R/
+var_membrane__T*exp(var_sodium_calcium_exchanger_current__gamma*var_membrane__V
+*var_membrane__F/var_membrane__R/var_membrane__T)*var_sodium_dynamics__Na_i^3*
+var_calcium_dynamics__Ca_o-(var_sodium_calcium_exchanger_current__gamma-1)*
+var_membrane__F/var_membrane__R/var_membrane__T*exp((
+var_sodium_calcium_exchanger_current__gamma-1)*var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T)*var_sodium_dynamics__Na_o^3*
+var_calcium_dynamics__Ca_i*var_sodium_calcium_exchanger_current__alpha)/(
+var_sodium_dynamics__Na_o^3+var_sodium_calcium_exchanger_current__Km_Nai^3)/(
+var_sodium_calcium_exchanger_current__Km_Ca+var_calcium_dynamics__Ca_o)/(1+
+var_sodium_calcium_exchanger_current__K_sat*exp((
+var_sodium_calcium_exchanger_current__gamma-1)*var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T))+2*
+var_sodium_calcium_exchanger_current__K_NaCa*(exp(
+var_sodium_calcium_exchanger_current__gamma*var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T)*var_sodium_dynamics__Na_i^3*
+var_calcium_dynamics__Ca_o-exp((var_sodium_calcium_exchanger_current__gamma-1)*
+var_membrane__V*var_membrane__F/var_membrane__R/var_membrane__T)*
+var_sodium_dynamics__Na_o^3*var_calcium_dynamics__Ca_i*
+var_sodium_calcium_exchanger_current__alpha)/(var_sodium_dynamics__Na_o^3+
+var_sodium_calcium_exchanger_current__Km_Nai^3)/(
+var_sodium_calcium_exchanger_current__Km_Ca+var_calcium_dynamics__Ca_o)/(1+
+var_sodium_calcium_exchanger_current__K_sat*exp((
+var_sodium_calcium_exchanger_current__gamma-1)*var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T))^2*var_sodium_calcium_exchanger_current__K_sat
+*(var_sodium_calcium_exchanger_current__gamma-1)*var_membrane__F/
+var_membrane__R/var_membrane__T*exp((
+var_sodium_calcium_exchanger_current__gamma-1)*var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T))*var_membrane__Cm/var_membrane__V_c/
+var_membrane__F, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2/(1+
+var_calcium_dynamics__Buf_c*var_calcium_dynamics__K_buf_c/(
+var_calcium_dynamics__Ca_i+var_calcium_dynamics__K_buf_c)^2)^2*((
+var_calcium_dynamics__V_leak*(var_calcium_dynamics__Ca_SR-
+var_calcium_dynamics__Ca_i)-var_calcium_dynamics__Vmax_up/(1+
+var_calcium_dynamics__K_up^2/var_calcium_dynamics__Ca_i^2))*
+var_calcium_dynamics__V_sr/var_membrane__V_c+var_calcium_dynamics__V_xfer*(
+var_calcium_dynamics__Ca_ss-var_calcium_dynamics__Ca_i)-1/2*(
+var_calcium_background_current__g_bca*(var_membrane__V-.5*var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_calcium_dynamics__Ca_o/
+var_calcium_dynamics__Ca_i))+var_calcium_pump_current__g_pCa*
+var_calcium_dynamics__Ca_i/(var_calcium_dynamics__Ca_i+
+var_calcium_pump_current__K_pCa)-2*var_sodium_calcium_exchanger_current__K_NaCa
+*(exp(var_sodium_calcium_exchanger_current__gamma*var_membrane__V*
+var_membrane__F/var_membrane__R/var_membrane__T)*var_sodium_dynamics__Na_i^3*
+var_calcium_dynamics__Ca_o-exp((var_sodium_calcium_exchanger_current__gamma-1)*
+var_membrane__V*var_membrane__F/var_membrane__R/var_membrane__T)*
+var_sodium_dynamics__Na_o^3*var_calcium_dynamics__Ca_i*
+var_sodium_calcium_exchanger_current__alpha)/(var_sodium_dynamics__Na_o^3+
+var_sodium_calcium_exchanger_current__Km_Nai^3)/(
+var_sodium_calcium_exchanger_current__Km_Ca+var_calcium_dynamics__Ca_o)/(1+
+var_sodium_calcium_exchanger_current__K_sat*exp((
+var_sodium_calcium_exchanger_current__gamma-1)*var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T)))*var_membrane__Cm/var_membrane__V_c/
+var_membrane__F)*var_calcium_dynamics__Buf_c*var_calcium_dynamics__K_buf_c/(
+var_calcium_dynamics__Ca_i+var_calcium_dynamics__K_buf_c)^3+1/(1+
+var_calcium_dynamics__Buf_c*var_calcium_dynamics__K_buf_c/(
+var_calcium_dynamics__Ca_i+var_calcium_dynamics__K_buf_c)^2)*((-
+var_calcium_dynamics__V_leak-2*var_calcium_dynamics__Vmax_up/(1+
+var_calcium_dynamics__K_up^2/var_calcium_dynamics__Ca_i^2)^2*
+var_calcium_dynamics__K_up^2/var_calcium_dynamics__Ca_i^3)*
+var_calcium_dynamics__V_sr/var_membrane__V_c-var_calcium_dynamics__V_xfer-1/2*(
+.5*var_calcium_background_current__g_bca*var_membrane__R*var_membrane__T/
+var_membrane__F/var_calcium_dynamics__Ca_i+var_calcium_pump_current__g_pCa/(
+var_calcium_dynamics__Ca_i+var_calcium_pump_current__K_pCa)-
+var_calcium_pump_current__g_pCa*var_calcium_dynamics__Ca_i/(
+var_calcium_dynamics__Ca_i+var_calcium_pump_current__K_pCa)^2+2*
+var_sodium_calcium_exchanger_current__K_NaCa*exp((
+var_sodium_calcium_exchanger_current__gamma-1)*var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T)*var_sodium_dynamics__Na_o^3*
+var_sodium_calcium_exchanger_current__alpha/(var_sodium_dynamics__Na_o^3+
+var_sodium_calcium_exchanger_current__Km_Nai^3)/(
+var_sodium_calcium_exchanger_current__Km_Ca+var_calcium_dynamics__Ca_o)/(1+
+var_sodium_calcium_exchanger_current__K_sat*exp((
+var_sodium_calcium_exchanger_current__gamma-1)*var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T)))*var_membrane__Cm/var_membrane__V_c/
+var_membrane__F), 1/(1+var_calcium_dynamics__Buf_c*
+var_calcium_dynamics__K_buf_c/(var_calcium_dynamics__Ca_i+
+var_calcium_dynamics__K_buf_c)^2)*var_calcium_dynamics__V_leak*
+var_calcium_dynamics__V_sr/var_membrane__V_c, 1/(1+var_calcium_dynamics__Buf_c*
+var_calcium_dynamics__K_buf_c/(var_calcium_dynamics__Ca_i+
+var_calcium_dynamics__K_buf_c)^2)*var_calcium_dynamics__V_xfer, 0, 3/(1+
+var_calcium_dynamics__Buf_c*var_calcium_dynamics__K_buf_c/(
+var_calcium_dynamics__Ca_i+var_calcium_dynamics__K_buf_c)^2)*
+var_sodium_calcium_exchanger_current__K_NaCa*exp(
+var_sodium_calcium_exchanger_current__gamma*var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T)*var_sodium_dynamics__Na_i^2*
+var_calcium_dynamics__Ca_o/(var_sodium_dynamics__Na_o^3+
+var_sodium_calcium_exchanger_current__Km_Nai^3)/(
+var_sodium_calcium_exchanger_current__Km_Ca+var_calcium_dynamics__Ca_o)/(1+
+var_sodium_calcium_exchanger_current__K_sat*exp((
+var_sodium_calcium_exchanger_current__gamma-1)*var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T))*var_membrane__Cm/var_membrane__V_c/
+var_membrane__F, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1/(1+
+var_calcium_dynamics__Buf_sr*var_calcium_dynamics__K_buf_sr/(
+var_calcium_dynamics__Ca_SR+var_calcium_dynamics__K_buf_sr)^2)*(2*
+var_calcium_dynamics__Vmax_up/(1+var_calcium_dynamics__K_up^2/
+var_calcium_dynamics__Ca_i^2)^2*var_calcium_dynamics__K_up^2/
+var_calcium_dynamics__Ca_i^3+var_calcium_dynamics__V_leak), 2/(1+
+var_calcium_dynamics__Buf_sr*var_calcium_dynamics__K_buf_sr/(
+var_calcium_dynamics__Ca_SR+var_calcium_dynamics__K_buf_sr)^2)^2*(
+var_calcium_dynamics__Vmax_up/(1+var_calcium_dynamics__K_up^2/
+var_calcium_dynamics__Ca_i^2)-var_calcium_dynamics__V_rel*
+var_calcium_dynamics__k1_prime/(var_calcium_dynamics__max_sr-(
+var_calcium_dynamics__max_sr-var_calcium_dynamics__min_sr)/(1+
+var_calcium_dynamics__EC^2/var_calcium_dynamics__Ca_SR^2))*
+var_calcium_dynamics__Ca_ss^2*var_calcium_dynamics__R_prime/(
+var_calcium_dynamics__Ca_ss^2*var_calcium_dynamics__k1_prime/(
+var_calcium_dynamics__max_sr-(var_calcium_dynamics__max_sr-
+var_calcium_dynamics__min_sr)/(1+var_calcium_dynamics__EC^2/
+var_calcium_dynamics__Ca_SR^2))+var_calcium_dynamics__k3)*(
+var_calcium_dynamics__Ca_SR-var_calcium_dynamics__Ca_ss)-
+var_calcium_dynamics__V_leak*(var_calcium_dynamics__Ca_SR-
+var_calcium_dynamics__Ca_i))*var_calcium_dynamics__Buf_sr*
+var_calcium_dynamics__K_buf_sr/(var_calcium_dynamics__Ca_SR+
+var_calcium_dynamics__K_buf_sr)^3+1/(1+var_calcium_dynamics__Buf_sr*
+var_calcium_dynamics__K_buf_sr/(var_calcium_dynamics__Ca_SR+
+var_calcium_dynamics__K_buf_sr)^2)*(-2*var_calcium_dynamics__V_rel*
+var_calcium_dynamics__k1_prime/(var_calcium_dynamics__max_sr-(
+var_calcium_dynamics__max_sr-var_calcium_dynamics__min_sr)/(1+
+var_calcium_dynamics__EC^2/var_calcium_dynamics__Ca_SR^2))^2*
+var_calcium_dynamics__Ca_ss^2*var_calcium_dynamics__R_prime/(
+var_calcium_dynamics__Ca_ss^2*var_calcium_dynamics__k1_prime/(
+var_calcium_dynamics__max_sr-(var_calcium_dynamics__max_sr-
+var_calcium_dynamics__min_sr)/(1+var_calcium_dynamics__EC^2/
+var_calcium_dynamics__Ca_SR^2))+var_calcium_dynamics__k3)*(
+var_calcium_dynamics__Ca_SR-var_calcium_dynamics__Ca_ss)*(
+var_calcium_dynamics__max_sr-var_calcium_dynamics__min_sr)/(1+
+var_calcium_dynamics__EC^2/var_calcium_dynamics__Ca_SR^2)^2*
+var_calcium_dynamics__EC^2/var_calcium_dynamics__Ca_SR^3+2*
+var_calcium_dynamics__V_rel*var_calcium_dynamics__k1_prime^2/(
+var_calcium_dynamics__max_sr-(var_calcium_dynamics__max_sr-
+var_calcium_dynamics__min_sr)/(1+var_calcium_dynamics__EC^2/
+var_calcium_dynamics__Ca_SR^2))^3*var_calcium_dynamics__Ca_ss^4*
+var_calcium_dynamics__R_prime/(var_calcium_dynamics__Ca_ss^2*
+var_calcium_dynamics__k1_prime/(var_calcium_dynamics__max_sr-(
+var_calcium_dynamics__max_sr-var_calcium_dynamics__min_sr)/(1+
+var_calcium_dynamics__EC^2/var_calcium_dynamics__Ca_SR^2))+
+var_calcium_dynamics__k3)^2*(var_calcium_dynamics__Ca_SR-
+var_calcium_dynamics__Ca_ss)*(var_calcium_dynamics__max_sr-
+var_calcium_dynamics__min_sr)/(1+var_calcium_dynamics__EC^2/
+var_calcium_dynamics__Ca_SR^2)^2*var_calcium_dynamics__EC^2/
+var_calcium_dynamics__Ca_SR^3-var_calcium_dynamics__V_rel*
+var_calcium_dynamics__k1_prime/(var_calcium_dynamics__max_sr-(
+var_calcium_dynamics__max_sr-var_calcium_dynamics__min_sr)/(1+
+var_calcium_dynamics__EC^2/var_calcium_dynamics__Ca_SR^2))*
+var_calcium_dynamics__Ca_ss^2*var_calcium_dynamics__R_prime/(
+var_calcium_dynamics__Ca_ss^2*var_calcium_dynamics__k1_prime/(
+var_calcium_dynamics__max_sr-(var_calcium_dynamics__max_sr-
+var_calcium_dynamics__min_sr)/(1+var_calcium_dynamics__EC^2/
+var_calcium_dynamics__Ca_SR^2))+var_calcium_dynamics__k3)-
+var_calcium_dynamics__V_leak), 1/(1+var_calcium_dynamics__Buf_sr*
+var_calcium_dynamics__K_buf_sr/(var_calcium_dynamics__Ca_SR+
+var_calcium_dynamics__K_buf_sr)^2)*(-2*var_calcium_dynamics__V_rel*
+var_calcium_dynamics__k1_prime/(var_calcium_dynamics__max_sr-(
+var_calcium_dynamics__max_sr-var_calcium_dynamics__min_sr)/(1+
+var_calcium_dynamics__EC^2/var_calcium_dynamics__Ca_SR^2))*
+var_calcium_dynamics__Ca_ss*var_calcium_dynamics__R_prime/(
+var_calcium_dynamics__Ca_ss^2*var_calcium_dynamics__k1_prime/(
+var_calcium_dynamics__max_sr-(var_calcium_dynamics__max_sr-
+var_calcium_dynamics__min_sr)/(1+var_calcium_dynamics__EC^2/
+var_calcium_dynamics__Ca_SR^2))+var_calcium_dynamics__k3)*(
+var_calcium_dynamics__Ca_SR-var_calcium_dynamics__Ca_ss)+2*
+var_calcium_dynamics__V_rel*var_calcium_dynamics__k1_prime^2/(
+var_calcium_dynamics__max_sr-(var_calcium_dynamics__max_sr-
+var_calcium_dynamics__min_sr)/(1+var_calcium_dynamics__EC^2/
+var_calcium_dynamics__Ca_SR^2))^2*var_calcium_dynamics__Ca_ss^3*
+var_calcium_dynamics__R_prime/(var_calcium_dynamics__Ca_ss^2*
+var_calcium_dynamics__k1_prime/(var_calcium_dynamics__max_sr-(
+var_calcium_dynamics__max_sr-var_calcium_dynamics__min_sr)/(1+
+var_calcium_dynamics__EC^2/var_calcium_dynamics__Ca_SR^2))+
+var_calcium_dynamics__k3)^2*(var_calcium_dynamics__Ca_SR-
+var_calcium_dynamics__Ca_ss)+var_calcium_dynamics__V_rel*
+var_calcium_dynamics__k1_prime/(var_calcium_dynamics__max_sr-(
+var_calcium_dynamics__max_sr-var_calcium_dynamics__min_sr)/(1+
+var_calcium_dynamics__EC^2/var_calcium_dynamics__Ca_SR^2))*
+var_calcium_dynamics__Ca_ss^2*var_calcium_dynamics__R_prime/(
+var_calcium_dynamics__Ca_ss^2*var_calcium_dynamics__k1_prime/(
+var_calcium_dynamics__max_sr-(var_calcium_dynamics__max_sr-
+var_calcium_dynamics__min_sr)/(1+var_calcium_dynamics__EC^2/
+var_calcium_dynamics__Ca_SR^2))+var_calcium_dynamics__k3)), -1/(1+
+var_calcium_dynamics__Buf_sr*var_calcium_dynamics__K_buf_sr/(
+var_calcium_dynamics__Ca_SR+var_calcium_dynamics__K_buf_sr)^2)*
+var_calcium_dynamics__V_rel*var_calcium_dynamics__k1_prime/(
+var_calcium_dynamics__max_sr-(var_calcium_dynamics__max_sr-
+var_calcium_dynamics__min_sr)/(1+var_calcium_dynamics__EC^2/
+var_calcium_dynamics__Ca_SR^2))*var_calcium_dynamics__Ca_ss^2/(
+var_calcium_dynamics__Ca_ss^2*var_calcium_dynamics__k1_prime/(
+var_calcium_dynamics__max_sr-(var_calcium_dynamics__max_sr-
+var_calcium_dynamics__min_sr)/(1+var_calcium_dynamics__EC^2/
+var_calcium_dynamics__Ca_SR^2))+var_calcium_dynamics__k3)*(
+var_calcium_dynamics__Ca_SR-var_calcium_dynamics__Ca_ss), 0, 0], [-2/(1+
+var_calcium_dynamics__Buf_ss*var_calcium_dynamics__K_buf_ss/(
+var_calcium_dynamics__Ca_ss+var_calcium_dynamics__K_buf_ss)^2)*PIECEWISE([(.25*
+var_calcium_dynamics__Ca_ss*exp(2*(var_membrane__V-15)*var_membrane__F/
+var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(exp(2*(
+var_membrane__V-15)*var_membrane__F/var_membrane__R/var_membrane__T)-1)+.50*(
+var_membrane__V-15)*var_calcium_dynamics__Ca_ss*var_membrane__F/var_membrane__R
+/var_membrane__T*exp(2*(var_membrane__V-15)*var_membrane__F/var_membrane__R/
+var_membrane__T)/(exp(2*(var_membrane__V-15)*var_membrane__F/var_membrane__R/
+var_membrane__T)-1)-2*(var_membrane__V-15)*(.25*var_calcium_dynamics__Ca_ss*exp
+(2*(var_membrane__V-15)*var_membrane__F/var_membrane__R/var_membrane__T)-
+var_calcium_dynamics__Ca_o)/(exp(2*(var_membrane__V-15)*var_membrane__F/
+var_membrane__R/var_membrane__T)-1)^2*var_membrane__F/var_membrane__R/
+var_membrane__T*exp(2*(var_membrane__V-15)*var_membrane__F/var_membrane__R/
+var_membrane__T), var_membrane__V < var_L_type_Ca_current__V_low or 
+var_L_type_Ca_current__V_high < var_membrane__V],[0, otherwise])*
+var_L_type_Ca_current__g_CaL*var_L_type_Ca_current_d_gate__d*
+var_L_type_Ca_current_f_gate__f*var_L_type_Ca_current_f2_gate__f2*
+var_L_type_Ca_current_fCass_gate__fCass*var_membrane__F/var_membrane__R/
+var_membrane__T*var_membrane__Cm/var_calcium_dynamics__V_ss, 0, 0, 0, 0, 0, 0,
+-2/(1+var_calcium_dynamics__Buf_ss*var_calcium_dynamics__K_buf_ss/(
+var_calcium_dynamics__Ca_ss+var_calcium_dynamics__K_buf_ss)^2)*PIECEWISE([(
+var_membrane__V-15)*(.25*var_calcium_dynamics__Ca_ss*exp(2*(var_membrane__V-15)
+*var_membrane__F/var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(
+exp(2*(var_membrane__V-15)*var_membrane__F/var_membrane__R/var_membrane__T)-1),
+var_membrane__V < var_L_type_Ca_current__V_low or var_L_type_Ca_current__V_high
+< var_membrane__V],[1/2*(var_L_type_Ca_current__V_low-15)*(.25*
+var_calcium_dynamics__Ca_ss*exp(2*(var_L_type_Ca_current__V_low-15)*
+var_membrane__F/var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(
+exp(2*(var_L_type_Ca_current__V_low-15)*var_membrane__F/var_membrane__R/
+var_membrane__T)-1)+1/2*(var_L_type_Ca_current__V_high-15)*(.25*
+var_calcium_dynamics__Ca_ss*exp(2*(var_L_type_Ca_current__V_high-15)*
+var_membrane__F/var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(
+exp(2*(var_L_type_Ca_current__V_high-15)*var_membrane__F/var_membrane__R/
+var_membrane__T)-1), otherwise])*var_L_type_Ca_current__g_CaL*
+var_L_type_Ca_current_f_gate__f*var_L_type_Ca_current_f2_gate__f2*
+var_L_type_Ca_current_fCass_gate__fCass*var_membrane__F/var_membrane__R/
+var_membrane__T*var_membrane__Cm/var_calcium_dynamics__V_ss, -2/(1+
+var_calcium_dynamics__Buf_ss*var_calcium_dynamics__K_buf_ss/(
+var_calcium_dynamics__Ca_ss+var_calcium_dynamics__K_buf_ss)^2)*PIECEWISE([(
+var_membrane__V-15)*(.25*var_calcium_dynamics__Ca_ss*exp(2*(var_membrane__V-15)
+*var_membrane__F/var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(
+exp(2*(var_membrane__V-15)*var_membrane__F/var_membrane__R/var_membrane__T)-1),
+var_membrane__V < var_L_type_Ca_current__V_low or var_L_type_Ca_current__V_high
+< var_membrane__V],[1/2*(var_L_type_Ca_current__V_low-15)*(.25*
+var_calcium_dynamics__Ca_ss*exp(2*(var_L_type_Ca_current__V_low-15)*
+var_membrane__F/var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(
+exp(2*(var_L_type_Ca_current__V_low-15)*var_membrane__F/var_membrane__R/
+var_membrane__T)-1)+1/2*(var_L_type_Ca_current__V_high-15)*(.25*
+var_calcium_dynamics__Ca_ss*exp(2*(var_L_type_Ca_current__V_high-15)*
+var_membrane__F/var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(
+exp(2*(var_L_type_Ca_current__V_high-15)*var_membrane__F/var_membrane__R/
+var_membrane__T)-1), otherwise])*var_L_type_Ca_current__g_CaL*
+var_L_type_Ca_current_d_gate__d*var_L_type_Ca_current_f2_gate__f2*
+var_L_type_Ca_current_fCass_gate__fCass*var_membrane__F/var_membrane__R/
+var_membrane__T*var_membrane__Cm/var_calcium_dynamics__V_ss, -2/(1+
+var_calcium_dynamics__Buf_ss*var_calcium_dynamics__K_buf_ss/(
+var_calcium_dynamics__Ca_ss+var_calcium_dynamics__K_buf_ss)^2)*PIECEWISE([(
+var_membrane__V-15)*(.25*var_calcium_dynamics__Ca_ss*exp(2*(var_membrane__V-15)
+*var_membrane__F/var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(
+exp(2*(var_membrane__V-15)*var_membrane__F/var_membrane__R/var_membrane__T)-1),
+var_membrane__V < var_L_type_Ca_current__V_low or var_L_type_Ca_current__V_high
+< var_membrane__V],[1/2*(var_L_type_Ca_current__V_low-15)*(.25*
+var_calcium_dynamics__Ca_ss*exp(2*(var_L_type_Ca_current__V_low-15)*
+var_membrane__F/var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(
+exp(2*(var_L_type_Ca_current__V_low-15)*var_membrane__F/var_membrane__R/
+var_membrane__T)-1)+1/2*(var_L_type_Ca_current__V_high-15)*(.25*
+var_calcium_dynamics__Ca_ss*exp(2*(var_L_type_Ca_current__V_high-15)*
+var_membrane__F/var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(
+exp(2*(var_L_type_Ca_current__V_high-15)*var_membrane__F/var_membrane__R/
+var_membrane__T)-1), otherwise])*var_L_type_Ca_current__g_CaL*
+var_L_type_Ca_current_d_gate__d*var_L_type_Ca_current_f_gate__f*
+var_L_type_Ca_current_fCass_gate__fCass*var_membrane__F/var_membrane__R/
+var_membrane__T*var_membrane__Cm/var_calcium_dynamics__V_ss, -2/(1+
+var_calcium_dynamics__Buf_ss*var_calcium_dynamics__K_buf_ss/(
+var_calcium_dynamics__Ca_ss+var_calcium_dynamics__K_buf_ss)^2)*PIECEWISE([(
+var_membrane__V-15)*(.25*var_calcium_dynamics__Ca_ss*exp(2*(var_membrane__V-15)
+*var_membrane__F/var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(
+exp(2*(var_membrane__V-15)*var_membrane__F/var_membrane__R/var_membrane__T)-1),
+var_membrane__V < var_L_type_Ca_current__V_low or var_L_type_Ca_current__V_high
+< var_membrane__V],[1/2*(var_L_type_Ca_current__V_low-15)*(.25*
+var_calcium_dynamics__Ca_ss*exp(2*(var_L_type_Ca_current__V_low-15)*
+var_membrane__F/var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(
+exp(2*(var_L_type_Ca_current__V_low-15)*var_membrane__F/var_membrane__R/
+var_membrane__T)-1)+1/2*(var_L_type_Ca_current__V_high-15)*(.25*
+var_calcium_dynamics__Ca_ss*exp(2*(var_L_type_Ca_current__V_high-15)*
+var_membrane__F/var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(
+exp(2*(var_L_type_Ca_current__V_high-15)*var_membrane__F/var_membrane__R/
+var_membrane__T)-1), otherwise])*var_L_type_Ca_current__g_CaL*
+var_L_type_Ca_current_d_gate__d*var_L_type_Ca_current_f_gate__f*
+var_L_type_Ca_current_f2_gate__f2*var_membrane__F/var_membrane__R/
+var_membrane__T*var_membrane__Cm/var_calcium_dynamics__V_ss, 0, 0, 1/(1+
+var_calcium_dynamics__Buf_ss*var_calcium_dynamics__K_buf_ss/(
+var_calcium_dynamics__Ca_ss+var_calcium_dynamics__K_buf_ss)^2)*
+var_calcium_dynamics__V_xfer*var_membrane__V_c/var_calcium_dynamics__V_ss, 1/(1
++var_calcium_dynamics__Buf_ss*var_calcium_dynamics__K_buf_ss/(
+var_calcium_dynamics__Ca_ss+var_calcium_dynamics__K_buf_ss)^2)*(2*
+var_calcium_dynamics__V_rel*var_calcium_dynamics__k1_prime/(
+var_calcium_dynamics__max_sr-(var_calcium_dynamics__max_sr-
+var_calcium_dynamics__min_sr)/(1+var_calcium_dynamics__EC^2/
+var_calcium_dynamics__Ca_SR^2))^2*var_calcium_dynamics__Ca_ss^2*
+var_calcium_dynamics__R_prime/(var_calcium_dynamics__Ca_ss^2*
+var_calcium_dynamics__k1_prime/(var_calcium_dynamics__max_sr-(
+var_calcium_dynamics__max_sr-var_calcium_dynamics__min_sr)/(1+
+var_calcium_dynamics__EC^2/var_calcium_dynamics__Ca_SR^2))+
+var_calcium_dynamics__k3)*(var_calcium_dynamics__Ca_SR-
+var_calcium_dynamics__Ca_ss)*var_calcium_dynamics__V_sr/
+var_calcium_dynamics__V_ss*(var_calcium_dynamics__max_sr-
+var_calcium_dynamics__min_sr)/(1+var_calcium_dynamics__EC^2/
+var_calcium_dynamics__Ca_SR^2)^2*var_calcium_dynamics__EC^2/
+var_calcium_dynamics__Ca_SR^3-2*var_calcium_dynamics__V_rel*
+var_calcium_dynamics__k1_prime^2/(var_calcium_dynamics__max_sr-(
+var_calcium_dynamics__max_sr-var_calcium_dynamics__min_sr)/(1+
+var_calcium_dynamics__EC^2/var_calcium_dynamics__Ca_SR^2))^3*
+var_calcium_dynamics__Ca_ss^4*var_calcium_dynamics__R_prime/(
+var_calcium_dynamics__Ca_ss^2*var_calcium_dynamics__k1_prime/(
+var_calcium_dynamics__max_sr-(var_calcium_dynamics__max_sr-
+var_calcium_dynamics__min_sr)/(1+var_calcium_dynamics__EC^2/
+var_calcium_dynamics__Ca_SR^2))+var_calcium_dynamics__k3)^2*(
+var_calcium_dynamics__Ca_SR-var_calcium_dynamics__Ca_ss)*
+var_calcium_dynamics__V_sr/var_calcium_dynamics__V_ss*(
+var_calcium_dynamics__max_sr-var_calcium_dynamics__min_sr)/(1+
+var_calcium_dynamics__EC^2/var_calcium_dynamics__Ca_SR^2)^2*
+var_calcium_dynamics__EC^2/var_calcium_dynamics__Ca_SR^3+
+var_calcium_dynamics__V_rel*var_calcium_dynamics__k1_prime/(
+var_calcium_dynamics__max_sr-(var_calcium_dynamics__max_sr-
+var_calcium_dynamics__min_sr)/(1+var_calcium_dynamics__EC^2/
+var_calcium_dynamics__Ca_SR^2))*var_calcium_dynamics__Ca_ss^2*
+var_calcium_dynamics__R_prime/(var_calcium_dynamics__Ca_ss^2*
+var_calcium_dynamics__k1_prime/(var_calcium_dynamics__max_sr-(
+var_calcium_dynamics__max_sr-var_calcium_dynamics__min_sr)/(1+
+var_calcium_dynamics__EC^2/var_calcium_dynamics__Ca_SR^2))+
+var_calcium_dynamics__k3)*var_calcium_dynamics__V_sr/var_calcium_dynamics__V_ss
+), 2/(1+var_calcium_dynamics__Buf_ss*var_calcium_dynamics__K_buf_ss/(
+var_calcium_dynamics__Ca_ss+var_calcium_dynamics__K_buf_ss)^2)^2*(-2*PIECEWISE(
+[(var_membrane__V-15)*(.25*var_calcium_dynamics__Ca_ss*exp(2*(var_membrane__V-\
+15)*var_membrane__F/var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o
+)/(exp(2*(var_membrane__V-15)*var_membrane__F/var_membrane__R/var_membrane__T)-\
+1), var_membrane__V < var_L_type_Ca_current__V_low or 
+var_L_type_Ca_current__V_high < var_membrane__V],[1/2*(
+var_L_type_Ca_current__V_low-15)*(.25*var_calcium_dynamics__Ca_ss*exp(2*(
+var_L_type_Ca_current__V_low-15)*var_membrane__F/var_membrane__R/
+var_membrane__T)-var_calcium_dynamics__Ca_o)/(exp(2*(
+var_L_type_Ca_current__V_low-15)*var_membrane__F/var_membrane__R/
+var_membrane__T)-1)+1/2*(var_L_type_Ca_current__V_high-15)*(.25*
+var_calcium_dynamics__Ca_ss*exp(2*(var_L_type_Ca_current__V_high-15)*
+var_membrane__F/var_membrane__R/var_membrane__T)-var_calcium_dynamics__Ca_o)/(
+exp(2*(var_L_type_Ca_current__V_high-15)*var_membrane__F/var_membrane__R/
+var_membrane__T)-1), otherwise])*var_L_type_Ca_current__g_CaL*
+var_L_type_Ca_current_d_gate__d*var_L_type_Ca_current_f_gate__f*
+var_L_type_Ca_current_f2_gate__f2*var_L_type_Ca_current_fCass_gate__fCass*
+var_membrane__F/var_membrane__R/var_membrane__T*var_membrane__Cm/
+var_calcium_dynamics__V_ss+var_calcium_dynamics__V_rel*
+var_calcium_dynamics__k1_prime/(var_calcium_dynamics__max_sr-(
+var_calcium_dynamics__max_sr-var_calcium_dynamics__min_sr)/(1+
+var_calcium_dynamics__EC^2/var_calcium_dynamics__Ca_SR^2))*
+var_calcium_dynamics__Ca_ss^2*var_calcium_dynamics__R_prime/(
+var_calcium_dynamics__Ca_ss^2*var_calcium_dynamics__k1_prime/(
+var_calcium_dynamics__max_sr-(var_calcium_dynamics__max_sr-
+var_calcium_dynamics__min_sr)/(1+var_calcium_dynamics__EC^2/
+var_calcium_dynamics__Ca_SR^2))+var_calcium_dynamics__k3)*(
+var_calcium_dynamics__Ca_SR-var_calcium_dynamics__Ca_ss)*
+var_calcium_dynamics__V_sr/var_calcium_dynamics__V_ss-
+var_calcium_dynamics__V_xfer*(var_calcium_dynamics__Ca_ss-
+var_calcium_dynamics__Ca_i)*var_membrane__V_c/var_calcium_dynamics__V_ss)*
+var_calcium_dynamics__Buf_ss*var_calcium_dynamics__K_buf_ss/(
+var_calcium_dynamics__Ca_ss+var_calcium_dynamics__K_buf_ss)^3+1/(1+
+var_calcium_dynamics__Buf_ss*var_calcium_dynamics__K_buf_ss/(
+var_calcium_dynamics__Ca_ss+var_calcium_dynamics__K_buf_ss)^2)*(-2*PIECEWISE([.\
+25*(var_membrane__V-15)*exp(2*(var_membrane__V-15)*var_membrane__F/
+var_membrane__R/var_membrane__T)/(exp(2*(var_membrane__V-15)*var_membrane__F/
+var_membrane__R/var_membrane__T)-1), var_membrane__V < 
+var_L_type_Ca_current__V_low or var_L_type_Ca_current__V_high < var_membrane__V
+],[.1250000000*(var_L_type_Ca_current__V_low-15)*exp(2*(
+var_L_type_Ca_current__V_low-15)*var_membrane__F/var_membrane__R/
+var_membrane__T)/(exp(2*(var_L_type_Ca_current__V_low-15)*var_membrane__F/
+var_membrane__R/var_membrane__T)-1)+.1250000000*(var_L_type_Ca_current__V_high-\
+15)*exp(2*(var_L_type_Ca_current__V_high-15)*var_membrane__F/var_membrane__R/
+var_membrane__T)/(exp(2*(var_L_type_Ca_current__V_high-15)*var_membrane__F/
+var_membrane__R/var_membrane__T)-1), otherwise])*var_L_type_Ca_current__g_CaL*
+var_L_type_Ca_current_d_gate__d*var_L_type_Ca_current_f_gate__f*
+var_L_type_Ca_current_f2_gate__f2*var_L_type_Ca_current_fCass_gate__fCass*
+var_membrane__F/var_membrane__R/var_membrane__T*var_membrane__Cm/
+var_calcium_dynamics__V_ss+2*var_calcium_dynamics__V_rel*
+var_calcium_dynamics__k1_prime/(var_calcium_dynamics__max_sr-(
+var_calcium_dynamics__max_sr-var_calcium_dynamics__min_sr)/(1+
+var_calcium_dynamics__EC^2/var_calcium_dynamics__Ca_SR^2))*
+var_calcium_dynamics__Ca_ss*var_calcium_dynamics__R_prime/(
+var_calcium_dynamics__Ca_ss^2*var_calcium_dynamics__k1_prime/(
+var_calcium_dynamics__max_sr-(var_calcium_dynamics__max_sr-
+var_calcium_dynamics__min_sr)/(1+var_calcium_dynamics__EC^2/
+var_calcium_dynamics__Ca_SR^2))+var_calcium_dynamics__k3)*(
+var_calcium_dynamics__Ca_SR-var_calcium_dynamics__Ca_ss)*
+var_calcium_dynamics__V_sr/var_calcium_dynamics__V_ss-2*
+var_calcium_dynamics__V_rel*var_calcium_dynamics__k1_prime^2/(
+var_calcium_dynamics__max_sr-(var_calcium_dynamics__max_sr-
+var_calcium_dynamics__min_sr)/(1+var_calcium_dynamics__EC^2/
+var_calcium_dynamics__Ca_SR^2))^2*var_calcium_dynamics__Ca_ss^3*
+var_calcium_dynamics__R_prime/(var_calcium_dynamics__Ca_ss^2*
+var_calcium_dynamics__k1_prime/(var_calcium_dynamics__max_sr-(
+var_calcium_dynamics__max_sr-var_calcium_dynamics__min_sr)/(1+
+var_calcium_dynamics__EC^2/var_calcium_dynamics__Ca_SR^2))+
+var_calcium_dynamics__k3)^2*(var_calcium_dynamics__Ca_SR-
+var_calcium_dynamics__Ca_ss)*var_calcium_dynamics__V_sr/
+var_calcium_dynamics__V_ss-var_calcium_dynamics__V_rel*
+var_calcium_dynamics__k1_prime/(var_calcium_dynamics__max_sr-(
+var_calcium_dynamics__max_sr-var_calcium_dynamics__min_sr)/(1+
+var_calcium_dynamics__EC^2/var_calcium_dynamics__Ca_SR^2))*
+var_calcium_dynamics__Ca_ss^2*var_calcium_dynamics__R_prime/(
+var_calcium_dynamics__Ca_ss^2*var_calcium_dynamics__k1_prime/(
+var_calcium_dynamics__max_sr-(var_calcium_dynamics__max_sr-
+var_calcium_dynamics__min_sr)/(1+var_calcium_dynamics__EC^2/
+var_calcium_dynamics__Ca_SR^2))+var_calcium_dynamics__k3)*
+var_calcium_dynamics__V_sr/var_calcium_dynamics__V_ss-
+var_calcium_dynamics__V_xfer*var_membrane__V_c/var_calcium_dynamics__V_ss), 1/(
+1+var_calcium_dynamics__Buf_ss*var_calcium_dynamics__K_buf_ss/(
+var_calcium_dynamics__Ca_ss+var_calcium_dynamics__K_buf_ss)^2)*
+var_calcium_dynamics__V_rel*var_calcium_dynamics__k1_prime/(
+var_calcium_dynamics__max_sr-(var_calcium_dynamics__max_sr-
+var_calcium_dynamics__min_sr)/(1+var_calcium_dynamics__EC^2/
+var_calcium_dynamics__Ca_SR^2))*var_calcium_dynamics__Ca_ss^2/(
+var_calcium_dynamics__Ca_ss^2*var_calcium_dynamics__k1_prime/(
+var_calcium_dynamics__max_sr-(var_calcium_dynamics__max_sr-
+var_calcium_dynamics__min_sr)/(1+var_calcium_dynamics__EC^2/
+var_calcium_dynamics__Ca_SR^2))+var_calcium_dynamics__k3)*(
+var_calcium_dynamics__Ca_SR-var_calcium_dynamics__Ca_ss)*
+var_calcium_dynamics__V_sr/var_calcium_dynamics__V_ss, 0, 0], [0, 0, 0, 0, 0, 0
+, 0, 0, 0, 0, 0, 0, 0, 0, 2*var_calcium_dynamics__k2_prime*(
+var_calcium_dynamics__max_sr-var_calcium_dynamics__min_sr)/(1+
+var_calcium_dynamics__EC^2/var_calcium_dynamics__Ca_SR^2)^2*
+var_calcium_dynamics__EC^2/var_calcium_dynamics__Ca_SR^3*
+var_calcium_dynamics__Ca_ss*var_calcium_dynamics__R_prime, -
+var_calcium_dynamics__k2_prime*(var_calcium_dynamics__max_sr-(
+var_calcium_dynamics__max_sr-var_calcium_dynamics__min_sr)/(1+
+var_calcium_dynamics__EC^2/var_calcium_dynamics__Ca_SR^2))*
+var_calcium_dynamics__R_prime, -var_calcium_dynamics__k2_prime*(
+var_calcium_dynamics__max_sr-(var_calcium_dynamics__max_sr-
+var_calcium_dynamics__min_sr)/(1+var_calcium_dynamics__EC^2/
+var_calcium_dynamics__Ca_SR^2))*var_calcium_dynamics__Ca_ss-
+var_calcium_dynamics__k4, 0, 0], [-var_sodium_dynamics__conc_clamp*(
+var_fast_sodium_current__g_Na*var_fast_sodium_current_m_gate__m^3*
+var_fast_sodium_current_h_gate__h*var_fast_sodium_current_j_gate__j+
+var_sodium_background_current__g_bna-3*var_sodium_potassium_pump_current__P_NaK
+*var_potassium_dynamics__K_o/(var_potassium_dynamics__K_o+
+var_sodium_potassium_pump_current__K_mk)*var_sodium_dynamics__Na_i/(
+var_sodium_dynamics__Na_i+var_sodium_potassium_pump_current__K_mNa)/(1+.1245*
+exp(-.10000000000000001*var_membrane__V*var_membrane__F/var_membrane__R/
+var_membrane__T)+.35299999999999998e-1*exp(-var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T))^2*(-.1245000000e-1*var_membrane__F/
+var_membrane__R/var_membrane__T*exp(-.10000000000000001*var_membrane__V*
+var_membrane__F/var_membrane__R/var_membrane__T)-.35299999999999998e-1*
+var_membrane__F/var_membrane__R/var_membrane__T*exp(-var_membrane__V*
+var_membrane__F/var_membrane__R/var_membrane__T))+3*
+var_sodium_calcium_exchanger_current__K_NaCa*(
+var_sodium_calcium_exchanger_current__gamma*var_membrane__F/var_membrane__R/
+var_membrane__T*exp(var_sodium_calcium_exchanger_current__gamma*var_membrane__V
+*var_membrane__F/var_membrane__R/var_membrane__T)*var_sodium_dynamics__Na_i^3*
+var_calcium_dynamics__Ca_o-(var_sodium_calcium_exchanger_current__gamma-1)*
+var_membrane__F/var_membrane__R/var_membrane__T*exp((
+var_sodium_calcium_exchanger_current__gamma-1)*var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T)*var_sodium_dynamics__Na_o^3*
+var_calcium_dynamics__Ca_i*var_sodium_calcium_exchanger_current__alpha)/(
+var_sodium_dynamics__Na_o^3+var_sodium_calcium_exchanger_current__Km_Nai^3)/(
+var_sodium_calcium_exchanger_current__Km_Ca+var_calcium_dynamics__Ca_o)/(1+
+var_sodium_calcium_exchanger_current__K_sat*exp((
+var_sodium_calcium_exchanger_current__gamma-1)*var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T))-3*
+var_sodium_calcium_exchanger_current__K_NaCa*(exp(
+var_sodium_calcium_exchanger_current__gamma*var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T)*var_sodium_dynamics__Na_i^3*
+var_calcium_dynamics__Ca_o-exp((var_sodium_calcium_exchanger_current__gamma-1)*
+var_membrane__V*var_membrane__F/var_membrane__R/var_membrane__T)*
+var_sodium_dynamics__Na_o^3*var_calcium_dynamics__Ca_i*
+var_sodium_calcium_exchanger_current__alpha)/(var_sodium_dynamics__Na_o^3+
+var_sodium_calcium_exchanger_current__Km_Nai^3)/(
+var_sodium_calcium_exchanger_current__Km_Ca+var_calcium_dynamics__Ca_o)/(1+
+var_sodium_calcium_exchanger_current__K_sat*exp((
+var_sodium_calcium_exchanger_current__gamma-1)*var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T))^2*var_sodium_calcium_exchanger_current__K_sat
+*(var_sodium_calcium_exchanger_current__gamma-1)*var_membrane__F/
+var_membrane__R/var_membrane__T*exp((
+var_sodium_calcium_exchanger_current__gamma-1)*var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T))/var_membrane__V_c/var_membrane__F*
+var_membrane__Cm, 0, 0, 0, -3*var_sodium_dynamics__conc_clamp*
+var_fast_sodium_current__g_Na*var_fast_sodium_current_m_gate__m^2*
+var_fast_sodium_current_h_gate__h*var_fast_sodium_current_j_gate__j*(
+var_membrane__V-var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_sodium_dynamics__Na_o/var_sodium_dynamics__Na_i))/var_membrane__V_c/
+var_membrane__F*var_membrane__Cm, -var_sodium_dynamics__conc_clamp*
+var_fast_sodium_current__g_Na*var_fast_sodium_current_m_gate__m^3*
+var_fast_sodium_current_j_gate__j*(var_membrane__V-var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_sodium_dynamics__Na_o/
+var_sodium_dynamics__Na_i))/var_membrane__V_c/var_membrane__F*var_membrane__Cm,
+-var_sodium_dynamics__conc_clamp*var_fast_sodium_current__g_Na*
+var_fast_sodium_current_m_gate__m^3*var_fast_sodium_current_h_gate__h*(
+var_membrane__V-var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_sodium_dynamics__Na_o/var_sodium_dynamics__Na_i))/var_membrane__V_c/
+var_membrane__F*var_membrane__Cm, 0, 0, 0, 0, 0, 0, 3*
+var_sodium_dynamics__conc_clamp*var_sodium_calcium_exchanger_current__K_NaCa*
+exp((var_sodium_calcium_exchanger_current__gamma-1)*var_membrane__V*
+var_membrane__F/var_membrane__R/var_membrane__T)*var_sodium_dynamics__Na_o^3*
+var_sodium_calcium_exchanger_current__alpha/(var_sodium_dynamics__Na_o^3+
+var_sodium_calcium_exchanger_current__Km_Nai^3)/(
+var_sodium_calcium_exchanger_current__Km_Ca+var_calcium_dynamics__Ca_o)/(1+
+var_sodium_calcium_exchanger_current__K_sat*exp((
+var_sodium_calcium_exchanger_current__gamma-1)*var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T))/var_membrane__V_c/var_membrane__F*
+var_membrane__Cm, 0, 0, 0, -var_sodium_dynamics__conc_clamp*(
+var_fast_sodium_current__g_Na*var_fast_sodium_current_m_gate__m^3*
+var_fast_sodium_current_h_gate__h*var_fast_sodium_current_j_gate__j*
+var_membrane__R*var_membrane__T/var_membrane__F/var_sodium_dynamics__Na_i+
+var_sodium_background_current__g_bna*var_membrane__R*var_membrane__T/
+var_membrane__F/var_sodium_dynamics__Na_i+3*
+var_sodium_potassium_pump_current__P_NaK*var_potassium_dynamics__K_o/(
+var_potassium_dynamics__K_o+var_sodium_potassium_pump_current__K_mk)/(
+var_sodium_dynamics__Na_i+var_sodium_potassium_pump_current__K_mNa)/(1+.1245*
+exp(-.10000000000000001*var_membrane__V*var_membrane__F/var_membrane__R/
+var_membrane__T)+.35299999999999998e-1*exp(-var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T))-3*var_sodium_potassium_pump_current__P_NaK*
+var_potassium_dynamics__K_o/(var_potassium_dynamics__K_o+
+var_sodium_potassium_pump_current__K_mk)*var_sodium_dynamics__Na_i/(
+var_sodium_dynamics__Na_i+var_sodium_potassium_pump_current__K_mNa)^2/(1+.1245*
+exp(-.10000000000000001*var_membrane__V*var_membrane__F/var_membrane__R/
+var_membrane__T)+.35299999999999998e-1*exp(-var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T))+9*
+var_sodium_calcium_exchanger_current__K_NaCa*exp(
+var_sodium_calcium_exchanger_current__gamma*var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T)*var_sodium_dynamics__Na_i^2*
+var_calcium_dynamics__Ca_o/(var_sodium_dynamics__Na_o^3+
+var_sodium_calcium_exchanger_current__Km_Nai^3)/(
+var_sodium_calcium_exchanger_current__Km_Ca+var_calcium_dynamics__Ca_o)/(1+
+var_sodium_calcium_exchanger_current__K_sat*exp((
+var_sodium_calcium_exchanger_current__gamma-1)*var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T)))/var_membrane__V_c/var_membrane__F*
+var_membrane__Cm, 0], [-var_sodium_dynamics__conc_clamp*(-.2581988897e-2*
+var_inward_rectifier_potassium_current__g_K1/(1+exp(.59999999999999998e-1*
+var_membrane__V-.59999999999999998e-1*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-12.\
+00000000))^2/(.10000000000000001/(1+exp(.59999999999999998e-1*var_membrane__V-.\
+59999999999999998e-1*var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-12.00000000))+(3*exp(.\
+20000000000000001e-3*var_membrane__V-.20000000000000001e-3*var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)+.2000000000e-1)+exp(.10000000000000001*
+var_membrane__V-.10000000000000001*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-1.0\
+00000000))/(1+exp(-.5*var_membrane__V+.5*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i))))*
+var_potassium_dynamics__K_o^(1/2)*(var_membrane__V-var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i))*exp(.59999999999999998e-1*var_membrane__V-.\
+59999999999999998e-1*var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-12.00000000)-.\
+4303314829e-1*var_inward_rectifier_potassium_current__g_K1/(1+exp(.\
+59999999999999998e-1*var_membrane__V-.59999999999999998e-1*var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)-12.00000000))/(.10000000000000001/(1+exp(.\
+59999999999999998e-1*var_membrane__V-.59999999999999998e-1*var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)-12.00000000))+(3*exp(.20000000000000001e-3*
+var_membrane__V-.20000000000000001e-3*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)+.\
+2000000000e-1)+exp(.10000000000000001*var_membrane__V-.10000000000000001*
+var_membrane__R*var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)-1.000000000))/(1+exp(-.5*var_membrane__V+.5*
+var_membrane__R*var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i))))^2*var_potassium_dynamics__K_o^(1/2)*(
+var_membrane__V-var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_potassium_dynamics__K_o/var_potassium_dynamics__K_i))*(-.6000000000e-2/(1+
+exp(.59999999999999998e-1*var_membrane__V-.59999999999999998e-1*var_membrane__R
+*var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)-12.00000000))^2*exp(.59999999999999998e-1*
+var_membrane__V-.59999999999999998e-1*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-12.\
+00000000)+(.6000000000e-3*exp(.20000000000000001e-3*var_membrane__V-.\
+20000000000000001e-3*var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)+.2000000000e-1)+.10000\
+000000000001*exp(.10000000000000001*var_membrane__V-.10000000000000001*
+var_membrane__R*var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)-1.000000000))/(1+exp(-.5*var_membrane__V+.5*
+var_membrane__R*var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)))+.5*(3*exp(.20000000000000001e-3*var_membrane__V-
+.20000000000000001e-3*var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)+.2000000000e-1)+exp(.1\
+0000000000000001*var_membrane__V-.10000000000000001*var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)-1.000000000))/(1+exp(-.5*var_membrane__V+.5*
+var_membrane__R*var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)))^2*exp(-.5*var_membrane__V+.5*var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)))+.4303314829e-1*
+var_inward_rectifier_potassium_current__g_K1/(1+exp(.59999999999999998e-1*
+var_membrane__V-.59999999999999998e-1*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-12.\
+00000000))/(.10000000000000001/(1+exp(.59999999999999998e-1*var_membrane__V-.\
+59999999999999998e-1*var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-12.00000000))+(3*exp(.\
+20000000000000001e-3*var_membrane__V-.20000000000000001e-3*var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)+.2000000000e-1)+exp(.10000000000000001*
+var_membrane__V-.10000000000000001*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-1.0\
+00000000))/(1+exp(-.5*var_membrane__V+.5*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i))))*
+var_potassium_dynamics__K_o^(1/2)+var_transient_outward_current__g_to*
+var_transient_outward_current_r_gate__r*var_transient_outward_current_s_gate__s
++.4303314829*var_rapid_time_dependent_potassium_current__g_Kr*
+var_potassium_dynamics__K_o^(1/2)*
+var_rapid_time_dependent_potassium_current_Xr1_gate__Xr1*
+var_rapid_time_dependent_potassium_current_Xr2_gate__Xr2+
+var_slow_time_dependent_potassium_current__g_Ks*
+var_slow_time_dependent_potassium_current_Xs_gate__Xs^2+
+var_potassium_pump_current__g_pK/(1+exp(4.180602008-.1672240803*var_membrane__V
+))+.1672240803*var_potassium_pump_current__g_pK*(var_membrane__V-
+var_membrane__R*var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i))/(1+exp(4.180602008-.1672240803*var_membrane__V))^
+2*exp(4.180602008-.1672240803*var_membrane__V)+2*
+var_sodium_potassium_pump_current__P_NaK*var_potassium_dynamics__K_o/(
+var_potassium_dynamics__K_o+var_sodium_potassium_pump_current__K_mk)*
+var_sodium_dynamics__Na_i/(var_sodium_dynamics__Na_i+
+var_sodium_potassium_pump_current__K_mNa)/(1+.1245*exp(-.10000000000000001*
+var_membrane__V*var_membrane__F/var_membrane__R/var_membrane__T)+.\
+35299999999999998e-1*exp(-var_membrane__V*var_membrane__F/var_membrane__R/
+var_membrane__T))^2*(-.1245000000e-1*var_membrane__F/var_membrane__R/
+var_membrane__T*exp(-.10000000000000001*var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T)-.35299999999999998e-1*var_membrane__F/
+var_membrane__R/var_membrane__T*exp(-var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T)))/var_membrane__V_c/var_membrane__F*
+var_membrane__Cm, -.4303314829*var_sodium_dynamics__conc_clamp*
+var_rapid_time_dependent_potassium_current__g_Kr*var_potassium_dynamics__K_o^(1
+/2)*var_rapid_time_dependent_potassium_current_Xr2_gate__Xr2*(var_membrane__V-
+var_membrane__R*var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i))/var_membrane__V_c/var_membrane__F*
+var_membrane__Cm, -.4303314829*var_sodium_dynamics__conc_clamp*
+var_rapid_time_dependent_potassium_current__g_Kr*var_potassium_dynamics__K_o^(1
+/2)*var_rapid_time_dependent_potassium_current_Xr1_gate__Xr1*(var_membrane__V-
+var_membrane__R*var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i))/var_membrane__V_c/var_membrane__F*
+var_membrane__Cm, -2*var_sodium_dynamics__conc_clamp*
+var_slow_time_dependent_potassium_current__g_Ks*
+var_slow_time_dependent_potassium_current_Xs_gate__Xs*(var_membrane__V-
+var_membrane__R*var_membrane__T/var_membrane__F*ln((
+var_reversal_potentials__P_kna*var_sodium_dynamics__Na_o+
+var_potassium_dynamics__K_o)/(var_reversal_potentials__P_kna*
+var_sodium_dynamics__Na_i+var_potassium_dynamics__K_i)))/var_membrane__V_c/
+var_membrane__F*var_membrane__Cm, 0, 0, 0, 0, 0, 0, 0, -
+var_sodium_dynamics__conc_clamp*var_transient_outward_current__g_to*
+var_transient_outward_current_r_gate__r*(var_membrane__V-var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i))/var_membrane__V_c/var_membrane__F*
+var_membrane__Cm, -var_sodium_dynamics__conc_clamp*
+var_transient_outward_current__g_to*var_transient_outward_current_s_gate__s*(
+var_membrane__V-var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_potassium_dynamics__K_o/var_potassium_dynamics__K_i))/var_membrane__V_c/
+var_membrane__F*var_membrane__Cm, 0, 0, 0, 0, -var_sodium_dynamics__conc_clamp*
+(var_slow_time_dependent_potassium_current__g_Ks*
+var_slow_time_dependent_potassium_current_Xs_gate__Xs^2*var_membrane__R*
+var_membrane__T/var_membrane__F/(var_reversal_potentials__P_kna*
+var_sodium_dynamics__Na_i+var_potassium_dynamics__K_i)*
+var_reversal_potentials__P_kna-2*var_sodium_potassium_pump_current__P_NaK*
+var_potassium_dynamics__K_o/(var_potassium_dynamics__K_o+
+var_sodium_potassium_pump_current__K_mk)/(var_sodium_dynamics__Na_i+
+var_sodium_potassium_pump_current__K_mNa)/(1+.1245*exp(-.10000000000000001*
+var_membrane__V*var_membrane__F/var_membrane__R/var_membrane__T)+.\
+35299999999999998e-1*exp(-var_membrane__V*var_membrane__F/var_membrane__R/
+var_membrane__T))+2*var_sodium_potassium_pump_current__P_NaK*
+var_potassium_dynamics__K_o/(var_potassium_dynamics__K_o+
+var_sodium_potassium_pump_current__K_mk)*var_sodium_dynamics__Na_i/(
+var_sodium_dynamics__Na_i+var_sodium_potassium_pump_current__K_mNa)^2/(1+.1245*
+exp(-.10000000000000001*var_membrane__V*var_membrane__F/var_membrane__R/
+var_membrane__T)+.35299999999999998e-1*exp(-var_membrane__V*var_membrane__F/
+var_membrane__R/var_membrane__T)))/var_membrane__V_c/var_membrane__F*
+var_membrane__Cm, -var_sodium_dynamics__conc_clamp*(-.2581988897e-2*
+var_inward_rectifier_potassium_current__g_K1/(1+exp(.59999999999999998e-1*
+var_membrane__V-.59999999999999998e-1*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-12.\
+00000000))^2/(.10000000000000001/(1+exp(.59999999999999998e-1*var_membrane__V-.\
+59999999999999998e-1*var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-12.00000000))+(3*exp(.\
+20000000000000001e-3*var_membrane__V-.20000000000000001e-3*var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)+.2000000000e-1)+exp(.10000000000000001*
+var_membrane__V-.10000000000000001*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-1.0\
+00000000))/(1+exp(-.5*var_membrane__V+.5*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i))))*
+var_potassium_dynamics__K_o^(1/2)*(var_membrane__V-var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i))*var_membrane__R*var_membrane__T/var_membrane__F/
+var_potassium_dynamics__K_i*exp(.59999999999999998e-1*var_membrane__V-.\
+59999999999999998e-1*var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-12.00000000)-.\
+4303314829e-1*var_inward_rectifier_potassium_current__g_K1/(1+exp(.\
+59999999999999998e-1*var_membrane__V-.59999999999999998e-1*var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)-12.00000000))/(.10000000000000001/(1+exp(.\
+59999999999999998e-1*var_membrane__V-.59999999999999998e-1*var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)-12.00000000))+(3*exp(.20000000000000001e-3*
+var_membrane__V-.20000000000000001e-3*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)+.\
+2000000000e-1)+exp(.10000000000000001*var_membrane__V-.10000000000000001*
+var_membrane__R*var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)-1.000000000))/(1+exp(-.5*var_membrane__V+.5*
+var_membrane__R*var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i))))^2*var_potassium_dynamics__K_o^(1/2)*(
+var_membrane__V-var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_potassium_dynamics__K_o/var_potassium_dynamics__K_i))*(-.6000000000e-2/(1+
+exp(.59999999999999998e-1*var_membrane__V-.59999999999999998e-1*var_membrane__R
+*var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)-12.00000000))^2*var_membrane__R*var_membrane__T/
+var_membrane__F/var_potassium_dynamics__K_i*exp(.59999999999999998e-1*
+var_membrane__V-.59999999999999998e-1*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-12.\
+00000000)+(.6000000000e-3*var_membrane__R*var_membrane__T/var_membrane__F/
+var_potassium_dynamics__K_i*exp(.20000000000000001e-3*var_membrane__V-.\
+20000000000000001e-3*var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)+.2000000000e-1)+.10000\
+000000000001*var_membrane__R*var_membrane__T/var_membrane__F/
+var_potassium_dynamics__K_i*exp(.10000000000000001*var_membrane__V-.10000000000\
+000001*var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-1.000000000))/(1+exp(-\
+.5*var_membrane__V+.5*var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)))+.5*(3*exp(.\
+20000000000000001e-3*var_membrane__V-.20000000000000001e-3*var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)+.2000000000e-1)+exp(.10000000000000001*
+var_membrane__V-.10000000000000001*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-1.0\
+00000000))/(1+exp(-.5*var_membrane__V+.5*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)))^2
+*var_membrane__R*var_membrane__T/var_membrane__F/var_potassium_dynamics__K_i*
+exp(-.5*var_membrane__V+.5*var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)))+.4303314829e-1*
+var_inward_rectifier_potassium_current__g_K1/(1+exp(.59999999999999998e-1*
+var_membrane__V-.59999999999999998e-1*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-12.\
+00000000))/(.10000000000000001/(1+exp(.59999999999999998e-1*var_membrane__V-.\
+59999999999999998e-1*var_membrane__R*var_membrane__T/var_membrane__F*ln(
+var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-12.00000000))+(3*exp(.\
+20000000000000001e-3*var_membrane__V-.20000000000000001e-3*var_membrane__R*
+var_membrane__T/var_membrane__F*ln(var_potassium_dynamics__K_o/
+var_potassium_dynamics__K_i)+.2000000000e-1)+exp(.10000000000000001*
+var_membrane__V-.10000000000000001*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i)-1.0\
+00000000))/(1+exp(-.5*var_membrane__V+.5*var_membrane__R*var_membrane__T/
+var_membrane__F*ln(var_potassium_dynamics__K_o/var_potassium_dynamics__K_i))))*
+var_potassium_dynamics__K_o^(1/2)*var_membrane__R*var_membrane__T/
+var_membrane__F/var_potassium_dynamics__K_i+var_transient_outward_current__g_to
+*var_transient_outward_current_r_gate__r*
+var_transient_outward_current_s_gate__s*var_membrane__R*var_membrane__T/
+var_membrane__F/var_potassium_dynamics__K_i+.4303314829*
+var_rapid_time_dependent_potassium_current__g_Kr*var_potassium_dynamics__K_o^(1
+/2)*var_rapid_time_dependent_potassium_current_Xr1_gate__Xr1*
+var_rapid_time_dependent_potassium_current_Xr2_gate__Xr2*var_membrane__R*
+var_membrane__T/var_membrane__F/var_potassium_dynamics__K_i+
+var_slow_time_dependent_potassium_current__g_Ks*
+var_slow_time_dependent_potassium_current_Xs_gate__Xs^2*var_membrane__R*
+var_membrane__T/var_membrane__F/(var_reversal_potentials__P_kna*
+var_sodium_dynamics__Na_i+var_potassium_dynamics__K_i)+
+var_potassium_pump_current__g_pK*var_membrane__R*var_membrane__T/
+var_membrane__F/var_potassium_dynamics__K_i/(1+exp(4.180602008-.1672240803*
+var_membrane__V)))/var_membrane__V_c/var_membrane__F*var_membrane__Cm]])
+J := t2 = var_membrane__R*var_membrane__T, t3 = 1/var_membrane__F, t4 = 1/
+var_potassium_dynamics__K_i, t6 = ln(t4*var_potassium_dynamics__K_o), t8 = t6*
+t3*t2, t11 = exp(.59999999999999998e-1*var_membrane__V-.6000000000e-1*t8-12.000\
+00000), t12 = 1+t11, t13 = t12^2, t14 = 1/t13, t15 = t14*
+var_inward_rectifier_potassium_current__g_K1, t16 = 1/t12, t21 = exp(.\
+20000000000000001e-3*var_membrane__V-.2000000000e-3*t8+.2000000000e-1), t26 = 
+exp(.10000000000000001*var_membrane__V-.1000000000*t8-1.000000000), t27 = 3*t21
++t26, t31 = exp(-.5*var_membrane__V+.5*t8), t32 = 1+t31, t33 = 1/t32, t35 = .10\
+000000000000001*t16+t33*t27, t36 = 1/t35, t38 = var_potassium_dynamics__K_o^(1/
+2), t39 = var_membrane__V-t8, t40 = t39*t38, t43 = .2581988897e-2*t11*t40*t36*
+t15, t44 = t16*var_inward_rectifier_potassium_current__g_K1, t45 = t35^2, t47 =
+1/t45*t44, t54 = t32^2, t56 = 1/t54*t27, t62 = .4303314829e-1*(-.6000000000e-2*
+t11*t14+t33*(.6000000000e-3*t21+.10000000000000001*t26)+.5*t31*t56)*t40*t47, 
+t63 = t38*t36, t64 = t63*t44, t65 = .4303314829e-1*t64, t66 = 
+var_transient_outward_current_r_gate__r*var_transient_outward_current__g_to, 
+t67 = var_transient_outward_current_s_gate__s*t66, t68 = t38*
+var_rapid_time_dependent_potassium_current__g_Kr, t70 = 
+var_rapid_time_dependent_potassium_current_Xr1_gate__Xr1*
+var_rapid_time_dependent_potassium_current_Xr2_gate__Xr2*t68, t71 = .4303314829
+*t70, t72 = var_slow_time_dependent_potassium_current_Xs_gate__Xs^2, t73 = t72*
+var_slow_time_dependent_potassium_current__g_Ks, t76 = (var_membrane__V < 
+var_L_type_Ca_current__V_low or var_L_type_Ca_current__V_high < var_membrane__V
+), t77 = var_membrane__V-15, t79 = 1/var_membrane__R, t80 = 1/var_membrane__T,
+t81 = t80*t79, t84 = exp(2*t81*var_membrane__F*t77), t87 = .25*t84*
+var_calcium_dynamics__Ca_ss-var_calcium_dynamics__Ca_o, t88 = t84-1, t89 = 1/
+t88, t97 = t87*t77, t98 = t88^2, t101 = t79*var_membrane__F, t107 = PIECEWISE([
+t89*t87+.50*t89*t84*t81*var_membrane__F*var_calcium_dynamics__Ca_ss*t77-2*t84*
+t80*t101/t98*t97, t76],[0, otherwise]), t109 = var_L_type_Ca_current_d_gate__d*
+var_L_type_Ca_current_f_gate__f, t112 = var_membrane__F^2, t115 = t80*t79*t112*
+var_L_type_Ca_current_f2_gate__f2*var_L_type_Ca_current_fCass_gate__fCass, t118
+= var_potassium_dynamics__K_o*var_sodium_potassium_pump_current__P_NaK, t120 =
+1/(var_potassium_dynamics__K_o+var_sodium_potassium_pump_current__K_mk), t121 =
+t120*t118, t122 = var_sodium_dynamics__Na_i+
+var_sodium_potassium_pump_current__K_mNa, t123 = 1/t122, t126 = t81*
+var_membrane__V*var_membrane__F, t128 = exp(-.1000000000*t126), t130 = exp(-
+t126), t132 = 1+.1245*t128+.35299999999999998e-1*t130, t133 = t132^2, t144 = (-
+.1245000000e-1*t128*t80*t101-.3530000000e-1*t130*t80*t101)/t133*t123*
+var_sodium_dynamics__Na_i*t121, t145 = var_fast_sodium_current_m_gate__m^2, 
+t146 = t145*var_fast_sodium_current_m_gate__m, t147 = t146*
+var_fast_sodium_current__g_Na, t148 = var_fast_sodium_current_h_gate__h*
+var_fast_sodium_current_j_gate__j, t149 = t148*t147, t153 = t80*t101, t155 = 
+exp(t153*var_sodium_calcium_exchanger_current__gamma*var_membrane__V), t157 = 
+var_sodium_dynamics__Na_i^2, t158 = t157*var_sodium_dynamics__Na_i, t162 = 
+var_sodium_calcium_exchanger_current__gamma-1, t167 = exp(t153*var_membrane__V*
+t162), t168 = var_sodium_dynamics__Na_o^2, t169 = t168*
+var_sodium_dynamics__Na_o, t170 = t169*t167, t172 = var_calcium_dynamics__Ca_i*
+var_sodium_calcium_exchanger_current__alpha*t170, t176 = 
+var_sodium_calcium_exchanger_current__Km_Nai^2, t179 = 1/(t176*
+var_sodium_calcium_exchanger_current__Km_Nai+t169), t181 = 1/(
+var_sodium_calcium_exchanger_current__Km_Ca+var_calcium_dynamics__Ca_o), t182 =
+t181*t179, t184 = t167*var_sodium_calcium_exchanger_current__K_sat+1, t185 = 1/
+t184, t186 = t185*t182, t187 = t186*(t155*t158*t79*t80*var_membrane__F*
+var_calcium_dynamics__Ca_o*var_sodium_calcium_exchanger_current__gamma-t162*
+t172*t81*var_membrane__F)*var_sodium_calcium_exchanger_current__K_NaCa, t191 =
+(t155*t158*var_calcium_dynamics__Ca_o-t172)*
+var_sodium_calcium_exchanger_current__K_NaCa, t192 = t184^2, t200 = t167*t81*
+var_membrane__F*t162*var_sodium_calcium_exchanger_current__K_sat/t192*t182*t191
+, t203 = exp(4.180602008-.1672240803*var_membrane__V), t204 = 1+t203, t205 = 1/
+t204, t206 = t205*var_potassium_pump_current__g_pK, t208 = t204^2, t212 = .1672\
+240803*t203/t208*t39*var_potassium_pump_current__g_pK, t213 = 
+var_potassium_atp_current__ATP_i^2, t220 = (var_potassium_dynamics__K_o/
+var_potassium_atp_current__K_o_normal)^.23999999999999999, t221 = t220/(1-76.94\
+675285*t213)*var_potassium_atp_current__g_K_ATP, t222 = -4*t107*t109*t115*
+var_L_type_Ca_current__g_CaL+t144-t149-t187+t200-t206-t212-t221+t43+t62-t65-t67
+-t71-t73-var_calcium_background_current__g_bca-
+var_sodium_background_current__g_bna, t234 = 1/(var_reversal_potentials__P_kna*
+var_sodium_dynamics__Na_i+var_potassium_dynamics__K_i), t236 = ln(t234*(
+var_reversal_potentials__P_kna*var_sodium_dynamics__Na_o+
+var_potassium_dynamics__K_o)), t239 = -t2*t236*t3+var_membrane__V, t243 = 1/
+var_sodium_dynamics__Na_i, t245 = ln(t243*var_sodium_dynamics__Na_o), t248 = -
+t2*t245*t3+var_membrane__V, t252 = t248*var_fast_sodium_current_j_gate__j, t257
+= var_L_type_Ca_current__V_low-15, t261 = exp(2*t81*var_membrane__F*t257), t267
+= 1/(t261-1), t269 = var_L_type_Ca_current__V_high-15, t273 = exp(2*t81*
+var_membrane__F*t269), t279 = 1/(t273-1), t282 = PIECEWISE([t89*t97, t76],[1/2*
+t267*(.25*t261*var_calcium_dynamics__Ca_ss-var_calcium_dynamics__Ca_o)*t257+1/2
+*t279*(.25*t273*var_calcium_dynamics__Ca_ss-var_calcium_dynamics__Ca_o)*t269, 
+otherwise]), t283 = var_L_type_Ca_current__g_CaL*t282, t287 = t81*t112*
+var_L_type_Ca_current_fCass_gate__fCass, t294 = t109*t283, t307 = t185*t181, 
+t309 = t307*t179*var_sodium_calcium_exchanger_current__alpha*t169*t167*
+var_sodium_calcium_exchanger_current__K_NaCa, t311 = t3*var_membrane__T, t312 =
+1/var_calcium_dynamics__Ca_i, t315 = .5*t312*t311*
+var_calcium_background_current__g_bca*var_membrane__R, t316 = 
+var_calcium_dynamics__Ca_i+var_calcium_pump_current__K_pCa, t317 = 1/t316, t318
+= t317*var_calcium_pump_current__g_pCa, t319 = var_calcium_dynamics__Ca_i*
+var_calcium_pump_current__g_pCa, t320 = t316^2, t322 = 1/t320*t319, t334 = 
+PIECEWISE([.25*t89*t84*t77, t76],[.1250000000*t267*t261*t257+.1250000000*t279*
+t273*t269, otherwise]), t335 = var_L_type_Ca_current__g_CaL*t334, t339 = 
+var_membrane__R*t73, t342 = var_reversal_potentials__P_kna*t234*t311*t339, t344
+= 1/t132, t346 = t344*t123*t120*t118, t347 = t122^2, t351 = t344/t347*
+var_sodium_dynamics__Na_i*t121, t354 = t243*t3*t2*t149, t357 = t243*t311*
+var_sodium_background_current__g_bna*var_membrane__R, t362 = t307*t179*
+var_calcium_dynamics__Ca_o*t157*t155*
+var_sodium_calcium_exchanger_current__K_NaCa, t367 = t4*t3, t368 = t11*t367, 
+t371 = .2581988897e-2*t368*t2*t39*t63*t15, t392 = .4303314829e-1*(-.6000000000e\
+-2*t368*var_membrane__T*var_membrane__R*t14+t33*(.6000000000e-3*t21*t367*t2+.10\
+000000000000001*t26*t367*t2)+.5*t31*t4*t311*var_membrane__R*t56)*t40*t47, t393
+= t367*t2, t395 = .4303314829e-1*t393*t64, t396 = t393*t67, t398 = .4303314829*
+t393*t70, t400 = t234*t311*t339, t404 = t205*t367*
+var_potassium_pump_current__g_pK*var_membrane__R*var_membrane__T, t407 = 1/7*
+var_membrane__V, t409 = exp(-26/7-t407), t410 = 1+t409, t411 = t410^2, t414 = 1
+/10*var_membrane__V, t416 = exp(-9/2-t414), t417 = 1+t416, t420 = exp(.\
+8695652174e-1*var_membrane__V+2.608695652), t421 = 1+t420, t422 = t421*t417, 
+t426 = 1/t410-var_rapid_time_dependent_potassium_current_Xr1_gate__Xr1, t437 =
+exp(1/24*var_membrane__V+11/3), t438 = 1+t437, t439 = t438^2, t442 = 1/20*
+var_membrane__V, t444 = exp(-3-t442), t445 = 1+t444, t447 = exp(t442-3), t448 =
+1+t447, t449 = t448*t445, t453 = 1/t438-
+var_rapid_time_dependent_potassium_current_Xr2_gate__Xr2, t464 = exp(-5/14-1/14
+*var_membrane__V), t465 = 1+t464, t466 = t465^2, t469 = 1/6*var_membrane__V, 
+t471 = exp(5/6-t469), t472 = 1+t471, t473 = t472^(1/2), t474 = 1/t473, t477 = 
+exp(1/15*var_membrane__V-7/3), t478 = 1+t477, t479 = 1/t478, t482 = 1400*t474*
+t479+80, t483 = 1/t482, t488 = t482^2, t496 = t478^2, t506 = exp(-6.296788482-.\
+1107419712*var_membrane__V), t507 = 1+t506, t508 = t507^2, t512 = 1/5*
+var_membrane__V, t514 = exp(-12-t512), t515 = 1+t514, t517 = exp(t512+7), t518
+= 1+t517, t523 = exp(1/200*var_membrane__V-1/4), t524 = 1+t523, t527 = .1000000\
+0000000001/t518+.10000000000000001/t524, t528 = 1/t527, t529 = t528*t515, t533
+= 1/t508-var_fast_sodium_current_m_gate__m, t538 = t527^2, t540 = t518^2, t544
+= t524^2, t552 = 1/100*var_fast_sodium_current__perc_reduced_inact_for_IpNa, 
+t553 = 1-t552, t557 = exp(.1345895020*var_membrane__V+9.629878868-.1345895020*
+var_fast_sodium_current__shift_INa_inact), t558 = 1+t557, t559 = t558^2, t562 =
+1/t559/t558*t553, t564 = (var_membrane__V < -40+
+var_fast_sodium_current__shift_INa_inact), t568 = exp(-.1470588235*
+var_membrane__V-11.76470588+.1470588235*
+var_fast_sodium_current__shift_INa_inact), t570 = PIECEWISE([.57000000000000002\
+e-1*t568, t564],[0, otherwise]), t572 = .7900000000e-1*
+var_fast_sodium_current__shift_INa_inact, t574 = exp(.79000000000000001e-1*
+var_membrane__V-t572), t577 = .3485000000*
+var_fast_sodium_current__shift_INa_inact, t579 = exp(.34849999999999998*
+var_membrane__V-t577), t585 = exp(-.9009009009e-1*var_membrane__V-.9603603604+.\
+9009009009e-1*var_fast_sodium_current__shift_INa_inact), t590 = PIECEWISE([2.70\
+00000000000002*t574+310000*t579, t564],[.77000000000000002/(.13+.13*t585), 
+otherwise]), t591 = t570+t590, t596 = 1/t559*t553, t598 = -40.+
+var_fast_sodium_current__shift_INa_inact, t599 = (var_membrane__V < t598), t601
+= (var_membrane__V = t598), t602 = (t598 < var_membrane__V), t603 = PIECEWISE([
+-.8382352941e-2*t568, t599],[Float(undefined), t601],[0., t602]), t606 = exp(.\
+7900000000e-1*var_membrane__V-t572), t610 = exp(.3485000000*var_membrane__V-
+t577), t615 = (.1300000000+.1300000000*t585)^2, t619 = PIECEWISE([.2133000000*
+t606+108035.*t610, t599],[Float(undefined), t601],[.9018018018e-2*t585/t615, 
+t602]), t624 = .2444000000*var_fast_sodium_current__shift_INa_inact, t626 = exp
+(.24440000000000001*var_membrane__V-t624), t628 = .4391000000e-1*
+var_membrane__V, t631 = exp(-t628+.43909999999999998e-1*
+var_fast_sodium_current__shift_INa_inact), t639 = exp(.311*var_membrane__V+24.6\
+4053000-.311*var_fast_sodium_current__shift_INa_inact), t643 = PIECEWISE([1/(1+
+t639)*(var_membrane__V+37.780000000000001)*(-25428*t626-.6948000000e-5*t631), 
+t564],[0, otherwise]), t647 = exp(-.1052e-1*var_membrane__V+.1052e-1*
+var_fast_sodium_current__shift_INa_inact), t648 = .1378000000*var_membrane__V,
+t651 = exp(-t648-5.531292000+.13780000000000001*
+var_fast_sodium_current__shift_INa_inact), t657 = .5700000000e-1*
+var_fast_sodium_current__shift_INa_inact, t659 = exp(.57000000000000002e-1*
+var_membrane__V-t657), t660 = .1000000000*var_membrane__V, t663 = exp(-t660-3.2\
+00000000+.10000000000000001*var_fast_sodium_current__shift_INa_inact), t668 = 
+PIECEWISE([.24240000000000001e-1/(1+t651)*t647, t564],[.59999999999999998/(1+
+t663)*t659, otherwise]), t669 = t643+t668, t676 = exp(.2444000000*
+var_membrane__V-t624), t680 = exp(-t628+.4391000000e-1*
+var_fast_sodium_current__shift_INa_inact), t683 = var_membrane__V+37.78000000,
+t688 = exp(.3110000000*var_membrane__V+24.64053001-.3110000000*
+var_fast_sodium_current__shift_INa_inact), t689 = 1.+t688, t690 = 1/t689, t694
+= -25428.*t676-.6948000000e-5*t680, t697 = t689^2, t703 = PIECEWISE([t690*t683*
+(-6214.603200*t676+.3050866800e-6*t680)+t690*t694-.3110000000*t688/t697*t683*
+t694, t599],[Float(undefined), t601],[0., t602]), t707 = exp(-.1052000000e-1*
+var_membrane__V+.1052000000e-1*var_fast_sodium_current__shift_INa_inact), t710
+= exp(-t648-5.531291995+.1378000000*var_fast_sodium_current__shift_INa_inact),
+t711 = 1.+t710, t715 = t711^2, t723 = exp(.5700000000e-1*var_membrane__V-t657),
+t726 = exp(-t660-3.200000000+.1000000000*
+var_fast_sodium_current__shift_INa_inact), t727 = 1.+t726, t731 = t727^2, t737
+= PIECEWISE([-.2550048000e-3/t711*t707+.3340272000e-2*t710/t715*t707, t599],[
+Float(undefined), t601],[.3420000000e-1/t727*t723+.6000000000e-1*t726/t731*t723
+, t602]), t743 = exp(-1.066666666-.1333333333*var_membrane__V), t744 = 1+t743,
+t745 = t744^2, t750 = exp(-35/13-1/13*var_membrane__V), t751 = 1+t750, t754 = 1\
+.3999999999999999/t751+.25, t756 = exp(t512+1), t757 = 1+t756, t758 = 1/t757, 
+t762 = exp(5/2-t442), t763 = 1+t762, t765 = 1.3999999999999999*t758*t754+1/t763
+, t766 = 1/t765, t771 = t765^2, t774 = t751^2, t779 = t757^2, t784 = t763^2, 
+t792 = exp(t407+20/7), t793 = 1+t792, t794 = t793^2, t798 = (var_membrane__V+27
+)^2, t800 = exp(-1/225*t798), t803 = exp(13/10-t414), t804 = 1+t803, t808 = exp
+(t414+3), t809 = 1+t808, t810 = 1/t809, t812 = 1102.5*t800+200/t804+180*t810+20
+, t813 = 1/t812, t818 = t812^2, t825 = t804^2, t829 = t809^2, t831 = t808/t829,
+t837 = exp(t407+5), t838 = 1+t837, t839 = t838^2, t843 = exp(-1/240*t798), t846
+= exp(5/2-t414), t847 = 1+t846, t851 = 562*t843+31/t847+80*t810, t852 = 1/t851,
+t858 = t851^2, t865 = t847^2, t873 = var_calcium_dynamics__Ca_ss^2, t875 = 1+
+400.0000000*t873, t876 = 1/t875, t878 = 80*t876+2, t879 = 1/t878, t880 = t875^2
+, t882 = var_calcium_dynamics__Ca_ss/t880, t887 = t878^2, t894 = exp(t512+4), 
+t895 = 1+t894, t896 = t895^2, t900 = (var_membrane__V+45)^2, t902 = exp(-1/320*
+t900), t905 = exp(t512-4), t906 = 1+t905, t909 = 85*t902+5/t906+3, t910 = 1/
+t909, t915 = t909^2, t922 = t906^2, t929 = exp(10/3-t469), t930 = 1+t929, t931
+= t930^2, t935 = (var_membrane__V+40)^2, t937 = exp(-1/1800*t935), t939 = 9.5*
+t937+.80000000000000004, t940 = 1/t939, t945 = t939^2, t954 = 
+var_calcium_dynamics__K_buf_c*var_calcium_dynamics__Buf_c, t955 = 
+var_calcium_dynamics__Ca_i+var_calcium_dynamics__K_buf_c, t956 = t955^2, t959 =
+1+1/t956*t954, t960 = 1/t959, t965 = 1/var_membrane__V_c, t967 = t3*t965*
+var_membrane__Cm, t970 = t959^2, t973 = var_calcium_dynamics__V_leak*(
+var_calcium_dynamics__Ca_SR-var_calcium_dynamics__Ca_i), t974 = 
+var_calcium_dynamics__K_up^2, t975 = var_calcium_dynamics__Ca_i^2, t978 = 1+1/
+t975*t974, t980 = 1/t978*var_calcium_dynamics__Vmax_up, t985 = 
+var_calcium_dynamics__V_xfer*(var_calcium_dynamics__Ca_ss-
+var_calcium_dynamics__Ca_i), t987 = ln(t312*var_calcium_dynamics__Ca_o), t998 =
+t3*t965, t1008 = t978^2, t1016 = -var_calcium_dynamics__V_leak-2/t975/
+var_calcium_dynamics__Ca_i*t974/t1008*var_calcium_dynamics__Vmax_up, t1035 = 
+t967*t186, t1038 = var_calcium_dynamics__K_buf_sr*var_calcium_dynamics__Buf_sr,
+t1039 = var_calcium_dynamics__Ca_SR+var_calcium_dynamics__K_buf_sr, t1040 = 
+t1039^2, t1043 = 1+1/t1040*t1038, t1044 = 1/t1043, t1046 = t1043^2, t1048 = 
+var_calcium_dynamics__k1_prime*var_calcium_dynamics__V_rel, t1049 = 
+var_calcium_dynamics__max_sr-var_calcium_dynamics__min_sr, t1050 = 
+var_calcium_dynamics__EC^2, t1051 = var_calcium_dynamics__Ca_SR^2, t1054 = 1+1/
+t1051*t1050, t1057 = var_calcium_dynamics__max_sr-1/t1054*t1049, t1058 = 1/
+t1057, t1059 = t1058*t1048, t1060 = var_calcium_dynamics__R_prime*t873, t1063 =
+t1058*t873*var_calcium_dynamics__k1_prime+var_calcium_dynamics__k3, t1064 = 1/
+t1063, t1065 = var_calcium_dynamics__Ca_SR-var_calcium_dynamics__Ca_ss, t1066 =
+t1065*t1064, t1076 = t1057^2, t1077 = 1/t1076, t1082 = t1054^2, t1083 = 1/t1082
+, t1086 = 1/t1051/var_calcium_dynamics__Ca_SR, t1087 = t1086*t1050*t1083, t1091
+= var_calcium_dynamics__k1_prime^2, t1092 = t1091*var_calcium_dynamics__V_rel,
+t1094 = 1/t1076/t1057, t1095 = t873^2, t1099 = t1063^2, t1100 = 1/t1099, t1101
+= t1065*t1100, t1106 = t1064*t1060, t1107 = t1106*t1059, t1111 = 
+var_calcium_dynamics__Ca_ss*var_calcium_dynamics__R_prime, t1116 = t873*
+var_calcium_dynamics__Ca_ss, t1125 = t873*t1058, t1128 = 
+var_calcium_dynamics__K_buf_ss*var_calcium_dynamics__Buf_ss, t1129 = 
+var_calcium_dynamics__Ca_ss+var_calcium_dynamics__K_buf_ss, t1130 = t1129^2, 
+t1133 = 1+1/t1130*t1128, t1134 = 1/t1133, t1137 = 
+var_L_type_Ca_current_f2_gate__f2*t109, t1142 = 1/var_calcium_dynamics__V_ss, 
+t1143 = t1142*var_membrane__Cm*t80, t1144 = t1143*t79*var_membrane__F*
+var_L_type_Ca_current_fCass_gate__fCass, t1147 = t282*t1134, t1153 = 
+var_L_type_Ca_current_d_gate__d*var_L_type_Ca_current__g_CaL, t1159 = 
+var_L_type_Ca_current_f_gate__f*t1153*t1147, t1168 = t1142*var_membrane__V_c, 
+t1173 = t1142*var_calcium_dynamics__V_sr*t1065, t1175 = t1086*t1050, t1177 = 
+t1175*t1083*t1049*t1173, t1186 = t1125*t1048, t1187 = t1064*
+var_calcium_dynamics__R_prime, t1190 = t1142*var_calcium_dynamics__V_sr*t1187*
+t1186, t1193 = t1133^2, t1198 = t1173*t1187, t1237 = t1057*
+var_calcium_dynamics__k2_prime, t1247 = var_sodium_dynamics__conc_clamp*
+var_fast_sodium_current__g_Na, t1256 = var_membrane__Cm*t3, t1257 = t1256*t965*
+t248, t1277 = var_sodium_dynamics__conc_clamp*
+var_rapid_time_dependent_potassium_current__g_Kr, t1281 = t1256*t965*t39, t1294
+= var_transient_outward_current__g_to*var_sodium_dynamics__conc_clamp, jacobian
+[1,1] = t222, jacobian[1,2] = -.4303314829*t39*
+var_rapid_time_dependent_potassium_current_Xr2_gate__Xr2*t68, jacobian[1,3] = -\
+.4303314829*t39*var_rapid_time_dependent_potassium_current_Xr1_gate__Xr1*t68, 
+jacobian[1,4] = -2*t239*var_slow_time_dependent_potassium_current_Xs_gate__Xs*
+var_slow_time_dependent_potassium_current__g_Ks, jacobian[1,5] = -3*t248*t148*
+t145*var_fast_sodium_current__g_Na, jacobian[1,6] = -t252*t147, jacobian[1,7] =
+-t248*var_fast_sodium_current_h_gate__h*t147, jacobian[1,8] = -4*t287*
+var_L_type_Ca_current_f_gate__f*var_L_type_Ca_current_f2_gate__f2*t283, 
+jacobian[1,9] = -4*t287*var_L_type_Ca_current_d_gate__d*
+var_L_type_Ca_current_f2_gate__f2*t283, jacobian[1,10] = -4*t287*t294, jacobian
+[1,11] = -4*t81*t112*var_L_type_Ca_current_f2_gate__f2*t294, jacobian[1,12] = -
+t39*t66, jacobian[1,13] = -t39*var_transient_outward_current_s_gate__s*
+var_transient_outward_current__g_to, jacobian[1,14] = t309-t315-t318+t322, 
+jacobian[1,15] = 0, jacobian[1,16] = -4*t115*t109*t335, jacobian[1,17] = 0, 
+jacobian[1,18] = -t342-t346+t351-t354-t357-3*t362, jacobian[1,19] = -t221*t393+
+t371+t392-t395-t396-t398-t400-t404, jacobian[2,1] = 1/18900*t422*t409/t411-1/
+27000*t421*t416*t426+.3220611916e-4*t420*t417*t426, jacobian[2,2] = -1/2700*
+t422, jacobian[2,3] = 0, jacobian[2,4] = 0, jacobian[2,5] = 0, jacobian[2,6] =
+0, jacobian[2,7] = 0, jacobian[2,8] = 0, jacobian[2,9] = 0, jacobian[2,10] = 0,
+jacobian[2,11] = 0, jacobian[2,12] = 0, jacobian[2,13] = 0, jacobian[2,14] = 0,
+jacobian[2,15] = 0, jacobian[2,16] = 0, jacobian[2,17] = 0, jacobian[2,18] = 0,
+jacobian[2,19] = 0, jacobian[3,1] = -.1240079365e-1*t449*t437/t439-.1488095238e\
+-1*t448*t444*t453+.1488095238e-1*t447*t445*t453, jacobian[3,2] = 0, jacobian[3,
+3] = -.2976190476*t449, jacobian[3,4] = 0, jacobian[3,5] = 0, jacobian[3,6] = 0
+, jacobian[3,7] = 0, jacobian[3,8] = 0, jacobian[3,9] = 0, jacobian[3,10] = 0,
+jacobian[3,11] = 0, jacobian[3,12] = 0, jacobian[3,13] = 0, jacobian[3,14] = 0,
+jacobian[3,15] = 0, jacobian[3,16] = 0, jacobian[3,17] = 0, jacobian[3,18] = 0,
+jacobian[3,19] = 0, jacobian[4,1] = 1/14*t483*t464/t466-(350/3*t471*t479/t473/
+t472-280/3*t477/t496*t474)/t488*(1/t465-
+var_slow_time_dependent_potassium_current_Xs_gate__Xs), jacobian[4,2] = 0, 
+jacobian[4,3] = 0, jacobian[4,4] = -t483, jacobian[4,5] = 0, jacobian[4,6] = 0,
+jacobian[4,7] = 0, jacobian[4,8] = 0, jacobian[4,9] = 0, jacobian[4,10] = 0, 
+jacobian[4,11] = 0, jacobian[4,12] = 0, jacobian[4,13] = 0, jacobian[4,14] = 0,
+jacobian[4,15] = 0, jacobian[4,16] = 0, jacobian[4,17] = 0, jacobian[4,18] = 0,
+jacobian[4,19] = 0, jacobian[5,1] = .2214839424*t529*t506/t508/t507-1/5*t528*
+t514*t533-(-.2000000000e-1*t517/t540-.5000000000e-3*t523/t544)/t538*t515*t533,
+jacobian[5,2] = 0, jacobian[5,3] = 0, jacobian[5,4] = 0, jacobian[5,5] = -t529,
+jacobian[5,6] = 0, jacobian[5,7] = 0, jacobian[5,8] = 0, jacobian[5,9] = 0, 
+jacobian[5,10] = 0, jacobian[5,11] = 0, jacobian[5,12] = 0, jacobian[5,13] = 0,
+jacobian[5,14] = 0, jacobian[5,15] = 0, jacobian[5,16] = 0, jacobian[5,17] = 0,
+jacobian[5,18] = 0, jacobian[5,19] = 0, jacobian[6,1] = -.2691790040*t591*t557*
+t562+(t603+t619)*(t596+t552-var_fast_sodium_current_h_gate__h), jacobian[6,2] =
+0, jacobian[6,3] = 0, jacobian[6,4] = 0, jacobian[6,5] = 0, jacobian[6,6] = -
+t591, jacobian[6,7] = 0, jacobian[6,8] = 0, jacobian[6,9] = 0, jacobian[6,10] =
+0, jacobian[6,11] = 0, jacobian[6,12] = 0, jacobian[6,13] = 0, jacobian[6,14] =
+0, jacobian[6,15] = 0, jacobian[6,16] = 0, jacobian[6,17] = 0, jacobian[6,18] =
+0, jacobian[6,19] = 0, jacobian[7,1] = -.2691790040*t669*t557*t562+(t703+t737)*
+(t596+t552-var_fast_sodium_current_j_gate__j), jacobian[7,2] = 0, jacobian[7,3]
+= 0, jacobian[7,4] = 0, jacobian[7,5] = 0, jacobian[7,6] = 0, jacobian[7,7] = -
+t669, jacobian[7,8] = 0, jacobian[7,9] = 0, jacobian[7,10] = 0, jacobian[7,11]
+= 0, jacobian[7,12] = 0, jacobian[7,13] = 0, jacobian[7,14] = 0, jacobian[7,15]
+= 0, jacobian[7,16] = 0, jacobian[7,17] = 0, jacobian[7,18] = 0, jacobian[7,19]
+= 0, jacobian[8,1] = .1333333333*t766*t743/t745-(.1507692308*t758*t750/t774-.28\
+00000000*t756/t779*t754+1/20*t762/t784)/t771*(1/t744-
+var_L_type_Ca_current_d_gate__d), jacobian[8,2] = 0, jacobian[8,3] = 0, 
+jacobian[8,4] = 0, jacobian[8,5] = 0, jacobian[8,6] = 0, jacobian[8,7] = 0, 
+jacobian[8,8] = -t766, jacobian[8,9] = 0, jacobian[8,10] = 0, jacobian[8,11] =
+0, jacobian[8,12] = 0, jacobian[8,13] = 0, jacobian[8,14] = 0, jacobian[8,15] =
+0, jacobian[8,16] = 0, jacobian[8,17] = 0, jacobian[8,18] = 0, jacobian[8,19] =
+0, jacobian[9,1] = -1/7*t813*t792/t794-(1102.5*t800*(-2/225*var_membrane__V-6/
+25)+20*t803/t825-18*t831)/t818*(1/t793-var_L_type_Ca_current_f_gate__f), 
+jacobian[9,2] = 0, jacobian[9,3] = 0, jacobian[9,4] = 0, jacobian[9,5] = 0, 
+jacobian[9,6] = 0, jacobian[9,7] = 0, jacobian[9,8] = 0, jacobian[9,9] = -t813,
+jacobian[9,10] = 0, jacobian[9,11] = 0, jacobian[9,12] = 0, jacobian[9,13] = 0,
+jacobian[9,14] = 0, jacobian[9,15] = 0, jacobian[9,16] = 0, jacobian[9,17] = 0,
+jacobian[9,18] = 0, jacobian[9,19] = 0, jacobian[10,1] = -.9571428572e-1*t852*
+t837/t839-(562*t843*(-1/120*var_membrane__V-9/40)+31/10*t846/t865-8*t831)/t858*
+(.67000000000000004/t838+.33000000000000002-var_L_type_Ca_current_f2_gate__f2),
+jacobian[10,2] = 0, jacobian[10,3] = 0, jacobian[10,4] = 0, jacobian[10,5] = 0,
+jacobian[10,6] = 0, jacobian[10,7] = 0, jacobian[10,8] = 0, jacobian[10,9] = 0,
+jacobian[10,10] = -t852, jacobian[10,11] = 0, jacobian[10,12] = 0, jacobian[10,
+13] = 0, jacobian[10,14] = 0, jacobian[10,15] = 0, jacobian[10,16] = 0, 
+jacobian[10,17] = 0, jacobian[10,18] = 0, jacobian[10,19] = 0, jacobian[11,1] =
+0, jacobian[11,2] = 0, jacobian[11,3] = 0, jacobian[11,4] = 0, jacobian[11,5] =
+0, jacobian[11,6] = 0, jacobian[11,7] = 0, jacobian[11,8] = 0, jacobian[11,9] =
+0, jacobian[11,10] = 0, jacobian[11,11] = -t879, jacobian[11,12] = 0, jacobian[
+11,13] = 0, jacobian[11,14] = 0, jacobian[11,15] = 0, jacobian[11,16] = -480.00\
+00000*t879*t882+64000.00000*t882/t887*(.59999999999999998*t876+.400000000000000\
+02-var_L_type_Ca_current_fCass_gate__fCass), jacobian[11,17] = 0, jacobian[11,
+18] = 0, jacobian[11,19] = 0, jacobian[12,1] = -1/5*t910*t894/t896-(85*t902*(-1
+/160*var_membrane__V-9/32)-t905/t922)/t915*(1/t895-
+var_transient_outward_current_s_gate__s), jacobian[12,2] = 0, jacobian[12,3] =
+0, jacobian[12,4] = 0, jacobian[12,5] = 0, jacobian[12,6] = 0, jacobian[12,7] =
+0, jacobian[12,8] = 0, jacobian[12,9] = 0, jacobian[12,10] = 0, jacobian[12,11]
+= 0, jacobian[12,12] = -t910, jacobian[12,13] = 0, jacobian[12,14] = 0, 
+jacobian[12,15] = 0, jacobian[12,16] = 0, jacobian[12,17] = 0, jacobian[12,18]
+= 0, jacobian[12,19] = 0, jacobian[13,1] = 1/6*t940*t929/t931-9.5*t937*(-1/900*
+var_membrane__V-2/45)/t945*(1/t930-var_transient_outward_current_r_gate__r), 
+jacobian[13,2] = 0, jacobian[13,3] = 0, jacobian[13,4] = 0, jacobian[13,5] = 0,
+jacobian[13,6] = 0, jacobian[13,7] = 0, jacobian[13,8] = 0, jacobian[13,9] = 0,
+jacobian[13,10] = 0, jacobian[13,11] = 0, jacobian[13,12] = 0, jacobian[13,13]
+= -t940, jacobian[13,14] = 0, jacobian[13,15] = 0, jacobian[13,16] = 0, 
+jacobian[13,17] = 0, jacobian[13,18] = 0, jacobian[13,19] = 0, jacobian[14,1] =
+-1/2*t967*(var_calcium_background_current__g_bca-2*t187+2*t200)*t960, jacobian[
+14,2] = 0, jacobian[14,3] = 0, jacobian[14,4] = 0, jacobian[14,5] = 0, jacobian
+[14,6] = 0, jacobian[14,7] = 0, jacobian[14,8] = 0, jacobian[14,9] = 0, 
+jacobian[14,10] = 0, jacobian[14,11] = 0, jacobian[14,12] = 0, jacobian[14,13]
+= 0, jacobian[14,14] = 2/t956/t955*t954*(t965*var_calcium_dynamics__V_sr*(t973-
+t980)+t985-1/2*t998*var_membrane__Cm*((var_membrane__V-.5*t987*t3*t2)*
+var_calcium_background_current__g_bca+t317*t319-2*t186*t191))/t970+(t965*
+var_calcium_dynamics__V_sr*t1016-var_calcium_dynamics__V_xfer-1/2*t998*
+var_membrane__Cm*(t315+t318-t322+2*t309))*t960, jacobian[14,15] = t965*
+var_calcium_dynamics__V_sr*var_calcium_dynamics__V_leak*t960, jacobian[14,16] =
+var_calcium_dynamics__V_xfer*t960, jacobian[14,17] = 0, jacobian[14,18] = 3*
+t1035*var_calcium_dynamics__Ca_o*t157*t155*
+var_sodium_calcium_exchanger_current__K_NaCa*t960, jacobian[14,19] = 0, 
+jacobian[15,1] = 0, jacobian[15,2] = 0, jacobian[15,3] = 0, jacobian[15,4] = 0,
+jacobian[15,5] = 0, jacobian[15,6] = 0, jacobian[15,7] = 0, jacobian[15,8] = 0,
+jacobian[15,9] = 0, jacobian[15,10] = 0, jacobian[15,11] = 0, jacobian[15,12] =
+0, jacobian[15,13] = 0, jacobian[15,14] = -t1016*t1044, jacobian[15,15] = 2/
+t1040/t1039*t1038*(-t1059*t1060*t1066-t973+t980)/t1046+(-2*t1048*t1049*t1066*
+t1077*t1087*t873*var_calcium_dynamics__R_prime+2*t1049*t1087*t1092*t1094*t1095*
+t1101*var_calcium_dynamics__R_prime-t1107-var_calcium_dynamics__V_leak)*t1044,
+jacobian[15,16] = (2*t1077*t1092*t1101*t1116*var_calcium_dynamics__R_prime-2*
+t1059*t1066*t1111+t1107)*t1044, jacobian[15,17] = -t1066*t1125*
+var_calcium_dynamics__k1_prime*var_calcium_dynamics__V_rel*t1044, jacobian[15,
+18] = 0, jacobian[15,19] = 0, jacobian[16,1] = -2*t1144*t1137*
+var_L_type_Ca_current__g_CaL*t107*t1134, jacobian[16,2] = 0, jacobian[16,3] = 0
+, jacobian[16,4] = 0, jacobian[16,5] = 0, jacobian[16,6] = 0, jacobian[16,7] =
+0, jacobian[16,8] = -2*t1144*var_L_type_Ca_current__g_CaL*
+var_L_type_Ca_current_f_gate__f*var_L_type_Ca_current_f2_gate__f2*t1147, 
+jacobian[16,9] = -2*t1144*var_L_type_Ca_current_f2_gate__f2*t1153*t1147, 
+jacobian[16,10] = -2*t1144*t1159, jacobian[16,11] = -2*t1143*t79*
+var_membrane__F*var_L_type_Ca_current_f2_gate__f2*t1159, jacobian[16,12] = 0, 
+jacobian[16,13] = 0, jacobian[16,14] = t1168*var_calcium_dynamics__V_xfer*t1134
+, jacobian[16,15] = (-2*t1092*t1094*t1095*t1100*t1177*
+var_calcium_dynamics__R_prime+2*t1048*t1077*t1106*t1177+t1190)*t1134, jacobian[
+16,16] = 2/t1130/t1129*t1128*(-2*t1137*t1144*t283-t1168*t985+t1186*t1198)/t1193
++(-2*t1077*t1092*t1100*t1116*t1173*var_calcium_dynamics__R_prime+2*t1048*t1058*
+t1198*var_calcium_dynamics__Ca_ss-2*t1137*t1144*t335-t1142*var_membrane__V_c*
+var_calcium_dynamics__V_xfer-t1190)*t1134, jacobian[16,17] = t1173*t1064*t873*
+t1058*var_calcium_dynamics__k1_prime*var_calcium_dynamics__V_rel*t1134, 
+jacobian[16,18] = 0, jacobian[16,19] = 0, jacobian[17,1] = 0, jacobian[17,2] =
+0, jacobian[17,3] = 0, jacobian[17,4] = 0, jacobian[17,5] = 0, jacobian[17,6] =
+0, jacobian[17,7] = 0, jacobian[17,8] = 0, jacobian[17,9] = 0, jacobian[17,10]
+= 0, jacobian[17,11] = 0, jacobian[17,12] = 0, jacobian[17,13] = 0, jacobian[17
+,14] = 0, jacobian[17,15] = 2*t1111*t1175*t1083*t1049*
+var_calcium_dynamics__k2_prime, jacobian[17,16] = -
+var_calcium_dynamics__R_prime*t1237, jacobian[17,17] = -t1237*
+var_calcium_dynamics__Ca_ss-var_calcium_dynamics__k4, jacobian[17,18] = 0, 
+jacobian[17,19] = 0, jacobian[18,1] = -t967*(t149+
+var_sodium_background_current__g_bna-3*t144+3*t187-3*t200)*
+var_sodium_dynamics__conc_clamp, jacobian[18,2] = 0, jacobian[18,3] = 0, 
+jacobian[18,4] = 0, jacobian[18,5] = -3*t967*t252*
+var_fast_sodium_current_h_gate__h*t145*t1247, jacobian[18,6] = -t1257*
+var_fast_sodium_current_j_gate__j*t146*t1247, jacobian[18,7] = -t1257*
+var_fast_sodium_current_h_gate__h*t146*t1247, jacobian[18,8] = 0, jacobian[18,9
+] = 0, jacobian[18,10] = 0, jacobian[18,11] = 0, jacobian[18,12] = 0, jacobian[
+18,13] = 0, jacobian[18,14] = 3*t1035*
+var_sodium_calcium_exchanger_current__alpha*t170*
+var_sodium_dynamics__conc_clamp*var_sodium_calcium_exchanger_current__K_NaCa, 
+jacobian[18,15] = 0, jacobian[18,16] = 0, jacobian[18,17] = 0, jacobian[18,18]
+= -t967*(t354+t357+3*t346-3*t351+9*t362)*var_sodium_dynamics__conc_clamp, 
+jacobian[18,19] = 0, jacobian[19,1] = -t967*(-t43-t62+t65+t67+t71+t73+t206+t212
++2*t144)*var_sodium_dynamics__conc_clamp, jacobian[19,2] = -.4303314829*t1281*
+var_rapid_time_dependent_potassium_current_Xr2_gate__Xr2*t38*t1277, jacobian[19
+,3] = -.4303314829*t1281*
+var_rapid_time_dependent_potassium_current_Xr1_gate__Xr1*t38*t1277, jacobian[19
+,4] = -2*t1256*t965*t239*var_sodium_dynamics__conc_clamp*
+var_slow_time_dependent_potassium_current__g_Ks*
+var_slow_time_dependent_potassium_current_Xs_gate__Xs, jacobian[19,5] = 0, 
+jacobian[19,6] = 0, jacobian[19,7] = 0, jacobian[19,8] = 0, jacobian[19,9] = 0,
+jacobian[19,10] = 0, jacobian[19,11] = 0, jacobian[19,12] = -t1281*
+var_transient_outward_current_r_gate__r*t1294, jacobian[19,13] = -t1281*
+var_transient_outward_current_s_gate__s*t1294, jacobian[19,14] = 0, jacobian[19
+,15] = 0, jacobian[19,16] = 0, jacobian[19,17] = 0, jacobian[19,18] = -t967*(
+t342-2*t346+2*t351)*var_sodium_dynamics__conc_clamp, jacobian[19,19] = -t967*(-
+t371-t392+t395+t396+t398+t400+t404)*var_sodium_dynamics__conc_clamp
+memory used=82.0MB, alloc=119.1MB, time=0.45
