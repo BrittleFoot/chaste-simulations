@@ -47,8 +47,9 @@ private:
         PseudoEcgCalculator<3, 3, 1> ecgCalculator(*pMesh, electrode, directory, h5name);
 
         try {
+            std::cout << "Begin WritePseudoEcg" << std::endl;
             ecgCalculator.WritePseudoEcg();
-            std::cout << "WritePseudoEcg" << std::endl;
+            std::cout << "End WritePseudoEcg" << std::endl;
         }
         catch (const std::exception& e) {
             std::cout << "Exception: " << e.what() << std::endl;
