@@ -1,0 +1,8 @@
+{
+    "electrode-position": [10, 10, 10],
+    "h5": {
+        "dir": "projects/output-data",
+        "name": "results"
+    },
+    "mesh": "projects/chaste-simulations/mesh/data"
+}

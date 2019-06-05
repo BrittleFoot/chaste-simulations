@@ -1,5 +1,5 @@
-#ifndef ECG1D_HPP
-#define ECG1D_HPP
+#ifndef ECG3D_HPP
+#define ECG3D_HPP
 
 #include <iostream>
 #include <exception>
@@ -23,70 +23,48 @@
 using json = nlohmann::json;
 
 
-class Ecg1d : public CxxTest::TestSuite
+class Ecg3d : public CxxTest::TestSuite
 {
 private:
 
-    json config = json_config("EcgConfig.json"); 
-
-    // initialze it from config
-    double stepSize;
-    double length;
-    double electrodePos;
+    json config = json_config("Ecg3dConfig.json"); 
 
 
-    void DoEcg(const std::string& sDirectory) {
-        std::cout << "Mesuring ECG in `" << sDirectory << "` at " << electrodePos << std::endl; 
+    void DoEcg() {
+        std::cout << "\nMeasuring ECG\n" << std::endl; 
 
-        DistributedTetrahedralMesh<1, 1> mesh;
-        mesh.ConstructRegularSlabMesh(stepSize, length, 0.0, 0.0);
+        TrianglesMeshReader<3,3> mesh_reader(config["mesh"]);
+
+        AbstractTetrahedralMesh<3,3>* pMesh = new TetrahedralMesh<3,3>;
+        pMesh->ConstructFromMeshReader(mesh_reader);
+
+        auto h5 = config["h5"];
         
-        FileFinder directory(sDirectory, RelativeTo::ChasteTestOutput);
-        std::string h5file = "results";
+        FileFinder directory(h5["dir"], RelativeTo::AbsoluteOrCwd);
+        ChastePoint<3> electrode(-10.0, -11.0, -12.0);
+        std::string h5name = h5["name"];
 
-        ChastePoint<1> electrode(electrodePos);
-
-        PseudoEcgCalculator<1, 1, 1> ecgCalculator(mesh, electrode, directory, h5file);
+        PseudoEcgCalculator<3, 3, 1> ecgCalculator(*pMesh, electrode, directory, h5name);
 
         try {
             ecgCalculator.WritePseudoEcg();
             std::cout << "WritePseudoEcg" << std::endl;
-            Rename(sDirectory, electrodePos);
-            std::cout << "Rename" << std::endl << std::endl;
         }
         catch (const std::exception& e) {
             std::cout << "Exception: " << e.what() << std::endl;
         }
     }
 
-    void Rename(const std::string sDirectory, double electrodePos) {
-        std::stringstream outputName, newName;
-        outputName << "ChasteResults/output/PseudoEcgFromElectrodeAt_" << electrodePos << "_0_0.dat";
-        newName << "ChasteResults/output/PseudoEcgFromElectrodeAt_" << electrodePos << "_0_0." << sDirectory << ".dat";
-
-        FileFinder oldFile(outputName.str(), RelativeTo::ChasteTestOutput);
-        FileFinder newFile(newName.str(), RelativeTo::ChasteTestOutput);
-
-        oldFile.CopyTo(newFile);
-        oldFile.Remove();
-
-        std::cout << "Renamed `" << oldFile.GetLeafName() << "` to `" << newFile.GetLeafName() << "`" << std::endl;
-    }
 
 public:
 
+    void Test3dEcg() {
 
-    void TestEcg() {
-
-        stepSize = config["step-size"];
-        length = config["length"];
-        electrodePos = config["electrode-position"];
-
-        auto vDirectories = config["directories"];
-        std::set<std::string> directories(vDirectories.begin(), vDirectories.end());
-
-        for (const auto& directory : directories) {
-            DoEcg(directory);
+        try {
+            DoEcg();
+        }
+        catch (const std::exception& e) {
+            std::cout << "Exception: " << e.what() << std::endl;
         }
     }
 
