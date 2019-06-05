@@ -22,11 +22,15 @@
 #include "ten_tusscher_model_2006_MBackwardEuler.hpp"
 
 #include "ten_tusscher_ischemic_model_endoBackwardEuler.hpp"
+#include "ten_tusscher_ischemic_model_epiBackwardEuler.hpp"
+#include "ten_tusscher_ischemic_model_MBackwardEuler.hpp"
 
 
 using json = nlohmann::json;
 
 typedef Cellten_tusscher_ischemic_model_endoFromCellMLBackwardEuler IschemicTenTusser2006Endo_BckwardEuler;
+typedef Cellten_tusscher_ischemic_model_epiFromCellMLBackwardEuler IschemicTenTusser2006Epi_BckwardEuler;
+typedef Cellten_tusscher_ischemic_model_MFromCellMLBackwardEuler IschemicTenTusser2006M_BckwardEuler;
 
 typedef Cellten_tusscher_model_2006_endoFromCellMLBackwardEuler TenTusser2006Endo_BckwardEuler;
 typedef Cellten_tusscher_model_2006_epiFromCellMLBackwardEuler  TenTusser2006Epi_BckwardEuler;
@@ -76,14 +80,14 @@ public:
         // 20% endocardial cells, 30% midwall cells, and 50% epicardial and first cell with stimulus
 
         if (x <= stepSize * 5)
-            pCell = new TenTusser2006Endo_BckwardEuler(mpSolver, mpStimulus);
+            pCell = new IschemicTenTusser2006Endo_BckwardEuler(mpSolver, mpStimulus);
 
         else if (x < length * 0.2)
             pCell = new IschemicTenTusser2006Endo_BckwardEuler(mpSolver, mpZeroStimulus); 
         else if (x < length * 0.5)
-            pCell = new TenTusser2006Mid_BckwardEuler(mpSolver, mpZeroStimulus); 
+            pCell = new IschemicTenTusser2006Epi_BckwardEuler(mpSolver, mpZeroStimulus); 
         else
-            pCell = new TenTusser2006Epi_BckwardEuler(mpSolver, mpZeroStimulus);
+            pCell = new IschemicTenTusser2006M_BckwardEuler(mpSolver, mpZeroStimulus);
 
         InduceIschemia(pCell);
 
