@@ -70,6 +70,17 @@ def plot(dat_path):
 
     plt.show()
 
+def plot_relative(dat_path):
+    """
+    :param dat_path: relative path to .dat file 
+
+    :return: shows ecg plot with some comments
+    """
+    x, y = load(dat_path)
+    plt.plot(x, y)
+
+    plt.show()
+
 
 def plot_all():
     """
@@ -100,4 +111,4 @@ def plot_all():
 
 
 if __name__ == '__main__':
-    fire.Fire({"single": plot, "all": plot_all})
+    fire.Fire({"output": plot, "all": plot_all, "single": plot_relative})

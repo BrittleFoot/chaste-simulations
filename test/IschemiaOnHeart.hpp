@@ -213,7 +213,7 @@ private:
     json config = json_config("IschemiaProblemHeartConfig.json");
 
 public:
-
+    
     void TestIschemicHeart()
     {
         HeartConfig::Instance()->SetMeshFileName(config["mesh"], cp::media_type::Axisymmetric);
