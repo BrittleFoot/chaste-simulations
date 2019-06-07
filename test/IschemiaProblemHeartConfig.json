@@ -1,6 +1,7 @@
 {
     "mesh": "projects/chaste-simulations/mesh/data",
     "csv": "projects/chaste-simulations/mesh/data.csv",
+    "apply-ischemia",
     "ischemia": [
         [-3, -248, -268],
         [-3, -248, -268],
