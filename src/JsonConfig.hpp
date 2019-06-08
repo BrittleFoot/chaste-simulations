@@ -21,7 +21,7 @@ using json = nlohmann::json;
 /// location relative to chaste-simulations/test
 json json_config(const std::string& location) {
 
-    FileFinder file(std::string("projects/chaste-simulations/test/") + location, RelativeTo::AbsoluteOrCwd);
+    FileFinder file(std::string("projects/chaste-simulations/test/") + location, RelativeTo::ChasteSourceRoot);
 
     std::cout << "Loading configuration: " << file.GetAbsolutePath() << std::endl;
 
