@@ -33,6 +33,7 @@
 #include "ten_tusscher_ischemic_model_MBackwardEuler.hpp"
 
 
+
 typedef Cellten_tusscher_ischemic_model_endoFromCellMLBackwardEuler IschemicTenTusser2006Endo_BckwardEuler;
 typedef Cellten_tusscher_ischemic_model_epiFromCellMLBackwardEuler  IschemicTenTusser2006Epi_BckwardEuler;
 typedef Cellten_tusscher_ischemic_model_MFromCellMLBackwardEuler    IschemicTenTusser2006Mid_BckwardEuler;
@@ -69,7 +70,7 @@ class CellFactory_Ichemia : public AbstractCardiacCellFactory<3>
 private:
 
     boost::numeric::ublas::matrix<double> cellMapping;
-    std::vector<double> center;
+    std::vector< std::vector<double> > ischemicCenters;
 
 
     double get_idx(int line_num)        { return cellMapping(line_num, 0); }
@@ -83,21 +84,22 @@ private:
     double get_model(int line_num)      { return cellMapping(line_num, 8); }
 
 
-    bool isIschemicCell(double x, double y, double z) {
-        double cx = 7.7;
-        double cy = -24.8;
-        double cz = -26.8;
-        double rad = 1.6;
+    bool isIschemic(int idx, double x, double y, double z) {
 
-        if ((x - cx)*(x - cx) + (y - cy)*(y - cy) + (z - cz)*(z - cz) < rad * rad) {
-            return true;
-        }
+        std::vector<double> center = this->ischemicCenters[0];
+    	double cx = center[0];
+    	double cy = center[1];
+    	double cz = center[2];
+
+    	if ((x - cx)*(x - cx) + (y - cy)*(y - cy) + (z - cz)*(z - cz) < 1.6 * 4444444) {
+             return true;
+    	}
         return false;
     }
 
 
+
 public:
-        
     CellFactory_Ichemia() : AbstractCardiacCellFactory<3>()
     {
 
@@ -134,6 +136,12 @@ public:
         std::cout << std::setw(10) << "duration " << get_duration(5) << std::endl;
         std::cout << std::setw(10) << "time " << get_time(5) << std::endl;
         std::cout << std::setw(10) << "model " << get_model(5) << std::endl;
+
+    	std::vector<double> region;
+    	region.push_back(7.7);
+    	region.push_back(-24.8);
+    	region.push_back(-26.8);
+        this->ischemicCenters.push_back(region);
     }
     
     AbstractCardiacCell* CreateCardiacCellForTissueNode(Node<3>* pNode)
@@ -143,58 +151,48 @@ public:
         double y = pNode->rGetLocation()[1];
         double z = pNode->rGetLocation()[2];
 
+
         AbstractCardiacCell* cell = NULL;
 
         
         for(int idx=0; idx < CSV_LINENO; idx++){
-            // find this cell in csv and apply supplied config 
-            if ((x - get_x(idx))*(x - get_x(idx)) + (y - get_y(idx))*(y - get_y(idx)) + (z - get_z(idx))*(z - get_z(idx)) >= 0.001) {
-                continue;
-            }
+            // find thud cell in csv and apply supplied config 
+            if ((x - get_x(idx))*(x - get_x(idx)) + (y - get_y(idx))*(y - get_y(idx)) + (z - get_z(idx))*(z - get_z(idx)) < 0.001) {
 
-            boost::shared_ptr<AbstractStimulusFunction> mpStimulus(new SimpleStimulus(
-                get_amplitude(idx),
-                get_duration(idx),
-                get_time(idx)
-            ));
+		boost::shared_ptr <AbstractStimulusFunction> mpStimulus(new SimpleStimulus(get_amplitude(idx), get_duration(idx), get_time(idx)));
+		if (abs(get_amplitude(idx)) <= 1) {
+		    mpStimulus = mpZeroStimulus;
+		}
 
-            if (abs(get_amplitude(idx) <= 1)) {
-                mpStimulus = mpZeroStimulus;
-            }
-
-            double cellModel = get_model(idx);
-
-            bool ischemiaApplied = true;
-
-            if (ischemiaApplied && isIschemicCell(x, y, z)) {
-                
-                if (cellModel <= 0.2){
-                    cell = new IschemicTenTusser2006Endo_BckwardEuler(mpSolver, mpStimulus);
+                if (isIschemic(idx, x, y, z)) {
+                    
+                    if (get_model(idx) <= 0.2){
+                        cell = new IschemicTenTusser2006Endo_BckwardEuler(mpSolver, mpStimulus);
+                    }
+                    if ((get_model(idx)  >= 0.2) && (get_model(idx) <= 0.5)){
+                        cell = new IschemicTenTusser2006Mid_BckwardEuler(mpSolver, mpStimulus);
+                    }
+                    if (get_model(idx)  >= 0.5){
+                        cell = new IschemicTenTusser2006Epi_BckwardEuler(mpSolver, mpStimulus);
+                    }
+                    InduceIschemia(cell);
                 }
-                if ((cellModel >= 0.2) && (cellModel <= 0.5)){
-                    cell = new IschemicTenTusser2006Mid_BckwardEuler(mpSolver, mpStimulus);
-                }
-                if (cellModel >= 0.5){
-                    cell = new IschemicTenTusser2006Epi_BckwardEuler(mpSolver, mpStimulus);
-                }
-                InduceIschemia(cell);
-            }
-            else {
+                else {
 
-                if (cellModel <= 0.2){
-                    cell = new TenTusser2006Endo_BckwardEuler(mpSolver, mpStimulus);
-                }
-                if ((cellModel >= 0.2) && (cellModel <= 0.5)){
-                    cell = new TenTusser2006Mid_BckwardEuler(mpSolver, mpStimulus);
-                }
-                if (cellModel >= 0.5){
-                    cell = new TenTusser2006Epi_BckwardEuler(mpSolver, mpStimulus);
+                    if (get_model(idx) <= 0.2){
+                        cell = new TenTusser2006Endo_BckwardEuler(mpSolver, mpStimulus);
+                    }
+                    if ((get_model(idx)  >= 0.2) && (get_model(idx) <= 0.5)){
+                        cell = new TenTusser2006Mid_BckwardEuler(mpSolver, mpStimulus);
+                    }
+                    if (get_model(idx)  >= 0.5){
+                        cell = new TenTusser2006Epi_BckwardEuler(mpSolver, mpStimulus);
+                    }
+                    
                 }
                 
+               break;
             }
-            
-           break;
-        
         }
 
         if (cell == NULL) {
@@ -210,8 +208,9 @@ class IschemiaTest : public CxxTest::TestSuite
 {
 private:
 
+
 public:
-    
+
     void TestIschemicHeart()
     {
         HeartConfig::Instance()->SetMeshFileName("heart/test/autorun/IGOR/ALL_HEART/data", cp::media_type::Axisymmetric);
@@ -219,7 +218,7 @@ public:
         HeartConfig::Instance()->SetSimulationDuration(600);
         HeartConfig::Instance()->SetOutputDirectory("IschemiaOnHeart_24");
         HeartConfig::Instance()->SetOutputFilenamePrefix("results");
-        HeartConfig::Instance()->SetVisualizeWithVtk(false);
+        HeartConfig::Instance()->SetVisualizeWithVtk(true);
 
         
         HeartConfig::Instance()->SetIntracellularConductivities(Create_c_vector(12, 1.3333, 1.3333));
@@ -249,14 +248,14 @@ public:
             std::cout << "Exception: " << e.what() << std::endl;
         }
 
-        AbstractTetrahedralMesh<3,3>* pMesh = &(bidomain_problem.rGetMesh());
-        VtkMeshWriter<3,3> vtkWriter(HeartConfig::Instance()->GetOutputDirectory(), "init_mesh_1", false);
-        vtkWriter.WriteFilesUsingMesh(*pMesh);
+	AbstractTetrahedralMesh<3,3>* p_mesh = &(bidomain_problem.rGetMesh());
+        VtkMeshWriter<3,3> vtk_writer("./ISHEMIA_24/", "init_mesh_1", false);
+        vtk_writer.WriteFilesUsingMesh(*p_mesh);
 
-        VtkMeshWriter<3,3> vtkWriter2(HeartConfig::Instance()->GetOutputDirectory(), "init_mesh_2", false);
-        std::string originalFile = pMesh->GetMeshFileBaseName();
-        std::auto_ptr<AbstractMeshReader<3, 3> > pOriginalMeshWriter = GenericMeshReader<3, 3>(originalFile);
-        vtkWriter2.WriteFilesUsingMeshReader(*pOriginalMeshWriter);
+        VtkMeshWriter<3,3> vtk_writer2("./ISHEMIA_24/", "init_mesh_2", false);
+        std::string original_file = p_mesh->GetMeshFileBaseName();
+        std::auto_ptr<AbstractMeshReader<3, 3> > p_original_mesh_reader = GenericMeshReader<3, 3>(original_file);
+        vtk_writer2.WriteFilesUsingMeshReader(*p_original_mesh_reader);
     }
 };
 
