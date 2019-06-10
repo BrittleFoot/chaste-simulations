@@ -35,44 +35,44 @@ rads = (13, 16)
 configuration = {}
 
 
-with open("IschemiaTemplate.hpp") as input:
+with open("IschemiaWorkingTemplate.hpp") as input:
     text = input.read()
 
-    i = 0
-    for x, y, z in ischemia:
-        for rad in rads:
-            for apply in ["true"]:
-                i += 1
+i = 0
+for x, y, z in ischemia:
+    for rad in rads:
+        for apply in ["true"]:
+            i += 1
 
 
-                s_x = str(x / 10.0)
-                s_y = str(y / 10.0)
-                s_z = str(z / 10.0)
-                s_rad = str(rad / 10.0)
+            s_x = str(x / 10.0)
+            s_y = str(y / 10.0)
+            s_z = str(z / 10.0)
+            s_rad = str(rad / 10.0)
 
 
-                interpretation = text                         \
-                    .replace(define, str(i))                  \
-                    .replace(ptrn_cx, s_x)                    \
-                    .replace(ptrn_cy, s_y)                    \
-                    .replace(ptrn_cz, s_z)                    \
-                    .replace(ptrn_rad, s_rad)                 \
-                    .replace(ptrn_ichemia_applied, apply)
+            interpretation = text                         \
+                .replace(define, str(i))                  \
+                .replace(ptrn_cx, s_x)                    \
+                .replace(ptrn_cy, s_y)                    \
+                .replace(ptrn_cz, s_z)                    \
+                .replace(ptrn_rad, s_rad)                 \
+                .replace(ptrn_ichemia_applied, apply)
 
 
-                filename = "%s_test.hpp" % (i,)
+            filename = "%s_test.hpp" % (i,)
 
-                configuration[i] = {
-                    'id': i,
-                    'x': x,
-                    'y': z,
-                    'z': y,
-                    'r': rad,
-                    'has_ischemia': apply == 'false'
-                }
-                
-                with open(filename, mode='w') as output:
-                    output.write(interpretation); 
+            configuration[i] = {
+                'id': i,
+                'x': x,
+                'y': z,
+                'z': y,
+                'r': rad,
+                'has_ischemia': apply == 'false'
+            }
+            
+            with open(filename, mode='w') as output:
+                output.write(interpretation); 
 
 with open('generated-test-config.json', mode='w') as config_fp:
     json.dump(configuration, config_fp, indent=2)
