@@ -91,7 +91,7 @@ private:
     	double cy = center[1];
     	double cz = center[2];
 
-    	if ((x - cx)*(x - cx) + (y - cy)*(y - cy) + (z - cz)*(z - cz) < 1.3 * 4444444) {
+    	if ((x - cx)*(x - cx) + (y - cy)*(y - cy) + (z - cz)*(z - cz) < 1.3 * 1.3) {
              return true;
     	}
         return false;
