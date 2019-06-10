@@ -4,3 +4,4 @@ IschemiaTest.hpp
 Ecg1d.hpp
 Ecg3d.hpp
 IschemiaOnHeart.hpp
+IschemiaTemplate.hpp
