@@ -84,8 +84,8 @@ private:
 
 
     bool isIschemicCell(double x, double y, double z) {
-        double cx = 3.7;
-        double cy = -20.8;
+        double cx = 7.7;
+        double cy = -16.8;
         double cz = -22.8;
         double rad = 1.3;
 
@@ -164,7 +164,7 @@ public:
 
             double cellModel = get_model(idx);
 
-            bool ischemiaApplied = true;
+            bool ischemiaApplied = false;
 
             if (ischemiaApplied && isIschemicCell(x, y, z)) {
                 
@@ -255,7 +255,7 @@ public:
 
         VtkMeshWriter<3,3> vtkWriter2(HeartConfig::Instance()->GetOutputDirectory(), "init_mesh_2", false);
         std::string originalFile = pMesh->GetMeshFileBaseName();
-        std::shared_ptr<AbstractMeshReader<3, 3> > pOriginalMeshWriter = GenericMeshReader<3, 3>(originalFile);
+        std::auto_ptr<AbstractMeshReader<3, 3> > pOriginalMeshWriter = GenericMeshReader<3, 3>(originalFile);
         vtkWriter2.WriteFilesUsingMeshReader(*pOriginalMeshWriter);
     }
 };

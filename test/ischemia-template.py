@@ -41,7 +41,7 @@ with open("IschemiaTemplate.hpp") as input:
     i = 0
     for x, y, z in ischemia:
         for rad in rads:
-            for apply in ["true", "false"]:
+            for apply in ["false"]:
                 i += 1
 
 
