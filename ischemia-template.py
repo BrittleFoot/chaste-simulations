@@ -41,7 +41,7 @@ with open("IschemiaTemplate.hpp") as input:
     i = 0
     for x, y, z in ischemia:
         for rad in rads:
-            for apply in ["false"]:
+            for apply in ["true"]:
                 i += 1
 
 
@@ -71,7 +71,7 @@ with open("IschemiaTemplate.hpp") as input:
                     'has_ischemia': apply == 'false'
                 }
                 
-                with open("prepared/" + filename, mode='w') as output:
+                with open(filename, mode='w') as output:
                     output.write(interpretation); 
 
 with open('generated-test-config.json', mode='w') as config_fp:
