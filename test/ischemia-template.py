@@ -60,7 +60,7 @@ with open("IschemiaTemplate.hpp") as input:
                     .replace(ptrn_ichemia_applied, apply)
 
 
-                filename = "%0.2d_%s_test.hpp" % (i, i)
+                filename = "%s_test.hpp" % (i,)
 
                 configuration[i] = {
                     'id': i,

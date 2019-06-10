@@ -1,5 +1,5 @@
-#ifndef ICHEMIATEST_HPP_00000000
-#define ICHEMIATEST_HPP_00000000
+#ifndef ICHEMIATEST_HPP_10
+#define ICHEMIATEST_HPP_10
 
 #include <iostream>
 #include <iomanip>
@@ -84,10 +84,10 @@ private:
 
 
     bool isIschemicCell(double x, double y, double z) {
-        double cx = 11111111;
-        double cy = 22222222;
-        double cz = 33333333;
-        double rad = 44444444;
+        double cx = -0.3;
+        double cy = -16.8;
+        double cz = -22.8;
+        double rad = 1.6;
 
         if ((x - cx)*(x - cx) + (y - cy)*(y - cy) + (z - cz)*(z - cz) < rad * rad) {
             return true;
@@ -164,7 +164,7 @@ public:
 
             double cellModel = get_model(idx);
 
-            bool ischemiaApplied = true && true && true && true;
+            bool ischemiaApplied = false;
 
             if (ischemiaApplied && isIschemicCell(x, y, z)) {
                 
@@ -217,7 +217,7 @@ public:
         HeartConfig::Instance()->SetMeshFileName("heart/test/autorun/IGOR/ALL_HEART/data", cp::media_type::Axisymmetric);
         HeartConfig::Instance()->SetOutputUsingOriginalNodeOrdering(true);
         HeartConfig::Instance()->SetSimulationDuration(600);
-        HeartConfig::Instance()->SetOutputDirectory("IschemiaOnHeart_00000000");
+        HeartConfig::Instance()->SetOutputDirectory("IschemiaOnHeart_10");
         HeartConfig::Instance()->SetOutputFilenamePrefix("results");
         HeartConfig::Instance()->SetVisualizeWithVtk(false);
 
