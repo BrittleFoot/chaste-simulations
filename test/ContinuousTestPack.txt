@@ -4,3 +4,5 @@ IschemiaTest.hpp
 Ecg1d.hpp
 Ecg3d.hpp
 IschemiaOnHeart.hpp
+VolumeMeter.hpp
+OneDimensionExperiments.hpp
