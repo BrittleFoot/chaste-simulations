@@ -190,7 +190,7 @@ private:
         std::cout << "Solve" << std::endl;
 
 
-
+        mesh.ConstructRegularSlabMesh(stepSize, length, 0.0, 0.0);
         std::cout << "Mesuring ECG in `" << sDirectory << "` at " << electrodePos << std::endl; 
 
         
@@ -203,23 +203,6 @@ private:
 
         ecgCalculator.WritePseudoEcg();
         std::cout << "WritePseudoEcg" << std::endl;
-        Rename(sDirectory, electrodePos);
-        std::cout << "Rename" << std::endl << std::endl;
-
-    }
-
-    void Rename(const std::string sDirectory, double electrodePos) {
-        std::stringstream outputName, newName;
-        outputName << "ChasteResults/output/PseudoEcgFromElectrodeAt_" << electrodePos << "_0_0.dat";
-        newName << sDirectory << "/pECG_at_" << electrodePos << ".dat";
-
-        FileFinder oldFile(outputName.str(), RelativeTo::ChasteTestOutput);
-        FileFinder newFile(newName.str(), RelativeTo::ChasteTestOutput);
-
-        oldFile.CopyTo(newFile);
-        oldFile.Remove();
-
-        std::cout << "Renamed `" << oldFile.GetLeafName() << "` to `" << newFile.GetLeafName() << "`" << std::endl;
     }
 
 public:
@@ -239,6 +222,9 @@ public:
             }
             catch (const std::exception& e) {
                 std::cout << "Exception: " << e.what() << std::endl;
+            }
+            catch (...) {
+                std::cout << "Unexpected error" << std::endl;
             }
             std::cout << "\n===\n";
         }
