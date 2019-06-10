@@ -95,7 +95,7 @@ public:
 
         boost::shared_ptr<AbstractStimulusFunction> mpStimulus(new SimpleStimulus(stimulus, 2, 0));
 
-        if (x > stepSize * 5) {
+        if (x > length * 0.1) {
             mpStimulus = mpZeroStimulus;
         }
 
