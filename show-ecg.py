@@ -8,6 +8,7 @@ import sys
 import os
 
 from os import path
+from glob import glob
 
 
 CHASTE_OUTPUT = os.environ['CHASTE_OUTPUT_DIR']
@@ -70,14 +71,16 @@ def plot(dat_path):
 
     plt.show()
 
-def plot_relative(dat_path):
+def plot_relative(dat_glob):
     """
-    :param dat_path: relative path to .dat file 
+    :param dat_path: relative glob to .dat file 
 
     :return: shows ecg plot with some comments
     """
-    x, y = load(dat_path)
-    plt.plot(x, y)
+    for path in glob(dat_glob):
+        if path.endswith('.dat'):
+            x, y = load(path)
+            plt.plot(x, y)
 
     plt.show()
 
@@ -111,4 +114,4 @@ def plot_all():
 
 
 if __name__ == '__main__':
-    fire.Fire({"output": plot, "all": plot_all, "single": plot_relative})
+    fire.Fire({"output": plot, "all": plot_all, "any": plot_relative})
