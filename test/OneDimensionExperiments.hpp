@@ -64,6 +64,7 @@ private:
     int ncells;
 
     int id;
+    int position;
     double stimulus;
     double length;
     double stepSize; 
@@ -72,16 +73,37 @@ private:
 
 
     bool isIschemic(double x) {
-        double proc = config["experiment"][id];
-        double lasts = length - x;
-        double lastsProc = lasts / length * 100;
-        return lastsProc <= proc;
+        double proc = config["experiment"][id] * 10 // multiply because too small for stick;
+
+        // end of stick
+        if (position == 1) {
+            double lasts = length - x;
+            double lastsProc = lasts / length * 100;
+            return lastsProc <= proc;
+        }
+        // begin of stick
+        else if (position == 2) {
+            double currProc = x / length;
+            return currProc <= proc;
+        } 
+        // middle of stick
+        else if (position == 3) {
+            double currProc = x / length;
+            double midProc = 0.5;
+            double endProc = proc + midProc;
+
+            return currProc >= midProc && currProc <= endProc;
+
+        }
+
+
     }
 
 public:
-    ExperimentalCellFactory(int id, double length, double stepSize, double stimulus)
+    ExperimentalCellFactory(int id, int position, double length, double stepSize, double stimulus)
         : AbstractCardiacCellFactory<1>(),
           id(id),
+          position(position),
           stimulus(stimulus), 
           length(length), // cm
           stepSize(stepSize) // cm (stepSize * N = length)
@@ -148,15 +170,15 @@ private:
     DistributedTetrahedralMesh<1, 1> mesh;
 
 
-    std::string Name(int i) {
+    std::string Name(int i, int position) {
         std::stringstream ss;
-        ss << "experiment_" << i;
+        ss << "experiment_" << i << ".position_" << position;
         return ss.str();    
     }
 
 
-    void TestInstance(int number) {
-        std::string sDirectory = Name(number);
+    void TestInstance(int number, int position) {
+        std::string sDirectory = Name(number, position);
 
         mesh.ConstructRegularSlabMesh(stepSize, length, 0.0, 0.0);
 
@@ -173,7 +195,7 @@ private:
         HeartConfig::Instance()->SetCapacitance(2.0);
         
 
-        ExperimentalCellFactory cell_factory(number, length, stepSize, stimulus);
+        ExperimentalCellFactory cell_factory(number, position, length, stepSize, stimulus);
 
         BidomainProblem<1> bidomain_problem( &cell_factory );
         std::cout << "bidomain_problem(.)" << std::endl;
@@ -217,17 +239,19 @@ public:
 
         for (int i = 1; i < 35; ++i)
         {
-            std::cout << "\n=== TEST #" << i << "\n";
-            try {
-                TestInstance(i);
+            for (int position = 1; position <= 3; ++position) {
+                std::cout << "\n=== TEST #" << i << "\n";
+                try {
+                    TestInstance(i, position);
+                }
+                catch (const std::exception& e) {
+                    std::cout << "Exception: " << e.what() << std::endl;
+                }
+                catch (...) {
+                    std::cout << "Unexpected error" << std::endl;
+                }
+                std::cout << "\n===\n";
             }
-            catch (const std::exception& e) {
-                std::cout << "Exception: " << e.what() << std::endl;
-            }
-            catch (...) {
-                std::cout << "Unexpected error" << std::endl;
-            }
-            std::cout << "\n===\n";
         }
     }
 };
