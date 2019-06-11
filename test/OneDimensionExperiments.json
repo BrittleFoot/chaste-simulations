@@ -39,5 +39,6 @@
     "step-size": 0.005,
     "length": 1.63,
     "electrode-position": 2.445,
-    "stimulus": -100000
+    "stimulus": -100000,
+    "duration": 600
 }

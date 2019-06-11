@@ -143,6 +143,7 @@ private:
     double length = 1.63;
     double stimulus = -100 * 1000;
     double electrodePos = 2.4;
+    int duration = 600;
 
     DistributedTetrahedralMesh<1, 1> mesh;
 
@@ -160,7 +161,7 @@ private:
         mesh.ConstructRegularSlabMesh(stepSize, length, 0.0, 0.0);
 
         HeartConfig::Instance()->SetOutputUsingOriginalNodeOrdering(true);
-        HeartConfig::Instance()->SetSimulationDuration(600);//ms
+        HeartConfig::Instance()->SetSimulationDuration(duration);//ms
         HeartConfig::Instance()->SetOutputDirectory(sDirectory);
         HeartConfig::Instance()->SetOutputFilenamePrefix("results");
         HeartConfig::Instance()->SetVisualizeWithVtk(true);
@@ -190,7 +191,6 @@ private:
         std::cout << "Solve" << std::endl;
 
 
-        mesh.ConstructRegularSlabMesh(stepSize, length, 0.0, 0.0);
         std::cout << "Mesuring ECG in `" << sDirectory << "` at " << electrodePos << std::endl; 
 
         
@@ -213,6 +213,7 @@ public:
         length = config["length"];
         electrodePos = config["electrode-position"];
         stimulus = config["stimulus"];
+        stimulus = config["duration"];
 
         for (int i = 1; i < 35; ++i)
         {
