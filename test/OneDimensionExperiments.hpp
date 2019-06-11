@@ -180,7 +180,6 @@ private:
     void TestInstance(int number, int position) {
         std::string sDirectory = Name(number, position);
 
-        mesh.ConstructRegularSlabMesh(stepSize, length, 0.0, 0.0);
 
         HeartConfig::Instance()->SetOutputUsingOriginalNodeOrdering(true);
         HeartConfig::Instance()->SetSimulationDuration(duration);//ms
@@ -231,11 +230,13 @@ public:
 
     void TestIschemicHeart()
     {
+        mesh.ConstructRegularSlabMesh(stepSize, length, 0.0, 0.0);
+
         stepSize = config["step-size"];
         length = config["length"];
         electrodePos = config["electrode-position"];
         stimulus = config["stimulus"];
-        stimulus = config["duration"];
+        duration = config["duration"];
 
         for (int i = 1; i < 35; ++i)
         {
