@@ -73,12 +73,13 @@ private:
 
 
     bool isIschemic(double x) {
-        double proc = config["experiment"][id] * 10 // multiply because too small for stick;
+        double proc = config["experiment"][id];
+        proc = proc / 10;
 
         // end of stick
         if (position == 1) {
             double lasts = length - x;
-            double lastsProc = lasts / length * 100;
+            double lastsProc = lasts / length;
             return lastsProc <= proc;
         }
         // begin of stick
@@ -89,11 +90,13 @@ private:
         // middle of stick
         else if (position == 3) {
             double currProc = x / length;
-            double midProc = 0.5;
-            double endProc = proc + midProc;
+            double midProc = 0.5 - proc / 2;
+            double endProc = 0.5 + proc / 2;
 
             return currProc >= midProc && currProc <= endProc;
 
+        } else {
+            return false;
         }
 
 
