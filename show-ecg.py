@@ -79,6 +79,7 @@ def plot_relative(dat_glob):
     """
     for path in glob(dat_glob):
         if path.endswith('.dat'):
+            print(path)
             x, y = load(path)
             plt.plot(x, y)
 

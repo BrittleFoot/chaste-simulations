@@ -64,9 +64,9 @@ private:
     int ncells;
 
 
-    int ischemiaPosition;
-    int ischemiaProc;
-    int activationProc;
+    double ischemiaPosition;
+    double ischemiaProc;
+    double activationProc;
        
     int position;
 
@@ -107,14 +107,16 @@ private:
 
 public:
     ExperimentalCellFactory(int ischemiaPosition, double ischemiaProc, double activationProc) 
-      : AbstractCardiacCellFactory<2>(),
-        ischemiaPosition(ischemiaPosition),
-        ischemiaProc(ischemiaProc),
-        activationProc(activationProc)
+      : AbstractCardiacCellFactory<2>()
     {
         stimulus = config["stimulus"];
         length = config["length"];
         stepSize = config["step-size"];
+
+        this->ischemiaPosition = ischemiaPosition;
+        this->ischemiaProc = ischemiaProc;
+        this->activationProc = activationProc;
+
         ncells = 0;
     }
     
@@ -124,8 +126,10 @@ public:
 
         boost::shared_ptr<AbstractStimulusFunction> mpStimulus(new SimpleStimulus(stimulus, 2, 0));
 
-        if (x > length * activationProc) {
+        if (x > length * activationProc) {  
             mpStimulus = mpZeroStimulus;
+        } else {
+            std::cout << "-Z-";
         }
 
 
@@ -141,7 +145,7 @@ public:
             else
                 pCell = new IschemicTenTusser2006Mid_BckwardEuler(mpSolver, mpStimulus);
 
-            std::cout << "Add another ischemic cell to model (total=" << ++ncells << ")\n";
+            std::cout << "-I-";
             InduceIschemia(pCell);
         } else {
 
@@ -157,6 +161,7 @@ public:
             pCell = new TenTusser2006Epi_BckwardEuler(mpSolver, mpZeroStimulus);
         }
 
+        std::cout << endl;
 
         return pCell;
     }
