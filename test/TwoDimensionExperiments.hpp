@@ -231,17 +231,18 @@ private:
         std::cout << "Solve" << std::endl;
 
 
-        // std::cout << "Mesuring ECG in `" << sDirectory << "` at " << electrodePosition << std::endl; 
+        c_vector<double, 2> vElectrode = Create_c_vector(electrodePosition[0], electrodePosition[1]);
+        std::cout << "Mesuring ECG in `" << sDirectory << "` at " << vElectrode << std::endl; 
         
-        // FileFinder directory(sDirectory, RelativeTo::ChasteTestOutput);
-        // std::string h5file = "results";
+        FileFinder directory(sDirectory, RelativeTo::ChasteTestOutput);
+        std::string h5file = "results";
 
-        // ChastePoint<1> electrode(electrodePosition);
+        ChastePoint<2> electrode(vElectrode);
 
-        // PseudoEcgCalculator<1, 1, 1> ecgCalculator(mesh, electrode, directory, h5file);
+        PseudoEcgCalculator<2, 2, 1> ecgCalculator(mesh, electrode, directory, h5file);
 
-        // ecgCalculator.WritePseudoEcg();
-        // std::cout << "WritePseudoEcg" << std::endl;
+        ecgCalculator.WritePseudoEcg();
+        std::cout << "WritePseudoEcg" << std::endl;
     }
 
 public:
