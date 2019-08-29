@@ -42,21 +42,7 @@ def resolve(dat_path):
 
 
 def load(dat_file):
-    ms_s = []
-    ecg_s = []
-
-    with open(dat_file, mode='r', encoding='utf-8') as f:
-        for line in f:
-            line = line.strip()
-            if line.startswith('#'):
-                continue
-
-            ms, ecg = tuple(map(float, line.split('\t')))
-
-            ms_s.append(ms)
-            ecg_s.append(ecg)
-
-    return ms_s, ecg_s
+    return np.loadtxt(dat_file).transpose()
 
 
 def plot(dat_path):
@@ -80,8 +66,12 @@ def plot_relative(dat_glob):
     for path in glob(dat_glob):
         if path.endswith('.dat'):
             print(path)
-            x, y = load(path)
-            plt.plot(x, y)
+            try:
+                x, y = load(path)
+            except ValueError as e:
+                print("Error at %s. %s" % (path, e))
+            else:
+                plt.plot(x, y)
 
     plt.show()
 
